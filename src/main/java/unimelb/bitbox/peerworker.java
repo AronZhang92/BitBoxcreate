@@ -51,9 +51,9 @@ public class peerworker implements Runnable{
             ack = Document.parse(frombuffer);
             System.out.println(ack.toJson());
             if (!frombuffer.equals(JSONRETURN.CONNCECTION_REFUSED().toJson())){
-                System.out.println("received OK");
+                //System.out.println("received OK");
                 System.out.println("Connection established");
-                System.out.println(socket.getInetAddress());
+                //System.out.println(socket.getInetAddress());
                 //While the user input differs from "exit"
                 Scanner scanner = new Scanner(System.in);
                 String inputStr = null;
@@ -74,7 +74,7 @@ public class peerworker implements Runnable{
                 scanner.close();
 
             } else {
-                System.out.println("The socket closed due to wrong answer :" + ackreceived);
+                System.out.println("The socket closed due to wrong answer :" + frombuffer);
                 socket.close();
             }
 

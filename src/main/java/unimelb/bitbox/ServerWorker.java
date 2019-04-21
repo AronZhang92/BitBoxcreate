@@ -49,17 +49,18 @@ public class ServerWorker implements Runnable{
 			    //while((ack = in.readLine())!=null) {
                 //    System.out.println("received ack :" + ack);
                 //}
-                System.out.println("In the received mode");
+                //System.out.println("In the received mode");
 
 
                 String frombuffer = in.readLine();
-                System.out.println("Finish received mode");
-                System.out.println("The output is "+frombuffer);
-                System.out.println("Check point is" + JSONRETURN.HANDSHAKE_REQUEST().toJson());
+                //System.out.println("Finish received mode");
+                //System.out.println("The output is "+frombuffer);
+                //System.out.println("Check point is" + JSONRETURN.HANDSHAKE_REQUEST().toJson());
                 if (frombuffer.equals(JSONRETURN.HANDSHAKE_REQUEST().toJson()) && clientNumber < maxcon){
-                    System.out.println("received request");
+                    //System.out.println("received request");
                     out.write(JSONRETURN.HANDSHAKE_RESPONSE().toJson() + "\n");
                     out.flush();
+                    System.out.println("Connection established");
                     System.out.println("Server listening on port " + port + " for a connection");
                     System.out.println("Client conection number " + clientNumber + " accepted:");
                     System.out.println("Remote Port: " + clientSocket.getPort());
