@@ -1,5 +1,7 @@
 package unimelb.bitbox;
 
+import unimelb.bitbox.util.Configuration;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -11,6 +13,8 @@ import java.net.SocketException;
 public class ServerWorker implements Runnable{
 	private Socket clientSocket;
 	private int clientNumber;
+    String portstring = Configuration.getConfigurationValue("port");
+    final int port = Integer.parseInt(portstring);
 	
 	public ServerWorker (Socket client, int clientNumber) {
 		this.clientSocket = client ;
@@ -19,7 +23,7 @@ public class ServerWorker implements Runnable{
 	
 	public void run() {
 		    try {
-			System.out.println("Server listening on port 4444 for a connection"); 
+		    System.out.println("Server listening on port " + port + " for a connection");
 			System.out.println("Client conection number " + clientNumber + " accepted:");
 			System.out.println("Remote Port: " + clientSocket.getPort());
 			System.out.println("Remote Hostname: " + clientSocket.getInetAddress().getHostName());

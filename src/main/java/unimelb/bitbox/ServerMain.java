@@ -25,33 +25,35 @@ public class ServerMain implements FileSystemObserver {
 	
 //what we wrote, multithreading server 
 public static void main(String[] args) {
-		
 		ServerSocket listeningSocket = null;
 		int ServerNumber=1;
+		String portstring = Configuration.getConfigurationValue("port");
+		final int port = Integer.parseInt(portstring);
+		String maximumconnection = Configuration.getConfigurationValue("maximumIncommingConnections");
+		int maxcon = Integer.parseInt(maximumconnection);
 		
 		 try{
-			    listeningSocket = new ServerSocket(4444);
-			  } catch (IOException e) {
-			    System.out.println("Could not listen on port 4444");
-			    System.exit(-1);
-			  }
+			    listeningSocket = new ServerSocket(port);
+		} catch (IOException e) {
+			System.out.println("Could not listen on port " + port);
+			System.exit(-1);
+		}
 			
-			//Listen for incoming connections for ever 
-			while (true) {
-				ServerWorker w;
-				try {
-					w = new ServerWorker(listeningSocket.accept(), ServerNumber++);
-				      Thread t = new Thread(w);
-         		      t.start();
-					
-			} catch(IOException e) {
-			      System.out.println("Accept failed: 4444");
-			      System.exit(-1); 
-				
-			}
-		
-		
-	}
+			//Listen for incoming connections for ever
+        if(ServerNumber < maxcon){
+            while (true) {
+                ServerWorker w;
+                try {
+                    w = new ServerWorker(listeningSocket.accept(), ServerNumber++);
+                    Thread t = new Thread(w);
+                    t.start();
+
+                } catch (IOException e) {
+                    System.out.println("Accept failed: " + port);
+                    System.exit(-1);
+                }
+            }
+        }
 }
 	
 }
