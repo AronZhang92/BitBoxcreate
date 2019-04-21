@@ -44,6 +44,7 @@ public static void main(String[] args) {
             while (true) {
                 ServerWorker w;
                 try {
+                    System.out.println("The server port is:" + port);
                     w = new ServerWorker(listeningSocket.accept(), ServerNumber++);
                     Thread t = new Thread(w);
                     t.start();
