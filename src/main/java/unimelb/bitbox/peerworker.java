@@ -11,6 +11,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
@@ -28,6 +29,7 @@ public class peerworker implements Runnable{
 		// TODO Auto-generated method stub
 
 		try {
+		    socket.setSoTimeout(3000);
 			// Create a stream socket bounded to any port and connect it to the
 			// socket bound to localhost on port 4444
 
@@ -83,15 +85,20 @@ public class peerworker implements Runnable{
 
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
-		} catch (IOException e) {
+            System.out.println("unkown");
+		}catch (ConnectException ce){
+            System.out.println("The connection refused.");
+        } catch (IOException e) {
 			e.printStackTrace();
-		} finally{
+            System.out.println("ioex");
+		}  finally{
 			// Close the socket
 			if (socket != null) {
 				try {
 					socket.close();
 				} catch (IOException e) {
 					e.printStackTrace();
+                    System.out.println("another io ex");
 				}
 			}
 		}
