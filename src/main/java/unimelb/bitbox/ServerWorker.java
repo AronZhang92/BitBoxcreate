@@ -33,15 +33,16 @@ public class ServerWorker implements Runnable{
 			BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(), "UTF-8"));
 			BufferedWriter out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "UTF-8"));
 
-			
+
 			//Read the message from the client and reply
 			//Notice that no other connection can be accepted and processed until the last line of 
 			//code of this loop is executed, incoming connections have to wait until the current
 			//one is processed unless...we use threads!
 			String clientMsg = null;
 			try {
+
 			while((clientMsg = in.readLine()) != null) {
-				System.out.println("Message from client " + clientNumber + ": " + clientMsg);
+				System.out.println("Message from client " + clientSocket.getInetAddress() + ": " + clientMsg);
 				out.write("Server Ack " + clientMsg + "\n");
 				out.flush();
 				System.out.println("Response sent");

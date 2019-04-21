@@ -1,5 +1,7 @@
 package unimelb.bitbox;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -26,21 +28,33 @@ public class peerworker implements Runnable{
 			// socket bound to localhost on port 4444
 			System.out.println("Connection established");
 
+            System.out.println(socket.toString());
 			// Get the input/output streams for reading/writing data from/to the socket
 			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
 			BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
 
-			Scanner scanner = new Scanner(System.in);
-			String inputStr = null;
+
+            //Three way handshake
+            out.write("Request");
+            boolean ack = true;
+            while (ack){
+                String ackreceived = in.readLine();
+                if (ackreceived.equals("ack")){
+                    ack = false;
+                }
+            }
+
 
 			//While the user input differs from "exit"
+            Scanner scanner = new Scanner(System.in);
+            String inputStr = null;
 			while (!(inputStr = scanner.nextLine()).equals("exit")) {
 				
 				// Send the input string to the server by writing to the socket output stream
 				out.write(inputStr + "\n");
 				out.flush();
 				System.out.println("Message sent");
-				
+                System.out.println("The message sent to " + socket.getInetAddress());
 				// Receive the reply from the server by reading from the socket input stream
 				String received = in.readLine(); // This method blocks until there
 													// is something to read from the
