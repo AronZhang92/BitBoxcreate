@@ -26,11 +26,10 @@ public class ServerMain implements FileSystemObserver {
 //what we wrote, multithreading server 
 public static void main(String[] args) {
 		ServerSocket listeningSocket = null;
-		int ServerNumber=1;
+		int ServerNumber = 0;
 		String portstring = Configuration.getConfigurationValue("port");
 		final int port = Integer.parseInt(portstring);
-		String maximumconnection = Configuration.getConfigurationValue("maximumIncommingConnections");
-		int maxcon = Integer.parseInt(maximumconnection);
+
 		
 		 try{
 			    listeningSocket = new ServerSocket(port);
@@ -40,7 +39,7 @@ public static void main(String[] args) {
 		}
 			
 			//Listen for incoming connections for ever
-        if(ServerNumber < maxcon){
+
             while (true) {
                 ServerWorker w;
                 try {
@@ -55,7 +54,7 @@ public static void main(String[] args) {
                     System.exit(-1);
                 }
             }
-        }
+
 }
 	
 }
