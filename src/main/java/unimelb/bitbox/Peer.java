@@ -34,6 +34,7 @@ public class Peer
             System.out.println("the address is " + address + "\n the port number is " + portnumber);
             try {
                 socket = new Socket(address,portnumber);
+                socket.setSoTimeout(5000);
                 peerworker w = new peerworker(socket);
                 Thread t = new Thread(w);
                 t.start();

@@ -6,7 +6,7 @@ import java.net.UnknownHostException;
 
 public class AnotherConnection {
 
-    public static void Anotheronnection(String address,int port){
+    public static void AnotherConnection(String address,int port){
         try {
             Socket socket = new Socket(address,port);
             peerworker w = new peerworker(socket);

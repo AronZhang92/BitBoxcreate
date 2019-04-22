@@ -3,11 +3,12 @@ package unimelb.bitbox.util;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
+import unimelb.bitbox.Connectionlist;
 import unimelb.bitbox.util.FileSystemManager.FileSystemEvent;
 
 public class test implements FileSystemObserver {
      public static void main(String[] args) {
-    	 FileSystemObserver observe = new test();
+    	 /*FileSystemObserver observe = new test();
     
 			FileSystemManager test;
 			try {
@@ -20,7 +21,8 @@ public class test implements FileSystemObserver {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+			*/
+         System.out.println("Connection list is :" + Connectionlist.connumber());
 
      }
 

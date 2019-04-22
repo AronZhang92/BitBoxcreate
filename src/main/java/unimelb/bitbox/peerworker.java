@@ -3,6 +3,7 @@ package unimelb.bitbox;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.json.simple.JSONObject;
 import unimelb.bitbox.util.Document;
+import unimelb.bitbox.util.FileSystemManager;
 import unimelb.bitbox.util.JSONRETURN;
 
 import javax.print.Doc;
@@ -20,12 +21,12 @@ import java.util.Scanner;
 public class peerworker implements Runnable{
 	
 	private Socket socket;
-
+    private int checkplace = 0;
 	
 	public peerworker(Socket socket) {
 		this.socket= socket;
 	}
-	
+	String clientMsg;
 
 	public void run() {
 		// TODO Auto-generated method stub
@@ -56,30 +57,48 @@ public class peerworker implements Runnable{
 
             if (ack.getString("command").equals(JSONRETURN.HANDSHAKE_RESPONSE().getString("command"))){
                 //System.out.println("received OK");
-                System.out.println("Connection established");
+                System.out.println("Connection established to" + socket.getInetAddress());
+                Connectionlist.AddNewIPAddress(socket.getInetAddress().toString(),socket.getPort());
                 //System.out.println(socket.getInetAddress());
                 //While the user input differs from "exit"
-                Scanner scanner = new Scanner(System.in);
-                String inputStr = null;
-                while (!(inputStr = scanner.nextLine()).equals("exit")) {
 
-                    // Send the input string to the server by writing to the socket output stream
-                    out.write(inputStr + "\n");
-                    out.flush();
-                    System.out.println("Message sent");
-                    System.out.println("The message sent to " + socket.getInetAddress());
-                    // Receive the reply from the server by reading from the socket input stream
-                    String received = in.readLine(); // This method blocks until there
-                    // is something to read from the
-                    // input stream
-                    System.out.println("Message received: " + received);
+                while (true) {
+                    //System.out.println("The connection list lenght is " + Connectionlist.connumber());
+                    if(Eventlist.change(socket.getInetAddress().toString())) {
+                        FileSystemManager.FileSystemEvent event = Eventlist.getevent();
+                        System.out.println("the event is :"+ event);
+                        Document doc = new Document();
+                        doc.append("pathName", event.pathName);
+                        doc.append("path", event.path);
+                        doc.append("name", event.name);
+
+                        // Send the input string to the server by writing to the socket output stream
+                        out.write(doc.toJson() + "\n");
+                        out.flush();
+                        System.out.println("Message sent :" + doc.toJson());
+                        System.out.println("The message sent to " + socket.getInetAddress());
+                        // Receive the reply from the server by reading from the socket input stream
+                        String received = in.readLine(); // This method blocks until there
+                        // is something to read from the
+                        // input stream
+                        System.out.println("Message received: " + received);
+                    }
                 }
 
-                scanner.close();
-
             } else if (ack.getString("command").equals(JSONRETURN.CONNCECTION_REFUSED().getString("command"))){
-                //ArrayList<Document> address = (ArrayList<Document>) ack.getString("peers");
-                System.out.println(ret());
+                ArrayList<Document> address = (ArrayList<Document>) ack.get("peers");
+                if(address!=null){
+                    for (Document dou : address) {
+                        if(!Connectionlist.contain(dou)){
+                            AnotherConnection.AnotherConnection(dou.getString("host"),dou.getInteger("port"));
+                            break;
+                        }
+                    }
+                } else {
+                    System.out.println("The system return null post, try another one");
+                }
+
+
             }
             else {
                 System.out.println("The socket closed due to wrong answer :" + frombuffer);
@@ -106,10 +125,4 @@ public class peerworker implements Runnable{
 		}
 
 	}
-
-	public String ret(){
-	    return "anc";
-    }
-
-
 }

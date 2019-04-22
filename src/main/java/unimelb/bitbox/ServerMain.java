@@ -20,7 +20,9 @@ public class ServerMain implements FileSystemObserver {
 
 	@Override
 	public void processFileSystemEvent(FileSystemEvent fileSystemEvent) {
-		// TODO: process events
+        Eventlist.addevent(fileSystemEvent);
+        System.out.println("Successful add new event :"+ fileSystemEvent + "to list");
+
 	}
 	
 //what we wrote, multithreading server 

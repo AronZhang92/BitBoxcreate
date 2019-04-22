@@ -2,6 +2,7 @@ package unimelb.bitbox;
 
 import unimelb.bitbox.util.Configuration;
 import unimelb.bitbox.util.Document;
+import unimelb.bitbox.util.FileSystemManager;
 import unimelb.bitbox.util.JSONRETURN;
 
 import java.io.BufferedReader;
@@ -56,28 +57,37 @@ public class ServerWorker implements Runnable{
                 //System.out.println("Finish received mode");
                 //System.out.println("The output is "+frombuffer);
                 //System.out.println("Check point is" + JSONRETURN.HANDSHAKE_REQUEST().toJson());
-                if (frombuffer.equals(JSONRETURN.HANDSHAKE_REQUEST().toJson()) && clientNumber < maxcon){
+                if (frombuffer.equals(JSONRETURN.HANDSHAKE_REQUEST().toJson()) && Connectionlist.connumber() < maxcon){
                     //System.out.println("received request");
                     out.write(JSONRETURN.HANDSHAKE_RESPONSE().toJson() + "\n");
                     out.flush();
-                    System.out.println("Connection established");
+                    Connectionlist.AddNewIPAddress(clientSocket.getInetAddress().toString(),clientSocket.getPort());
+                    System.out.println("The length of connection list is :" + Connectionlist.connumber());
+                    System.out.println("Connection established :" + clientSocket.getInetAddress());
                     System.out.println("Server listening on port " + port + " for a connection");
                     System.out.println("Client conection number " + clientNumber + " accepted:");
                     System.out.println("Remote Port: " + clientSocket.getPort());
                     System.out.println("Remote Hostname: " + clientSocket.getInetAddress().getHostName());
                     System.out.println("Local Port: " + clientSocket.getLocalPort());
-                    while((clientMsg = in.readLine()) != null) {
-                        if(clientMsg.equals(JSONRETURN.HANDSHAKE_REQUEST().getString("command"))){
-                            System.out.println("the request is connection request");
-                        }else {
-                            System.out.println("Message from client " + clientSocket.getInetAddress() + ": " + clientMsg);
-                            out.write("Server Ack " + clientMsg + "\n");
-                            out.flush();
-                            System.out.println("Response sent");
+                    while((clientMsg = in.readLine())!= null) {
+
+
+                            System.out.println("The in line is :" + clientMsg);
+                            if(clientMsg.equals(JSONRETURN.HANDSHAKE_REQUEST().toJson())){
+                                System.out.println("the request is connection request");
+                            }else {
+                                System.out.println("Message from client " + clientSocket.getInetAddress() + ": " + clientMsg);
+                                out.write("Server Ack " + clientMsg + "\n");
+                                out.flush();
+                                System.out.println("Response sent");
+                            }
                         }
-                    }
+                    System.out.println("The connection is lose");
+                    Connectionlist.removeIPAddress(clientSocket.getInetAddress().toString());
                 } else {
-                    out.write(JSONRETURN.CONNCECTION_REFUSED().toJson());
+                    out.write(JSONRETURN.CONNCECTION_REFUSED().toJson()+"\n");
+                    out.flush();
+                    System.out.println("The system get maximum number, try another server.:" + clientSocket.getInetAddress());
                     clientSocket.close();
                 }
 
