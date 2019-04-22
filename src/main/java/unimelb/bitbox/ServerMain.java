@@ -30,7 +30,7 @@ public static void main(String[] args) {
 		int ServerNumber=1;
 		
 		 try{
-			    listeningSocket = new ServerSocket(4444);
+			    listeningSocket = new ServerSocket(1234);
 			  } catch (IOException e) {
 			    System.out.println("Could not listen on port 4444");
 			    System.exit(-1);
