@@ -14,11 +14,13 @@ import java.io.OutputStreamWriter;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class peerworker implements Runnable{
 	
 	private Socket socket;
+
 	
 	public peerworker(Socket socket) {
 		this.socket= socket;
@@ -29,7 +31,6 @@ public class peerworker implements Runnable{
 		// TODO Auto-generated method stub
 
 		try {
-		    socket.setSoTimeout(3000);
 			// Create a stream socket bounded to any port and connect it to the
 			// socket bound to localhost on port 4444
 
@@ -52,7 +53,8 @@ public class peerworker implements Runnable{
             }
             ack = Document.parse(frombuffer);
             System.out.println(ack.toJson());
-            if (!frombuffer.equals(JSONRETURN.CONNCECTION_REFUSED().toJson())){
+
+            if (ack.getString("command").equals(JSONRETURN.HANDSHAKE_RESPONSE().getString("command"))){
                 //System.out.println("received OK");
                 System.out.println("Connection established");
                 //System.out.println(socket.getInetAddress());
@@ -75,14 +77,14 @@ public class peerworker implements Runnable{
 
                 scanner.close();
 
-            } else {
+            } else if (ack.getString("command").equals(JSONRETURN.CONNCECTION_REFUSED().getString("command"))){
+                //ArrayList<Document> address = (ArrayList<Document>) ack.getString("peers");
+                System.out.println(ret());
+            }
+            else {
                 System.out.println("The socket closed due to wrong answer :" + frombuffer);
                 socket.close();
             }
-
-
-
-
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
             System.out.println("unkown");
@@ -104,5 +106,10 @@ public class peerworker implements Runnable{
 		}
 
 	}
+
+	public String ret(){
+	    return "anc";
+    }
+
 
 }
