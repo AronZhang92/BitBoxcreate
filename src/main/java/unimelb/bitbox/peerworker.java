@@ -68,6 +68,8 @@ public class peerworker implements Runnable{
                         FileSystemManager.FileSystemEvent event = Eventlist.getevent();
                         System.out.println("the event is :"+ event);
                         Document doc = new Document();
+                        doc.append("event",event.toString());
+                        //doc.append("fileDescriptor",event.fileDescriptor.toDoc());
                         doc.append("pathName", event.pathName);
                         doc.append("path", event.path);
                         doc.append("name", event.name);

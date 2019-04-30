@@ -12,6 +12,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.net.SocketException;
+import java.security.NoSuchAlgorithmException;
 
 public class ServerWorker implements Runnable{
 	private Socket clientSocket;
@@ -54,9 +55,8 @@ public class ServerWorker implements Runnable{
 
 
                 String frombuffer = in.readLine();
-                //System.out.println("Finish received mode");
-                //System.out.println("The output is "+frombuffer);
-                //System.out.println("Check point is" + JSONRETURN.HANDSHAKE_REQUEST().toJson());
+                Document doc = new Document();
+
                 if (frombuffer.equals(JSONRETURN.HANDSHAKE_REQUEST().toJson()) && Connectionlist.connumber() < maxcon){
                     //System.out.println("received request");
                     out.write(JSONRETURN.HANDSHAKE_RESPONSE().toJson() + "\n");
@@ -70,12 +70,28 @@ public class ServerWorker implements Runnable{
                     System.out.println("Remote Hostname: " + clientSocket.getInetAddress().getHostName());
                     System.out.println("Local Port: " + clientSocket.getLocalPort());
                     while((clientMsg = in.readLine())!= null) {
-
+                        doc = Document.parse(clientMsg); //change string to jasonobject
 
                             System.out.println("The in line is :" + clientMsg);
+                            String[] event = doc.getString("event").split(" ");
+                            String check = event[0];
                             if(clientMsg.equals(JSONRETURN.HANDSHAKE_REQUEST().toJson())){
                                 System.out.println("the request is connection request");
-                            }else {
+                            }else if(false&&check.equals("DIRECTORY_CREATE")) {//create directory event
+                                System.out.println("now in the create file mode.");
+                                try {
+                                    ServerMain sm = new ServerMain();
+                                    sm.fileSystemManager.makeDirectory(doc.getString("name"));
+                                } catch (NumberFormatException e) {
+                                    // TODO Auto-generated catch block
+                                    e.printStackTrace();
+                                } catch (NoSuchAlgorithmException e) {
+                                    // TODO Auto-generated catch block
+                                    e.printStackTrace();
+                                }
+
+                            }
+                            else {
                                 System.out.println("Message from client " + clientSocket.getInetAddress() + ": " + clientMsg);
                                 out.write("Server Ack " + clientMsg + "\n");
                                 out.flush();
