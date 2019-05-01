@@ -43,28 +43,23 @@ public class peerworker implements Runnable{
             out.write(json.toJson() + "\n");
             out.flush();
             System.out.println("client send a request :" + json.getString("command") + json.toJson());
-            Document ackreceived = null;
-            //while((ackreceived = in.readLine())!=null){
-            //    System.out.println("client received a protocol " + ackreceived);
-            //}
             Document ack = new Document();
             String frombuffer = in.readLine();
-            while(frombuffer == null){
-                frombuffer = in.readLine();
-            }
             ack = Document.parse(frombuffer);
             System.out.println(ack.toJson());
-
             if (ack.getString("command").equals(JSONRETURN.HANDSHAKE_RESPONSE().getString("command"))){
                 //System.out.println("received OK");
                 System.out.println("Connection established to" + socket.getInetAddress());
-                Connectionlist.AddNewIPAddress(socket.getInetAddress().toString(),socket.getPort());
-                //System.out.println(socket.getInetAddress());
-                //While the user input differs from "exit"
-
-                while (true) {
-                    //System.out.println("The connection list lenght is " + Connectionlist.connumber());
-                    if(Eventlist.change(socket.getInetAddress().toString())) {
+                Connectionlist.addNewSocket(socket);
+                System.out.println("Successful add ip " + socket.getInetAddress()+ " and port: " + socket.getPort() + "to the connection list");
+                while ((clientMsg = in.readLine())!= null) {
+                        if (clientMsg.equals("Ack")){
+                            System.out.println("Already receive the ack. wait for another action");
+                        } else {
+                            out.write(clientMsg + "\n");
+                            out.flush();
+                        }
+                    /*if(Eventlist.change(socket.getInetAddress().toString())) {
                         FileSystemManager.FileSystemEvent event = Eventlist.getevent();
                         System.out.println("the event is :"+ event);
                         Document doc = new Document();
@@ -74,9 +69,11 @@ public class peerworker implements Runnable{
                         doc.append("path", event.path);
                         doc.append("name", event.name);
 
+
                         // Send the input string to the server by writing to the socket output stream
                         out.write(doc.toJson() + "\n");
                         out.flush();
+
                         System.out.println("Message sent :" + doc.toJson());
                         System.out.println("The message sent to " + socket.getInetAddress());
                         // Receive the reply from the server by reading from the socket input stream
@@ -84,14 +81,14 @@ public class peerworker implements Runnable{
                         // is something to read from the
                         // input stream
                         System.out.println("Message received: " + received);
-                    }
+                    }*/
                 }
 
             } else if (ack.getString("command").equals(JSONRETURN.CONNCECTION_REFUSED().getString("command"))){
                 ArrayList<Document> address = (ArrayList<Document>) ack.get("peers");
                 if(address!=null){
                     for (Document dou : address) {
-                        if(!Connectionlist.contain(dou)){
+                        if(!Connectionlist.contain(dou.getString("IPadress"))){
                             AnotherConnection.AnotherConnection(dou.getString("host"),dou.getInteger("port"));
                             break;
                         }

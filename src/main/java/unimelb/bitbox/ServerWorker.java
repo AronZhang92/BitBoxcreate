@@ -57,12 +57,12 @@ public class ServerWorker implements Runnable{
                 String frombuffer = in.readLine();
                 Document doc = new Document();
 
-                if (frombuffer.equals(JSONRETURN.HANDSHAKE_REQUEST().toJson()) && Connectionlist.connumber() < maxcon){
+                if (frombuffer.equals(JSONRETURN.HANDSHAKE_REQUEST().toJson()) && Connectionlist.connum() < maxcon){
                     //System.out.println("received request");
                     out.write(JSONRETURN.HANDSHAKE_RESPONSE().toJson() + "\n");
                     out.flush();
-                    Connectionlist.AddNewIPAddress(clientSocket.getInetAddress().toString(),clientSocket.getPort());
-                    System.out.println("The length of connection list is :" + Connectionlist.connumber());
+                    Connectionlist.addNewSocket(clientSocket);
+                    System.out.println("The length of connection list is :" + Connectionlist.connum());
                     System.out.println("Connection established :" + clientSocket.getInetAddress());
                     System.out.println("Server listening on port " + port + " for a connection");
                     System.out.println("Client conection number " + clientNumber + " accepted:");
@@ -73,33 +73,17 @@ public class ServerWorker implements Runnable{
                         doc = Document.parse(clientMsg); //change string to jasonobject
 
                             System.out.println("The in line is :" + clientMsg);
-                            String[] event = doc.getString("event").split(" ");
-                            String check = event[0];
+                            String event = doc.getString("event");
                             if(clientMsg.equals(JSONRETURN.HANDSHAKE_REQUEST().toJson())){
                                 System.out.println("the request is connection request");
-                            }else if(false&&check.equals("DIRECTORY_CREATE")) {//create directory event
-                                System.out.println("now in the create file mode.");
-                                try {
-                                    ServerMain sm = new ServerMain();
-                                    sm.fileSystemManager.makeDirectory(doc.getString("name"));
-                                } catch (NumberFormatException e) {
-                                    // TODO Auto-generated catch block
-                                    e.printStackTrace();
-                                } catch (NoSuchAlgorithmException e) {
-                                    // TODO Auto-generated catch block
-                                    e.printStackTrace();
-                                }
-
                             }
                             else {
                                 System.out.println("Message from client " + clientSocket.getInetAddress() + ": " + clientMsg);
-                                out.write("Server Ack " + clientMsg + "\n");
-                                out.flush();
-                                System.out.println("Response sent");
+                                Funtional.funtional(Document.parse(clientMsg));
                             }
                         }
                     System.out.println("The connection is lose");
-                    Connectionlist.removeIPAddress(clientSocket.getInetAddress().toString());
+                    Connectionlist.remove(clientSocket);
                 } else {
                     out.write(JSONRETURN.CONNCECTION_REFUSED().toJson()+"\n");
                     out.flush();
@@ -110,8 +94,10 @@ public class ServerWorker implements Runnable{
 			}
 			catch(SocketException e) {
 				System.out.println("closed...");
-			}
-			clientSocket.close();
+			} catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
+                clientSocket.close();
 	} catch (SocketException ex) {
 		ex.printStackTrace();
 	}catch (IOException e) {
