@@ -17,7 +17,7 @@ public class Eventlist {
     protected static boolean change(String ipaddress){
         if(changed) {
             if (ipa.contains(ipaddress)) {
-                //System.out.println(ipa.size() + "   " + Connectionlist.connumber());
+                System.out.println(ipa.size() + "   " + Connectionlist.connumber());
                 if (ipa.size() == Connectionlist.connumber()) {
                     ipa = new ArrayList<String>();
                     System.out.println("Int the check node");

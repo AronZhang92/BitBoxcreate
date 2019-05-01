@@ -2,51 +2,36 @@ package unimelb.bitbox;
 
 import unimelb.bitbox.util.Document;
 
+import java.net.Socket;
 import java.util.ArrayList;
 
 public class Connectionlist {
-    private static ArrayList<Document> connectionIP = new ArrayList<Document>();
+    private static ArrayList<Socket> connectionSocket = new ArrayList<Socket>();
     static int a=0;
-    public static void AddNewIPAddress(String address,int port){
-        boolean check = false;
-        for (Document docu:connectionIP
-        ) {
-            if(docu.getString("host").equals(address)) {
-                check = true;
+    public static void addNewSocket(Socket socket){
+        connectionSocket.add(socket);
+    }
+    public static ArrayList<Socket> returnsocketlist(){
+        return connectionSocket;
+    }
+    public static boolean contain(String ipadress){
+        boolean include = false;
+        for (Socket socket: connectionSocket
+             ) {
+            if(ipadress.equals(socket.getInetAddress().toString())){
+                include = true;
                 break;
             }
         }
-        if(!check){
-            Document doc = new Document();
-            doc.append("host", address);
-            doc.append("port", port);
-            connectionIP.add(doc);
-            a++;
+        return include;
+    }
+    public static int connum(){
+        return connectionSocket.size();
+    }
+    public static void remove(Socket socket){
+        if(connectionSocket.contains(socket)){
+            connectionSocket.remove(socket);
         }
-
-    }
-
-    protected static void removeIPAddress(String address){
-        for (Document docu:connectionIP
-             ) {
-                if(docu.getString("host").equals(address)){
-                    System.out.println("The " + address + " has already removed.");
-                    connectionIP.remove(docu);
-                    break;
-                }
-        }
-    }
-    protected static boolean contain(Document doc) {
-        if(connectionIP!=null)
-            return connectionIP.contains(doc);
-        return true;
-    }
-    public static ArrayList<Document> returnlist(){
-        return connectionIP;
-    }
-    public static int connumber(){
-        System.out.println("The connection number is :" + connectionIP.size());
-        return a;
     }
 
 }
