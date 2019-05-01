@@ -14,8 +14,11 @@ import unimelb.bitbox.util.FileSystemManager;
 import unimelb.bitbox.util.FileSystemObserver;
 import unimelb.bitbox.util.FileSystemManager.FileSystemEvent;
 
-public class ServerMain implements FileSystemObserver {
+public class ServerMain implements FileSystemObserver,Runnable {
 	private static Logger log = Logger.getLogger(ServerMain.class.getName());
+
+    static String portstring = Configuration.getConfigurationValue("port");
+    static final int port = Integer.parseInt(portstring);
 	protected FileSystemManager fileSystemManager;
 	
 	public ServerMain() throws NumberFormatException, IOException, NoSuchAlgorithmException {
@@ -44,39 +47,34 @@ public class ServerMain implements FileSystemObserver {
             }
         }
 	}
-	
-//what we wrote, multithreading server 
-public static void main(String[] args) {
-		ServerSocket listeningSocket = null;
-		int ServerNumber = 0;
-		String portstring = Configuration.getConfigurationValue("port");
-		final int port = Integer.parseInt(portstring);
 
-		
-		 try{
-			    listeningSocket = new ServerSocket(port);
-		} catch (IOException e) {
-			System.out.println("Could not listen on port " + port);
-			System.exit(-1);
-		}
-			
-			//Listen for incoming connections for ever
+	public void run(){
+        ServerSocket listeningSocket = null;
 
-            while (true) {
-                ServerWorker w;
-                try {
-                    System.out.println("The server port is:" + port);
-                    w = new ServerWorker(listeningSocket.accept(), ServerNumber);
-                    ServerNumber++;
-                    Thread t = new Thread(w);
-                    t.start();
 
-                } catch (IOException e) {
-                    System.out.println("Accept failed: " + port);
-                    System.exit(-1);
-                }
+        try{
+            listeningSocket = new ServerSocket(port);
+        } catch (IOException e) {
+            System.out.println("Could not listen on port " + port);
+            System.exit(-1);
+        }
+        while (true) {
+            ServerWorker w;
+            try {
+                System.out.println("The server port is:" + port);
+                w = new ServerWorker(listeningSocket.accept());
+                Thread t = new Thread(w);
+                t.start();
+
+            } catch (IOException e) {
+                System.out.println("Accept failed: " + port);
+                System.exit(-1);
             }
+        }
 
-}
+
+    }
+
+
 	
 }

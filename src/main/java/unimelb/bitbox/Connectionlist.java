@@ -16,9 +16,12 @@ public class Connectionlist {
     }
     public static boolean contain(String ipadress){
         boolean include = false;
+        System.out.println("The target ipadress is "+ ipadress);
         for (Socket socket: connectionSocket
              ) {
+            System.out.println("The check socket is " + socket.getInetAddress().toString());
             if(ipadress.equals(socket.getInetAddress().toString())){
+                System.out.println("now in the equails mode.");
                 include = true;
                 break;
             }
@@ -29,7 +32,10 @@ public class Connectionlist {
         return connectionSocket.size();
     }
     public static void remove(Socket socket){
-        if(connectionSocket.contains(socket)){
+
+        if(connectionSocket.isEmpty() || !connectionSocket.contains(socket)){
+
+        } else {
             connectionSocket.remove(socket);
         }
     }

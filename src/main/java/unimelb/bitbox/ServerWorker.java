@@ -22,9 +22,8 @@ public class ServerWorker implements Runnable{
     private String maximumconnection = Configuration.getConfigurationValue("maximumIncommingConnections");
     private int maxcon = Integer.parseInt(maximumconnection);
 	
-	public ServerWorker (Socket client, int clientNumber) {
+	public ServerWorker (Socket client) {
 		this.clientSocket = client ;
-		this.clientNumber = clientNumber;
 	}
 	
 	public void run() {
@@ -63,9 +62,13 @@ public class ServerWorker implements Runnable{
                     out.flush();
                     if (Connectionlist.contain(clientSocket.getInetAddress().toString())){
 
-                    } else {
+                    } else if(clientSocket.getInetAddress().toString().equals("/127.0.0.1")){
+                        System.out.println("This is the localhost port");
+
+                    }  else {
+                        System.out.println("The socket is " + clientSocket.getInetAddress()+"the port is "+ clientSocket.getPort());
                         Connectionlist.addNewSocket(clientSocket);
-                        new ClientMain(clientSocket.getInetAddress().toString(),clientSocket.getPort());
+                        ClientMain.ClientMain(clientSocket.getInetAddress().toString(),clientSocket.getPort());
                     }
                     System.out.println("The length of connection list is :" + Connectionlist.connum());
                     System.out.println("Connection established :" + clientSocket.getInetAddress());

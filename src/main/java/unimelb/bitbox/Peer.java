@@ -1,6 +1,7 @@
 package unimelb.bitbox;
 
 import java.io.IOException;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.security.NoSuchAlgorithmException;
@@ -19,7 +20,14 @@ public class Peer
         Configuration.getConfiguration();
         
         new ServerMain();
-        new ClientMain();
+        ServerMain sm = new ServerMain();
+        Thread t = new Thread(sm);
+        t.start();
+
+
+        ClientMain.ClientMain();
+
+
         
 
 

@@ -7,7 +7,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class ClientMain {
-    public ClientMain(String ipadress, int portnumber) {
+    static boolean done = false;
+    public static void ClientMain(String ipadress, int portnumber) {
         Socket socket;
         try {
             socket = new Socket(ipadress,portnumber);
@@ -24,7 +25,7 @@ public class ClientMain {
         }
     }
 
-    public ClientMain(){
+    public static void ClientMain(){
         //what we wrote, multithreading client
         Socket socket;
         String peer = Configuration.getConfigurationValue("peers");
@@ -54,5 +55,7 @@ public class ClientMain {
         }
 
     }
+
+
 
 }
