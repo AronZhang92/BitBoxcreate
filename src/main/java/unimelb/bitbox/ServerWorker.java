@@ -61,7 +61,12 @@ public class ServerWorker implements Runnable{
                     //System.out.println("received request");
                     out.write(JSONRETURN.HANDSHAKE_RESPONSE().toJson() + "\n");
                     out.flush();
-                    Connectionlist.addNewSocket(clientSocket);
+                    if (Connectionlist.contain(clientSocket.getInetAddress().toString())){
+
+                    } else {
+                        Connectionlist.addNewSocket(clientSocket);
+                        new ClientMain(clientSocket.getInetAddress().toString(),clientSocket.getPort());
+                    }
                     System.out.println("The length of connection list is :" + Connectionlist.connum());
                     System.out.println("Connection established :" + clientSocket.getInetAddress());
                     System.out.println("Server listening on port " + port + " for a connection");
