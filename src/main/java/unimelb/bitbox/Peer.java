@@ -20,7 +20,7 @@ public class Peer
         log.info("BitBox Peer starting...");
         Configuration.getConfiguration();
         
-//        new ServerMain();
+        new ServerMain();
         ServerMain sm = new ServerMain();
         serverMain =sm;
         Thread t = new Thread(sm);

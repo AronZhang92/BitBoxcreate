@@ -5,6 +5,7 @@ import unimelb.bitbox.util.Document;
 import unimelb.bitbox.util.FileSystemManager;
 import unimelb.bitbox.util.JSONRETURN;
 
+import javax.print.Doc;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -55,10 +56,9 @@ public class ServerWorker implements Runnable {
 				// System.out.println("In the received mode");
 
 				String frombuffer = in.readLine();
-				Document doc = new Document();
+				Document doc = Document.parse(frombuffer);
 
-				if (frombuffer.equals(JSONRETURN
-						.HANDSHAKE_REQUEST(clientSocket.getInetAddress().toString(), clientSocket.getPort()).toJson())
+				if (doc.getString("command").equals("HANDSHAKE_REQUEST")
 						&& Connectionlist.connum() < maxcon) {
 					// System.out.println("received request");
 					out.write(JSONRETURN
