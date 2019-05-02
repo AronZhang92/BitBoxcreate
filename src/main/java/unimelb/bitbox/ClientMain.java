@@ -11,6 +11,7 @@ public class ClientMain {
     public static void ClientMain(String ipadress, int portnumber) {
         Socket socket;
         try {
+        	System.out.println("The target ipadress is "+ ipadress.substring(1));
             socket = new Socket(ipadress.substring(1),portnumber);
             peerworker w = new peerworker(socket);
             Thread t = new Thread(w);
