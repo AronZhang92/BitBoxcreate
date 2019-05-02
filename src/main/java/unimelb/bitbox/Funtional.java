@@ -3,8 +3,12 @@ package unimelb.bitbox;
 import unimelb.bitbox.util.Document;
 import unimelb.bitbox.util.FileSystemManager;
 import unimelb.bitbox.util.FileSystemObserver;
+import unimelb.bitbox.util.JSONRETURN;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.security.NoSuchAlgorithmException;
 
@@ -13,19 +17,27 @@ public class Funtional {
 
 	public static void funtional(Document doc) throws IOException, NoSuchAlgorithmException {
 
-		FileSystemObserver ob = new ServerMain();
+		FileSystemObserver ob = Peer.getServerMain();
 		FileSystemManager fsm = new FileSystemManager("share", ob); // should be replaced when generating
 
-		switch (doc.getString("event")) {
-		case "FILE_CREATE":
+		switch (doc.getString("command")) {
+		case "FILE_CREATE_REQEST":
+			Document fileDescriper = (Document) doc.get("fileDescriptor");
 			if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
 				if (!fsm.fileNameExists(doc.getString("pathName"))) { // when the file name doesn't exist
-					fsm.createFileLoader(doc.getString("pathName"), doc.getString("md5"),     //create file loader
-							Long.parseLong(doc.getString("fileSize")), Long.parseLong(doc.getString("lastModified")));
-					if(fsm.checkShortcut(doc.getString("pathName"))) {
-						break;      // stop when there is a shortcut
-					}else {     // when there is no shortcut 
-						
+					fsm.createFileLoader(doc.getString("pathName"), fileDescriper.getString("md5"), // create file
+																									// loader
+							Long.parseLong(fileDescriper.getString("fileSize")),
+							Long.parseLong(fileDescriper.getString("lastModified")));
+
+					if (fsm.checkShortcut(doc.getString("pathName"))) {
+						break; // stop when there is a shortcut
+					} else { // when there is no shortcut
+						for (Socket socket : Connectionlist.returnsocketlist()) { // send file_Byte_request
+							BufferedWriter out = new BufferedWriter(
+									new OutputStreamWriter(socket.getOutputStream(), "UTF-8")); // paused
+
+						}
 					}
 				}
 			} else
@@ -36,11 +48,19 @@ public class Funtional {
 			break;
 		case "FILE_MODIFY":
 			break;
-		case "DIRECTORY_CREATE":
-			fsm.makeDirectory(doc.getString("pathName"));
+		case "DIRECTORY_CREATE_REQUEST":
+			if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
+				if (!fsm.fileNameExists(doc.getString("pathName"))) { // when the directory name doesn't exist
+					fsm.makeDirectory(doc.getString("pathName"));
+				}
+			}
 			break;
 		case "DIRECTORY_DELETE":
-			fsm.deleteDirectory(doc.getString("pathName"));
+			if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
+				if (fsm.fileNameExists(doc.getString("pathName"))) { // when the directory name exist
+					fsm.deleteDirectory(doc.getString("pathName"));
+				}
+			}
 			break;
 		default:
 			break;

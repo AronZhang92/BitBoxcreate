@@ -39,7 +39,7 @@ public class ServerMain implements FileSystemObserver,Runnable {
                 doc.append("pathName",fileSystemEvent.pathName);
                 doc.append("path",fileSystemEvent.path);
                 doc.append("name",fileSystemEvent.name);
-                doc.append("event",fileSystemEvent.event.toString());
+                doc.append("command",fileSystemEvent.event.toString());
                 out.write(doc.toJson() + "\n");
                 out.flush();
             } catch (IOException e) {

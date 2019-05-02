@@ -11,6 +11,7 @@ import unimelb.bitbox.util.Configuration;
 
 public class Peer 
 {
+	private static ServerMain serverMain;
 	private static Logger log = Logger.getLogger(Peer.class.getName());
     public static void main(String[] args) throws IOException, NumberFormatException, NoSuchAlgorithmException
     {
@@ -19,20 +20,19 @@ public class Peer
         log.info("BitBox Peer starting...");
         Configuration.getConfiguration();
         
-        new ServerMain();
+//        new ServerMain();
         ServerMain sm = new ServerMain();
+        serverMain =sm;
         Thread t = new Thread(sm);
         t.start();
 
 
         ClientMain.ClientMain();
 
-
         
-
-
-
-
-        
+    }
+    
+    public static ServerMain getServerMain() {
+    	return serverMain;
     }
 }
