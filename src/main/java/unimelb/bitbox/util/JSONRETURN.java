@@ -23,7 +23,7 @@ public class JSONRETURN {
         for (Socket socket: Connectionlist.returnsocketlist()
              ) {
             doc.append("host",socket.getInetAddress().toString());
-            doc.append("host",socket.getPort());
+            doc.append("port",socket.getPort());
             docs.add(doc1);
         }
         doc.append("peers", docs);
@@ -35,22 +35,20 @@ public class JSONRETURN {
     public static Document HANDSHAKE_REQUEST (String ipadress,int host){
         Document doc = new Document();
         doc.append("command", "HANDSHAKE_REQUEST");
-        ArrayList<Document> docs = new ArrayList<Document>();
         Document doc1 = new Document();
         doc1.append("host", ipadress);
         doc1.append("port", host);
-        doc.append("hostPort", docs);
+        doc.append("hostPort", doc1);
         return doc;
     }
 
     public static Document HANDSHAKE_RESPONSE (String ipadress,int host){
         Document doc = new Document();
         doc.append("command", "HANDSHAKE_RESPONSE");
-        ArrayList<Document> docs = new ArrayList<Document>();
         Document doc1 = new Document();
         doc1.append("host", ipadress);
         doc1.append("port", host);
-        doc.append("hostPort", docs);
+        doc.append("hostPort", doc1);
         return doc;
     }
 

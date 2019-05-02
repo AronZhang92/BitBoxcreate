@@ -56,8 +56,9 @@ public class peerworker implements Runnable{
                         if (clientMsg.equals("Ack")){
                             System.out.println("Already receive the ack. wait for another action");
                         } else {
-                            out.write(clientMsg + "\n");
-                            out.flush();
+                            /*out.write(clientMsg + "\n");
+                            System.out.println("send " + clientMsg + "to server");
+                            out.flush();*/
                         }
 
                 }
