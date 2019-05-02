@@ -1,5 +1,8 @@
 package unimelb.bitbox.util;
 
+import unimelb.bitbox.Connectionlist;
+
+import java.net.Socket;
 import java.util.ArrayList;
 
 public class JSONRETURN {
@@ -16,39 +19,37 @@ public class JSONRETURN {
         doc.append("command", "CONNECTION_REFUSED");
         doc.append("message", "connection limit reached");
         ArrayList<Document> docs = new ArrayList<Document>();
-        Document doc2 = new Document();
         Document doc1 = new Document();
-        doc1.append("host", "localhost");
-        doc1.append("port", 8111);
-        doc2.append("host", "10.13.187.213");
-        doc2.append("port", 1234);
-        docs.add(doc1);
-        docs.add(doc2);
-        // Document doc3 = new Document();
+        for (Socket socket: Connectionlist.returnsocketlist()
+             ) {
+            doc.append("host",socket.getInetAddress().toString());
+            doc.append("host",socket.getPort());
+            docs.add(doc1);
+        }
         doc.append("peers", docs);
         doc.toJson();
         return doc;
     }
 
 
-    public static Document HANDSHAKE_REQUEST (){
+    public static Document HANDSHAKE_REQUEST (String ipadress,int host){
         Document doc = new Document();
         doc.append("command", "HANDSHAKE_REQUEST");
         ArrayList<Document> docs = new ArrayList<Document>();
         Document doc1 = new Document();
-        doc1.append("host", "localhost");
-        doc1.append("port", 8111);
+        doc1.append("host", ipadress);
+        doc1.append("port", host);
         doc.append("hostPort", docs);
         return doc;
     }
 
-    public static Document HANDSHAKE_RESPONSE (){
+    public static Document HANDSHAKE_RESPONSE (String ipadress,int host){
         Document doc = new Document();
         doc.append("command", "HANDSHAKE_RESPONSE");
         ArrayList<Document> docs = new ArrayList<Document>();
         Document doc1 = new Document();
-        doc1.append("host", "10.13.187.213");
-        doc1.append("port", 1234);
+        doc1.append("host", ipadress);
+        doc1.append("port", host);
         doc.append("hostPort", docs);
         return doc;
     }

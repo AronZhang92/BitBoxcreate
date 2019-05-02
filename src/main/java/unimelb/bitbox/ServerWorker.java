@@ -56,9 +56,9 @@ public class ServerWorker implements Runnable{
                 String frombuffer = in.readLine();
                 Document doc = new Document();
 
-                if (frombuffer.equals(JSONRETURN.HANDSHAKE_REQUEST().toJson()) && Connectionlist.connum() < maxcon){
+                if (frombuffer.equals(JSONRETURN.HANDSHAKE_REQUEST(clientSocket.getInetAddress().toString(),clientSocket.getPort()).toJson()) && Connectionlist.connum() < maxcon){
                     //System.out.println("received request");
-                    out.write(JSONRETURN.HANDSHAKE_RESPONSE().toJson() + "\n");
+                    out.write(JSONRETURN.HANDSHAKE_RESPONSE(clientSocket.getInetAddress().toString(),clientSocket.getPort()).toJson() + "\n");
                     out.flush();
                     if (Connectionlist.contain(clientSocket.getInetAddress().toString())){
 
@@ -82,7 +82,7 @@ public class ServerWorker implements Runnable{
 
                             System.out.println("The in line is :" + clientMsg);
                             String event = doc.getString("event");
-                            if(clientMsg.equals(JSONRETURN.HANDSHAKE_REQUEST().toJson())){
+                            if(clientMsg.equals(JSONRETURN.HANDSHAKE_REQUEST(clientSocket.getInetAddress().toString(),clientSocket.getPort()).toJson())){
                                 System.out.println("the request is connection request");
                             }
                             else {
