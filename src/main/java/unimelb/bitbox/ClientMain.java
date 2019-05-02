@@ -11,7 +11,7 @@ public class ClientMain {
     public static void ClientMain(String ipadress, int portnumber) {
         Socket socket;
         try {
-            socket = new Socket(ipadress,portnumber);
+            socket = new Socket(ipadress.substring(1),portnumber);
             peerworker w = new peerworker(socket);
             Thread t = new Thread(w);
             t.start();
