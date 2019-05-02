@@ -91,7 +91,7 @@ public class ServerWorker implements Runnable {
 
 			} catch (SocketException e) {
 				System.out.println("closed...");
-			} 
+			}
 			clientSocket.close();
 		} catch (SocketException ex) {
 			ex.printStackTrace();
