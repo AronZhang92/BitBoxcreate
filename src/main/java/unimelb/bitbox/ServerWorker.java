@@ -76,27 +76,8 @@ public class ServerWorker implements Runnable {
 						Connectionlist.addNewSocket(clientSocket);
 						ClientMain.ClientMain(clientSocket.getInetAddress().toString(), clientSocket.getPort());
 					} 
-					System.out.println("The length of connection list is :" + Connectionlist.connum());
-					System.out.println("Connection established :" + clientSocket.getInetAddress());
-					System.out.println("Server listening on port " + port + " for a connection");
-					System.out.println("Client conection number " + clientNumber + " accepted:");
-					System.out.println("Remote Port: " + clientSocket.getPort());
-					System.out.println("Remote Hostname: " + clientSocket.getInetAddress().getHostName());
-					System.out.println("Local Port: " + clientSocket.getLocalPort());
 					while ((clientMsg = in.readLine()) != null) {
-						doc = Document.parse(clientMsg); // change string to jasonobject
 
-						System.out.println("The in line is :" + clientMsg);
-						String event = doc.getString("event");
-						if (clientMsg.equals(JSONRETURN
-								.HANDSHAKE_REQUEST(clientSocket.getInetAddress().toString(), clientSocket.getPort())
-								.toJson())) {
-							System.out.println("the request is connection request");
-						} else {
-							System.out
-									.println("Message from client " + clientSocket.getInetAddress() + ": " + clientMsg);
-							Funtional.funtional(Document.parse(clientMsg));
-						}
 					}
 					System.out.println("The connection is lose");
 					Connectionlist.remove(clientSocket);
@@ -110,9 +91,7 @@ public class ServerWorker implements Runnable {
 
 			} catch (SocketException e) {
 				System.out.println("closed...");
-			} catch (NoSuchAlgorithmException e) {
-				e.printStackTrace();
-			}
+			} 
 			clientSocket.close();
 		} catch (SocketException ex) {
 			ex.printStackTrace();
