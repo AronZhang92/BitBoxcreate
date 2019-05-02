@@ -1,6 +1,7 @@
 package unimelb.bitbox;
 
 import java.io.IOException;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.security.NoSuchAlgorithmException;
@@ -19,34 +20,15 @@ public class Peer
         Configuration.getConfiguration();
         
         new ServerMain();
-        
-        //what we wrote, multithreading client 
-        Socket socket;
-        String peer = Configuration.getConfigurationValue("peers");
-        String[] peers = peer.split(";");
-        String address = "";
-        int portnumber = 0;
-        int i = 0;
-        while (i < peers.length){
-            String[] middlepeers = peers[i].split(":");
-            address = middlepeers[0];
-            portnumber = Integer.parseInt(middlepeers[1]);
-            System.out.println("the address is " + address + "\n the port number is " + portnumber);
-            try {
-                socket = new Socket(address,portnumber);
-                peerworker w = new peerworker(socket);
-                Thread t = new Thread(w);
-                t.start();
+        ServerMain sm = new ServerMain();
+        Thread t = new Thread(sm);
+        t.start();
 
-            } catch (UnknownHostException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            i++;
-        }
+
+        ClientMain.ClientMain();
+
+
+        
 
 
 

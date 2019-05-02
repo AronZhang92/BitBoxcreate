@@ -52,6 +52,15 @@ public class JSONRETURN {
         doc.append("hostPort", docs);
         return doc;
     }
+    
+    public static Document FILE_BYTES_REQUEST(String md5, long position, long length) {
+    	Document doc = new Document();
+    	doc.append("event", "FILE_BYTES_REQUEST");
+    	doc.append("md5", md5);
+    	doc.append("start", Long.toString(position));  //notice the key of start position
+    	doc.append("fileSize", Long.toString(length));
+    	return doc;
+    }
 
 
 }
