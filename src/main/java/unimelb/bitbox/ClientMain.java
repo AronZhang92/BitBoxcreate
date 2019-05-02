@@ -7,24 +7,6 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class ClientMain {
-    static boolean done = false;
-    public static void ClientMain(String ipadress, int portnumber) {
-        Socket socket;
-        try {
-        	System.out.println("The target ipadress is "+ ipadress.substring(1));
-            socket = new Socket(ipadress.substring(1),portnumber);
-            peerworker w = new peerworker(socket);
-            Thread t = new Thread(w);
-            t.start();
-
-        } catch (UnknownHostException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
 
     public static void ClientMain(){
         //what we wrote, multithreading client

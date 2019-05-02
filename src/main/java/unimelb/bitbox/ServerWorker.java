@@ -29,32 +29,13 @@ public class ServerWorker implements Runnable {
 
 	public void run() {
 		try {
-			// System.out.println("Server listening on port " + port + " for a connection");
-			// System.out.println("Client conection number " + clientNumber + " accepted:");
-			// System.out.println("Remote Port: " + clientSocket.getPort());
-			// System.out.println("Remote Hostname: " +
-			// clientSocket.getInetAddress().getHostName());
-			// System.out.println("Local Port: " + clientSocket.getLocalPort());
-
-			// Get the input/output streams for reading/writing data from/to the socket
 			BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(), "UTF-8"));
 			BufferedWriter out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "UTF-8"));
 
-			// Read the message from the client and reply
-			// Notice that no other connection can be accepted and processed until the last
-			// line of
-			// code of this loop is executed, incoming connections have to wait until the
-			// current
-			// one is processed unless...we use threads!
 			String clientMsg = null;
 			Document ack = null;
 			boolean con = false;
 			try {
-				// while((ack = in.readLine())!=null) {
-				// System.out.println("received ack :" + ack);
-				// }
-				// System.out.println("In the received mode");
-
 				String frombuffer = in.readLine();
 				Document doc = Document.parse(frombuffer);
 
@@ -65,18 +46,15 @@ public class ServerWorker implements Runnable {
 							.HANDSHAKE_RESPONSE(clientSocket.getInetAddress().toString(), clientSocket.getPort())
 							.toJson() + "\n");
 					out.flush();
-					if (Connectionlist.contain(clientSocket.getInetAddress().toString())) {
+					Connectionlist.addNewSocket(clientSocket);
 
-					} else if (clientSocket.getInetAddress().toString().equals("/127.0.0.1")) {
-						System.out.println("This is the localhost port");
-
-					} else {
-						System.out.println("The socket is " + clientSocket.getInetAddress() + "the port is "
-								+ clientSocket.getPort());
-						Connectionlist.addNewSocket(clientSocket);
-						ClientMain.ClientMain(clientSocket.getInetAddress().toString(), clientSocket.getPort());
-					} 
 					while ((clientMsg = in.readLine()) != null) {
+                        try {
+                            Funtional.funtional(Document.parse(clientMsg)); //send jason object to class funtional
+                        } catch (NoSuchAlgorithmException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
 
 					}
 					System.out.println("The connection is lose");
