@@ -38,7 +38,7 @@ public class peerworker implements Runnable{
 			// Get the input/output streams for reading/writing data from/to the socket
 			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
 			BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
-            Document json =JSONRETURN.HANDSHAKE_REQUEST();
+            Document json =JSONRETURN.HANDSHAKE_REQUEST(socket.getInetAddress().toString(),socket.getPort());
             //Three way handshake
             out.write(json.toJson() + "\n");
             out.flush();
@@ -47,7 +47,7 @@ public class peerworker implements Runnable{
             String frombuffer = in.readLine();
             ack = Document.parse(frombuffer);
             System.out.println(ack.toJson());
-            if (ack.getString("command").equals(JSONRETURN.HANDSHAKE_RESPONSE().getString("command"))){
+            if (ack.getString("command").equals(JSONRETURN.HANDSHAKE_RESPONSE(socket.getInetAddress().toString(),socket.getPort()).getString("command"))){
                 //System.out.println("received OK");
                 System.out.println("Connection established to" + socket.getInetAddress());
                 Connectionlist.addNewSocket(socket);
@@ -59,29 +59,7 @@ public class peerworker implements Runnable{
                             out.write(clientMsg + "\n");
                             out.flush();
                         }
-                    /*if(Eventlist.change(socket.getInetAddress().toString())) {
-                        FileSystemManager.FileSystemEvent event = Eventlist.getevent();
-                        System.out.println("the event is :"+ event);
-                        Document doc = new Document();
-                        doc.append("event",event.toString());
-                        //doc.append("fileDescriptor",event.fileDescriptor.toDoc());
-                        doc.append("pathName", event.pathName);
-                        doc.append("path", event.path);
-                        doc.append("name", event.name);
 
-
-                        // Send the input string to the server by writing to the socket output stream
-                        out.write(doc.toJson() + "\n");
-                        out.flush();
-
-                        System.out.println("Message sent :" + doc.toJson());
-                        System.out.println("The message sent to " + socket.getInetAddress());
-                        // Receive the reply from the server by reading from the socket input stream
-                        String received = in.readLine(); // This method blocks until there
-                        // is something to read from the
-                        // input stream
-                        System.out.println("Message received: " + received);
-                    }*/
                 }
 
             } else if (ack.getString("command").equals(JSONRETURN.CONNCECTION_REFUSED().getString("command"))){
@@ -106,11 +84,8 @@ public class peerworker implements Runnable{
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
             System.out.println("unkown");
-		}catch (ConnectException ce){
-            System.out.println("The connection refused.");
-        } catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
-            System.out.println("ioex");
 		}  finally{
 			// Close the socket
 			if (socket != null) {

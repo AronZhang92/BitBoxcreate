@@ -31,24 +31,24 @@ public class JSONRETURN {
     }
 
 
-    public static Document HANDSHAKE_REQUEST (){
+    public static Document HANDSHAKE_REQUEST (String ipadress,int host){
         Document doc = new Document();
         doc.append("command", "HANDSHAKE_REQUEST");
         ArrayList<Document> docs = new ArrayList<Document>();
         Document doc1 = new Document();
-        doc1.append("host", "localhost");
-        doc1.append("port", 8111);
+        doc1.append("host", ipadress);
+        doc1.append("port", host);
         doc.append("hostPort", docs);
         return doc;
     }
 
-    public static Document HANDSHAKE_RESPONSE (){
+    public static Document HANDSHAKE_RESPONSE (String ipadress,int host){
         Document doc = new Document();
         doc.append("command", "HANDSHAKE_RESPONSE");
         ArrayList<Document> docs = new ArrayList<Document>();
         Document doc1 = new Document();
-        doc1.append("host", "10.13.187.213");
-        doc1.append("port", 1234);
+        doc1.append("host", ipadress);
+        doc1.append("port", host);
         doc.append("hostPort", docs);
         return doc;
     }
