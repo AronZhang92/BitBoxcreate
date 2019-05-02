@@ -55,7 +55,7 @@ public class Funtional {
 				}
 			}
 			break;
-		case "DIRECTORY_DELETE":
+		case "DIRECTORY_DELETE_REQUEST":
 			if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
 				if (fsm.fileNameExists(doc.getString("pathName"))) { // when the directory name exist
 					fsm.deleteDirectory(doc.getString("pathName"));
