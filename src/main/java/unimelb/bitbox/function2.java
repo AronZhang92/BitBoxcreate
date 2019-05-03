@@ -125,7 +125,7 @@ public class function2 {
 
                     if (fsm.fileNameExists(pathName)) { // when the directory name exist
 
-                        fsm.deleteDirectory(pathName);
+                        fsm.deleteFile(pathName,fileDescriper.getLong("lastModified"),fileDescriper.getString("md5"));
                         Sendsocket.sendtosocket(JSONRETURN2.FILE_DELETE_RESPONCE(fileDescriper,pathName,"successful delete",true),socket);
 
                     } else {
