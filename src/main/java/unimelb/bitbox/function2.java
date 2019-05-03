@@ -37,7 +37,8 @@ public class function2 {
                             break; // stop when there is a shortcut
                         }
                         else { // when there is no shortcut
-                            Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), Long.parseLong("0"),blocksize),socket);
+                            Long position1 = 0L;
+                            Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), position1,blocksize),socket);
 
 
 
