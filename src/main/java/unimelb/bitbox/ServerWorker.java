@@ -1,9 +1,6 @@
 package unimelb.bitbox;
 
-import unimelb.bitbox.util.Configuration;
-import unimelb.bitbox.util.Document;
-import unimelb.bitbox.util.FileSystemManager;
-import unimelb.bitbox.util.JSONRETURN;
+import unimelb.bitbox.util.*;
 
 import javax.print.Doc;
 import java.io.BufferedReader;
@@ -42,7 +39,7 @@ public class ServerWorker implements Runnable {
 				if (doc.getString("command").equals("HANDSHAKE_REQUEST")
 						&& Connectionlist.connum() < maxcon) {
 					// System.out.println("received request");
-					out.write(JSONRETURN
+					out.write(JSONRETURN2
 							.HANDSHAKE_RESPONSE(clientSocket.getInetAddress().toString(), clientSocket.getPort())
 							.toJson() + "\n");
 					out.flush();
@@ -60,7 +57,7 @@ public class ServerWorker implements Runnable {
 					System.out.println("The connection is lose");
 					Connectionlist.remove(clientSocket);
 				} else {
-					out.write(JSONRETURN.CONNCECTION_REFUSED().toJson() + "\n");
+					out.write(JSONRETURN2.CONNCECTION_REFUSED().toJson() + "\n");
 					out.flush();
 					System.out.println(
 							"The system get maximum number, try another server.:" + clientSocket.getInetAddress());

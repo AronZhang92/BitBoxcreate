@@ -5,7 +5,6 @@ import unimelb.bitbox.util.*;
 import java.io.IOException;
 import java.net.Socket;
 import java.nio.ByteBuffer;
-import java.nio.LongBuffer;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
@@ -29,8 +28,8 @@ public class function2 {
                                 fileDescriper.getLong("fileSize"),
                                 fileDescriper.getLong("lastModified"));
                         System.out.println("Successful create file loaser");
-                        Sendsocket.sendtosocket(JSONRETURN.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"),
-                                "file loader ready ", true),socket);  // send response when success creating file loader
+                        Sendsocket.sendtosocket(JSONRETURN2.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"),
+                                "file loader ready ", true,0L),socket);  // send response when success creating file loader
 
                         if (fsm.checkShortcut(doc.getString("pathName"))) {
                             System.out.println("Already check the short cut");
@@ -44,12 +43,12 @@ public class function2 {
 
                         }
                     }else { // when file already exist
-                        Sendsocket.sendDoc(JSONRETURN.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"),
-                                "file name already exist ", false));
+                        Sendsocket.sendDoc(JSONRETURN2.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"),
+                                "file name already exist ", false,0L));
                     }
                 } else {
-                    Sendsocket.sendDoc(JSONRETURN.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"),
-                            "pathName not safe ", false));
+                    Sendsocket.sendDoc(JSONRETURN2.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"),
+                            "pathName not safe ", false,0L));
                 }
 
                 break;

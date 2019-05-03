@@ -30,11 +30,9 @@ public class ServerMain implements FileSystemObserver,Runnable {
 	@Override
 	public void processFileSystemEvent(FileSystemEvent fileSystemEvent) {
     Sendsocket.sendDoc(Sendsocket.sendsocket(fileSystemEvent));
-<<<<<<< HEAD
-    System.out.println(fileSystemEvent.toString());
-=======
+
         //System.out.println(fileSystemEvent);
->>>>>>> f820858497c15b71bcc2b496ab795f2b4ae87285
+
 	}
 
 	public void run(){
