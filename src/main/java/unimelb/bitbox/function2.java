@@ -93,13 +93,11 @@ public class function2 {
                     }
                     if (start1 + blocklength1 < filesize1) {
                         Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), start1 + blocklength1, blocklength1), socket);
-                    } else if(start1 == filesize1){
-                        System.out.println("finish transmit");
+                    } else if(start1 + blocklength1 > filesize1){
+                        Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), start1 + blocklength1, filesize1-start1), socket);
                     }
-
                     else {
-                        Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), start1 + blocklength1, filesize1-start1-blocklength1), socket);
-                    }
+                   }
                 }
                 break;
 
