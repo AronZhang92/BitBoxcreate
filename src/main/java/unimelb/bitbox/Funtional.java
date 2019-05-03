@@ -95,7 +95,7 @@ public class Funtional {
 			break;
 			
 	    case "FILE_DELETE_REQUEST":
-	    	if(fsm.isSafePathName(pathName))
+	   
 		default:
 			break;
 		}
