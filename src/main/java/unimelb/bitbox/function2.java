@@ -67,13 +67,15 @@ public class function2 {
                         byte[] b= fsm.readFile(fileDescriper.getString("md5"), start, blocklength).array();
                         byte[] BiteStream = Base64.getEncoder().encode(b);
                         String bite = Base64.getEncoder().encodeToString(BiteStream);
-                        if (start + blocklength < filesize) {
-                            Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONCE(fileDescriper, doc.getString("pathName"), bite, "read successful", true, start+blocklength, blocklength), socket);
-                        } else if(start == filesize){
 
+                        if(start == filesize){
+                            Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONCE(fileDescriper, doc.getString("pathName"), bite, "read successful", true, start, filesize), socket);
+                        }
+                        else  if (start + blocklength >= filesize) {
+                            Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONCE(fileDescriper, doc.getString("pathName"), bite, "read successful", true, start, filesize-start), socket);
                         }
                         else {
-                            Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONCE(fileDescriper, doc.getString("pathName"), bite, "read successful", true, start+blocklength, filesize-start-blocklength), socket);
+                            Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONCE(fileDescriper, doc.getString("pathName"), bite, "read successful", true, start, blocklength), socket);
                         }
 
                 break;
@@ -92,14 +94,17 @@ public class function2 {
                     } else {
                         System.out.println("System read nothing form the response");
                     }
-
-                    if (start1 + blocklength1 < filesize1) {
+                    if(start1 + blocklength1 == filesize1){
+                        fsm.checkWriteComplete(doc.getString("pathName"));
+                        System.out.println("now in the equal part: position equal fileSize");
+                    }
+                    else if (start1 + blocklength1 + blocklength1 < filesize1) {
                         Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), start1 + blocklength1, blocklength1), socket);
-                    } else if(start1 + blocklength1 > filesize1){
-                        Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), start1 + blocklength1, filesize1-start1), socket);
+                    } else if(start1 + blocklength1 + blocklength1> filesize1){
+                        Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), start1 + blocklength1, filesize1-start1-blocklength1), socket);
                     }
                     else {
-                        fsm.checkWriteComplete(doc.getString("pathName"));
+
                    }
 
                 break;
