@@ -61,15 +61,18 @@ public class function2 {
                 System.out.println("in FILE_BYTES_REQUEST Get the length " + blocklength + " position " + start + " filesize " + filesize);
 
                     if (start + blocklength < filesize) {
-                        byte[] b= new byte[fsm.readFile(fileDescriper.getString("md5"), start, start+blocklength).remaining()];
+                        byte[] b= new byte[fsm.readFile(fileDescriper.getString("md5"), start, blocklength).remaining()];
                         byte[] BiteStream = Base64.getEncoder().encode(b);
                         String bite = Base64.getEncoder().encodeToString(BiteStream);
-                        Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONCE(fileDescriper, doc.getString("pathName"),bite, "read successful", true, start+blocklength,blocklength),socket);
+                        Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONCE(fileDescriper, doc.getString("pathName"),bite, "read successful", true, start,blocklength),socket);
                     } else {
-                        byte[] b= new byte[fsm.readFile(fileDescriper.getString("md5"), start, filesize).remaining()];
+                        //
+                        byte[] b= new byte[fsm.readFile(fileDescriper.getString("md5"), start, filesize-start).remaining()];
                         byte[] BiteStream = Base64.getEncoder().encode(b);
                         String bite = Base64.getEncoder().encodeToString(BiteStream);
-                        Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONCE(fileDescriper, doc.getString("pathName"),bite,"read successful", true, filesize,blocklength),socket);
+                        System.out.println("The byte we write the " + bite + "in the FILE_BYTES_RESPOND");
+                        Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONCE(fileDescriper, doc.getString("pathName"),bite,"read successful", true, start,blocklength),socket);
+                        System.out.println("the filesize is " + filesize +"  blocklength "+blocklength + " in the FILE_BYTES_RESPOND");
                     }
 
                 break;
@@ -80,11 +83,15 @@ public class function2 {
                     Long filesize1 = fileDescriper.getLong("fileSize");
 
                     System.out.println(" In the FILE_BYTES_RESPONSE Get the length " + blocklength1 + " position " + start1 + " filesize " + filesize1);
-
-                    byte[] bites = Base64.getDecoder().decode(doc.getString("content"));
-                    fsm.writeFile(doc.getString("pathName"), ByteBuffer.wrap(bites), start1);
+                    String content = doc.getString("content");
+                    if (content != null){
+                        byte[] bites = Base64.getDecoder().decode(content);
+                        fsm.writeFile(doc.getString("pathName"), ByteBuffer.wrap(bites), start1);
+                    } else {
+                        System.out.println("System read nothing form the file");
+                    }
                     if (start1 < filesize1) {
-                        Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), start1, blocklength1), socket);
+                        Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), start1 + blocklength1, blocklength1), socket);
                     }
                 }
                 break;
