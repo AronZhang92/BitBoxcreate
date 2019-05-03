@@ -39,7 +39,7 @@ public class function2 {
                         else { // when there is no shortcut
                             Long position1 = 0L;
                             Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), position1,blocksize),socket);
-                            System.out.println("Call to wait read the file");
+                            System.out.println("Call to wait read the file from " + socket.getInetAddress());
 
 
                         }
@@ -99,6 +99,7 @@ public class function2 {
                 break;
 
             case "FILE_CREATE_RESPONSE":
+                System.out.println("THis is a FILE_CREATE_RESPONSE");
 
                 break;
 
