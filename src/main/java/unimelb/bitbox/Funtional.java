@@ -12,6 +12,7 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 
 public class Funtional {
 	private static FileSystemManager.FileDescriptor fd;
@@ -64,6 +65,10 @@ public class Funtional {
 			
 		case "FILE_BYTES_REQUEST":
 			byte[] b= new byte[fsm.readFile(fileDescriper.getString("md5"), doc.getLong("position"), doc.getLong("length")).remaining()];
+			String BiteStream = Base64.getEncoder().encodeToString(b);
+			
+			
+		
 				
 		case "FILE_DELETE":
 			fsm.deleteFile(doc.getString("pathName"), doc.getLong("lastModicied"), doc.getString("md5"));
@@ -88,6 +93,9 @@ public class Funtional {
 				}
 			}
 			break;
+			
+	    case "FILE_DELETE_REQUEST":
+	    	if(fsm.isSafePathName(pathName))
 		default:
 			break;
 		}
