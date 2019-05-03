@@ -36,8 +36,8 @@ public class Funtional {
 					fsm.createFileLoader(doc.getString("pathName"), fileDescriper.getString("md5"), // create file
 
                             // loader
-							Long.parseLong(fileDescriper.getString("fileSize")),
-							Long.parseLong(fileDescriper.getString("lastModified")));
+							fileDescriper.getLong("fileSize"),
+							fileDescriper.getLong("lastModified"));
                     System.out.println("Successful create file loaser");
 					Sendsocket.sendDoc(JSONRETURN.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"), 
 							"file loader ready ", true));  // send response when success creating file loader

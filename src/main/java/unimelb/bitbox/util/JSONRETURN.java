@@ -68,7 +68,7 @@ public class JSONRETURN {
     	doc.append("fileDescriptor", fileDescripor.toString());
     	doc.append("pathName", pathName);
     	doc.append("postion", 0);
-    	doc.append("length", fileDescripor.getString("fileSize").toString());
+    	doc.append("length", fileDescripor.getString("fileSize"));
     	doc.append("message", message);
     	doc.append("status", status.toString());
     	return doc;

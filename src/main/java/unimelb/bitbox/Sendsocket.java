@@ -17,8 +17,8 @@ public class Sendsocket {
                 Document do1 = new Document();
                 if (fd != null) {
                     do1 = fd.toDoc();
-                }
                 doc.append("fileDescriptor",do1);
+                }
                 doc.append("pathName",fileSystemEvent.pathName);
                 doc.append("path",fileSystemEvent.path);
                 doc.append("name",fileSystemEvent.name);
