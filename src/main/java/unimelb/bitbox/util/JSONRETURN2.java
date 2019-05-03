@@ -79,6 +79,15 @@ public class JSONRETURN2 {
         doc.append("status", status);
         return doc;
     }
+
+    public static Document DIRECTORY_DELETE_RESPONCE( String pathName,String message,boolean status) {
+        Document doc = new Document();
+        doc.append("command", "DIRECTORY_DELETE_RESPONCE");
+        doc.append("pathName", pathName);
+        doc.append("message", message);
+        doc.append("status", status);
+        return doc;
+    }
     public static Document FILE_BYTES_RESPONCE(Document fileDescripor, String pathName,String bytes,String message,Boolean status,Long position,Long length) {
         Document doc = new Document();
         doc.append("command", "FILE_BYTES_RESPONSE");

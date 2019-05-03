@@ -119,12 +119,18 @@ public class function2 {
 
                 break;
 
-            case "FILE_DELETE":
-                if (fsm.isSafePathName(doc.getString("pathName"))) {
-                    if (!fsm.fileNameExists(doc.getString("pathName"))) {
-                        fsm.deleteFile(doc.getString("pathName"), doc.getLong("lastModicied"), doc.getString("md5"));
-                    }
+            case "FILE_DELETE_REQUEST":
+                String pathName = doc.getString("pathName");
+                if (fsm.isSafePathName(pathName)) { // check if the pathname is safe
 
+                    if (fsm.fileNameExists(pathName)) { // when the directory name exist
+
+                        fsm.deleteDirectory(pathName);
+                        Sendsocket.sendtosocket(JSONRETURN2.FILE_DELETE_RESPONCE(fileDescriper,pathName,"successful delete",true),socket);
+
+                    } else {
+                        Sendsocket.sendtosocket(JSONRETURN2.FILE_DELETE_RESPONCE(fileDescriper,pathName,"pathname does not exist",false),socket);
+                    }
                 }
 
                 break;
@@ -138,20 +144,17 @@ public class function2 {
                 }
                 break;
             case "DIRECTORY_DELETE_REQUEST":
-                String pathName = doc.getString("pathName");
-
-                if (fsm.isSafePathName(pathName)) { // check if the pathname is safe
-
-                    if (fsm.dirNameExists(pathName)) { // when the directory name exist
-
-                        fsm.deleteDirectory(pathName);
-                        Sendsocket.sendtosocket(JSONRETURN2.FILE_DELETE_RESPONCE(fileDescriper,pathName,"successful delete",true),socket);
-
+                String pathName1 = doc.getString("pathName");
+                if (fsm.isSafePathName(pathName1)) { // check if the pathname is safe
+                    if (fsm.dirNameExists(pathName1)) { // when the directory name exist
+                        fsm.deleteDirectory(pathName1);
+                        Sendsocket.sendtosocket(JSONRETURN2.DIRECTORY_DELETE_RESPONCE(pathName1,"successful delete",true),socket);
                     } else {
-                        Sendsocket.sendtosocket(JSONRETURN2.FILE_DELETE_RESPONCE(fileDescriper,pathName,"pathname does not exist",false),socket);
+                        Sendsocket.sendtosocket(JSONRETURN2.DIRECTORY_DELETE_RESPONCE(pathName1,"pathname does not exist",false),socket);
                     }
                 }
-                break;
+
+                    break;
             default:
                 System.out.println("Can not match any command" + doc.getString("command"));
                 break;
