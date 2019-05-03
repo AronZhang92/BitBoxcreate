@@ -19,16 +19,22 @@ public class ServerMain implements FileSystemObserver,Runnable {
 
     static String portstring = Configuration.getConfigurationValue("port");
     static final int port = Integer.parseInt(portstring);
-	protected FileSystemManager fileSystemManager;
+	protected static FileSystemManager fileSystemManager;
 	
 	public ServerMain() throws NumberFormatException, IOException, NoSuchAlgorithmException {
 		fileSystemManager=new FileSystemManager(Configuration.getConfigurationValue("path"),this);
 	}
-
+    public static FileSystemManager returnfilesm(){
+	    return fileSystemManager;
+    }
 	@Override
 	public void processFileSystemEvent(FileSystemEvent fileSystemEvent) {
     Sendsocket.sendDoc(Sendsocket.sendsocket(fileSystemEvent));
+<<<<<<< HEAD
     System.out.println(fileSystemEvent.toString());
+=======
+        //System.out.println(fileSystemEvent);
+>>>>>>> f820858497c15b71bcc2b496ab795f2b4ae87285
 	}
 
 	public void run(){
