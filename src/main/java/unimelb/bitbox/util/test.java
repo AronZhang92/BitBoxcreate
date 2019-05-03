@@ -21,6 +21,8 @@ public class test implements FileSystemObserver {
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
 
         FileSystemObserver a = new test();
+        FileSystemManager fsm = new FileSystemManager("share", a); // should be replaced when generating
+        fsm.deleteDirectory("untitled folder");
 
     }
 
@@ -36,8 +38,16 @@ public class test implements FileSystemObserver {
         doc.append("pathName",fileSystemEvent.pathName);
         doc.append("path",fileSystemEvent.path);
         doc.append("name",fileSystemEvent.name);
-        doc.append("event",fileSystemEvent.event.toString());
+        doc.append("event",fileSystemEvent.event.toString() + "_REQUEST");
         System.out.println(doc.toJson());
+        switch (doc.getString("event")){
+            case "DIRECTORY_DELETE_REQUEST" :
+                System.out.println("System delete a directory");
+                break;
+            case "DIRECTORY_CREATE_REQUEST" :
+                System.out.println("System create a directory");
+                break;
+        }
 
 
 	}
