@@ -95,7 +95,9 @@ public class function2 {
                         System.out.println("System read nothing form the response");
                     }
                     if(start1 + blocklength1 == filesize1){
-                        fsm.checkWriteComplete(doc.getString("pathName"));
+                        if(fsm.checkWriteComplete(doc.getString("pathName"))){
+                            fsm.cancelFileLoader(doc.getString("pathName"));
+                        }
                         System.out.println("now in the equal part: position equal fileSize");
                     }
                     else if (start1 + blocklength1 + blocklength1 < filesize1) {

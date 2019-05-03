@@ -1,11 +1,1 @@
-feedback [(Pitch A 1), (Pitch B 2), (Pitch A 3)] [(Pitch A 1), (Pitch A 2), (Pitch B 1)]
-
-feedback [(Pitch A 1), (Pitch B  2), (Pitch C 3)] [(Pitch A 1), (Pitch A 2), (Pitch A 3)]
-
-feedback [(Pitch A 1), (Pitch B  1), (Pitch C 1)] [(Pitch A 2), (Pitch D 1), (Pitch E 1)]
-
-feedback [(Pitch A 3), (Pitch B  2), (Pitch C 1)] [(Pitch C 3), (Pitch A 2), (Pitch B 1)]
-
- "C:\Users\13964\OneDrive\¿Î³ÌÑ§Ï°\Declarative Programming\assignments\dp-Project1"
-
-https://github.com/tdebatty/java-string-similarity
+Hello World.
