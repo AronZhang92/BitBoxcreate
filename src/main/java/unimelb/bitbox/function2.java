@@ -17,13 +17,7 @@ public class function2 {
         FileSystemObserver ob = Peer.getServerMain();
         FileSystemManager fsm = new FileSystemManager("share", ob); // should be replaced when generating
         System.out.println(doc.toJson());
-        System.out.println("The number of connectionlist is " + Connectionlist.connum());
-        for (Socket sock:Connectionlist.returnsocketlist()
-        ) {
-            System.out.println(" the socket is :" +sock.getInetAddress());
-        }
         Document fileDescriper = (Document) doc.get("fileDescriptor");
-        System.out.println("the file descriptor is : " + fileDescriper.toJson());
         switch (doc.getString("command")) {
             case "FILE_CREATE_REQUEST":
                 if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
