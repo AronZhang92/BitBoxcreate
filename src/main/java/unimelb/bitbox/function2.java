@@ -95,7 +95,11 @@ public class function2 {
                     }
                     if(start1 + blocklength1 == filesize1){
                         if(fsm.checkWriteComplete(doc.getString("pathName"))){
+                            //System.out.println("Already check the complete and it is complete");
                             fsm.cancelFileLoader(doc.getString("pathName"));
+                        }
+                        else {
+                            System.out.println(" failed to check complete");
                         }
                         System.out.println("now in the equal part: position equal fileSize");
                     }
