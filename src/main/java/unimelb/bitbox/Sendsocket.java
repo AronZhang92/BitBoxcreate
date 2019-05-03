@@ -27,10 +27,9 @@ public class Sendsocket {
 
 
     }
-    public static void sendtosocket(Document doc,Socket socket){
+    public static void sendtosocket(Document doc,BufferedWriter out){
 
         try {
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
             out.write(doc.toJson()+"\n");
             out.flush();
         } catch (IOException e) {
@@ -39,9 +38,9 @@ public class Sendsocket {
 
     }
     public static void sendDoc(Document doc){
-        for (Socket socket: Connectionlist.returnsocketlist()
+        for (BufferedWriter out: Connectionlist.returnoutputstream()
         ) {
-                sendtosocket(doc,socket);
+                sendtosocket(doc,out);
         }
     }
 }

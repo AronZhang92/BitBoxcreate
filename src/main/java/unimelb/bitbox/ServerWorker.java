@@ -44,11 +44,12 @@ public class ServerWorker implements Runnable {
 							.toJson() + "\n");
 					out.flush();
 					Connectionlist.addNewSocket(clientSocket);
+					Connectionlist.addnewoutput(out);
                     //synevents.synevent(clientSocket);
 					while ((clientMsg = in.readLine()) != null) {
                         try {
                             System.out.println("the server part received : " + clientMsg);
-                            function2.funtional(Document.parse(clientMsg),clientSocket); //send jason object to class funtional
+                            function2.funtional(Document.parse(clientMsg),out); //send jason object to class funtional
                         } catch (NoSuchAlgorithmException e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();

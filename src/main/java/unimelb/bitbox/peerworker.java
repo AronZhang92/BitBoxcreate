@@ -55,6 +55,7 @@ public class peerworker implements Runnable {
 				// System.out.println("received OK");
 				System.out.println("Connection established to" + socket.getInetAddress());
 				Connectionlist.addNewSocket(socket);
+				Connectionlist.addnewoutput(out);
 				//synevents.synevent(socket);
 				System.out.println("Successful add ip " + socket.getInetAddress() + " and port: " + socket.getPort()
 						+ "to the connection list");
@@ -62,7 +63,7 @@ public class peerworker implements Runnable {
 				while ((clientMsg = in.readLine()) != null) { //deal with recerived commands
 					try {
                         System.out.println("The client part receive the :" + clientMsg);
-						function2.funtional(Document.parse(clientMsg),socket); //send jason object to class funtional
+						function2.funtional(Document.parse(clientMsg),out); //send jason object to class funtional
 					} catch (NoSuchAlgorithmException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
