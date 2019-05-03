@@ -27,7 +27,7 @@ public class ServerMain implements FileSystemObserver,Runnable {
 
 	@Override
 	public void processFileSystemEvent(FileSystemEvent fileSystemEvent) {
-    Sendsocket.sendsocket(fileSystemEvent);
+    Sendsocket.sendDoc(Sendsocket.sendsocket(fileSystemEvent));
 	}
 
 	public void run(){
