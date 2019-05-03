@@ -26,7 +26,7 @@ public class Peer
         t.start();
 
 
-        ClientMain.ClientMain();
+       // ClientMain.ClientMain();
 
         
     }

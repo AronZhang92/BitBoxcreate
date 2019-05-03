@@ -12,7 +12,7 @@ import java.util.Base64;
 public class function2 {
     private static FileSystemManager.FileDescriptor fd;
     private static final Long blocksize = Long.parseLong(Configuration.getConfigurationValue("blockSize"));
-    public static void funtional(Document doc, BufferedWriter out) throws IOException, NoSuchAlgorithmException {
+    public static void funtional(Document doc, Socket socket) throws IOException, NoSuchAlgorithmException {
 
         FileSystemManager fsm = ServerMain.returnfilesm(); // should be replaced when generating
         System.out.println(doc.toJson());
@@ -30,7 +30,7 @@ public class function2 {
                                 fileDescriper.getLong("lastModified"));
                         System.out.println("Successful create file loaser");
                         Sendsocket.sendtosocket(JSONRETURN2.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"),
-                                "file loader ready ", true,0L),out);  // send response when success creating file loader
+                                "file loader ready ", true,0L),socket);  // send response when success creating file loader
 
                         if (fsm.checkShortcut(doc.getString("pathName"))) {
                             System.out.println("Already check the short cut");
@@ -38,7 +38,7 @@ public class function2 {
                         }
                         else { // when there is no shortcut
                             Long position1 = 0L;
-                            Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), position1,blocksize),out);
+                            Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), position1,blocksize),socket);
                             System.out.println("Call to wait read the file");
 
 
@@ -65,7 +65,7 @@ public class function2 {
                         byte[] b= fsm.readFile(fileDescriper.getString("md5"), start, blocklength-start).array();
                         byte[] BiteStream = Base64.getEncoder().encode(b);
                         String bite = Base64.getEncoder().encodeToString(BiteStream);
-                        Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONCE(fileDescriper, doc.getString("pathName"),bite, "read successful", true, start,blocklength),out);
+                        Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONCE(fileDescriper, doc.getString("pathName"),bite, "read successful", true, start,blocklength),socket);
                     } else {
                         //
 
@@ -73,7 +73,7 @@ public class function2 {
                         byte[] BiteStream = Base64.getEncoder().encode(b);
                         String bite = Base64.getEncoder().encodeToString(BiteStream);
                         System.out.println("The byte we write the " + bite + "in the FILE_BYTES_RESPOND");
-                        Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONCE(fileDescriper, doc.getString("pathName"),bite,"read successful", true, start,blocklength),out);
+                        Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONCE(fileDescriper, doc.getString("pathName"),bite,"read successful", true, start,blocklength),socket);
                         System.out.println("the filesize is " + filesize +"  blocklength "+blocklength + " in the FILE_BYTES_RESPOND");
                     }
 
@@ -93,7 +93,7 @@ public class function2 {
                         System.out.println("System read nothing form the file");
                     }
                     if (start1 < filesize1) {
-                        Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), start1 + blocklength1, blocklength1), out);
+                        Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), start1 + blocklength1, blocklength1), socket);
                     }
                 }
                 break;

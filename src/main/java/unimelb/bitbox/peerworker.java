@@ -62,8 +62,8 @@ public class peerworker implements Runnable {
 		
 				while ((clientMsg = in.readLine()) != null) { //deal with recerived commands
 					try {
-                        System.out.println("The client part receive the :" + clientMsg);
-						function2.funtional(Document.parse(clientMsg),out); //send jason object to class funtional
+                        System.out.println("The client part receive the :" + clientMsg + "from " + socket.getInetAddress());
+						function2.funtional(Document.parse(clientMsg),socket); //send jason object to class funtional
 					} catch (NoSuchAlgorithmException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
