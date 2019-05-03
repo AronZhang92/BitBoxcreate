@@ -14,8 +14,7 @@ public class function2 {
     private static final Long blocksize = Long.parseLong(Configuration.getConfigurationValue("blockSize"));
     public static void funtional(Document doc,Socket socket) throws IOException, NoSuchAlgorithmException {
 
-        FileSystemObserver ob = Peer.getServerMain();
-        FileSystemManager fsm = new FileSystemManager("share", ob); // should be replaced when generating
+        FileSystemManager fsm = ServerMain.returnfilesm(); // should be replaced when generating
         System.out.println(doc.toJson());
         Document fileDescriper = (Document) doc.get("fileDescriptor");
         switch (doc.getString("command")) {

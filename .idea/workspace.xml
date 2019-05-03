@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="9ff881b5-2661-4e5f-a56b-66157aaaf83f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/Peer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/Peer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/ServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/ServerMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/function2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/function2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/unimelb/bitbox/Peer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/unimelb/bitbox/Peer.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,11 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/function2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="62" column="39" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
+            <state relative-caret-position="399">
+              <caret line="36" column="47" selection-start-line="36" selection-start-column="47" selection-end-line="36" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -74,8 +75,33 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/Peer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+            <state relative-caret-position="307">
+              <caret line="23" column="37" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/ServerMain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="292">
+              <caret line="32" column="10" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
+              <folding>
+                <element signature="e#1058#1059#0" expanded="true" />
+                <element signature="e#1094#1095#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/util/test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -99,7 +125,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/peerworker.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="319">
-              <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
+              <caret line="68" selection-start-line="68" selection-end-line="68" />
               <folding>
                 <element signature="e#782#783#0" expanded="true" />
                 <element signature="e#809#810#0" expanded="true" />
@@ -112,7 +138,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/synevents.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="390">
-              <caret line="26" column="1" lean-forward="true" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
+              <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -155,7 +181,6 @@
         <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/Eventlist.java" />
         <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/synevents.java" />
         <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/ClientMain.java" />
-        <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/ServerMain.java" />
         <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/Connectionlist.java" />
         <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/util/test.java" />
         <option value="$PROJECT_DIR$/configuration.properties" />
@@ -167,6 +192,7 @@
         <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/ServerWorker.java" />
         <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/Peer.java" />
         <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/function2.java" />
+        <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/ServerMain.java" />
       </list>
     </option>
   </component>
@@ -335,12 +361,12 @@
       <workItem from="1556789771945" duration="2263000" />
       <workItem from="1556803415200" duration="289000" />
       <workItem from="1556843253677" duration="5141000" />
-      <workItem from="1556865203215" duration="237000" />
+      <workItem from="1556865203215" duration="803000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79537000" />
+    <option name="totallyTimeSpent" value="80103000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="0" />
@@ -512,13 +538,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/ServerMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="46" column="88" selection-start-line="46" selection-start-column="88" selection-end-line="46" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/util/FileSystemManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="99">
@@ -586,16 +605,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/util/test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-128">
-          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Downloads/kopi-o-master/src/activitystreamer/Client.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-518" />
@@ -613,16 +622,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/Peer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/Sendsocket.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
@@ -633,10 +632,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/ServerWorker.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/synevents.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
-          <caret line="49" column="14" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="55" />
+          <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/peerworker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="68" selection-start-line="68" selection-end-line="68" />
+          <folding>
+            <element signature="e#782#783#0" expanded="true" />
+            <element signature="e#809#810#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/util/test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/Peer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="23" column="37" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -650,33 +683,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/synevents.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="1" lean-forward="true" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/peerworker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
-          <folding>
-            <element signature="e#782#783#0" expanded="true" />
-            <element signature="e#809#810#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/function2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="62" column="39" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
+        <state relative-caret-position="399">
+          <caret line="36" column="47" selection-start-line="36" selection-start-column="47" selection-end-line="36" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/ServerWorker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="49" column="14" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/ServerMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="32" column="10" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
+          <folding>
+            <element signature="e#1058#1059#0" expanded="true" />
+            <element signature="e#1094#1095#0" expanded="true" />
           </folding>
         </state>
       </provider>
