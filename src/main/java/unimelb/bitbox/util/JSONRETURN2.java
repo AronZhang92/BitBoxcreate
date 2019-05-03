@@ -77,7 +77,7 @@ public class JSONRETURN2 {
 
     public static Document FILE_CREATE_RESPONSE(Document fileDescripor, String pathName, String message, Boolean status,Long position) {
         Document doc = new Document();
-        doc.append("command", "FILE_BYTES_RESPONSE");
+        doc.append("command", "FILE_CREATE_RESPONSE");
         doc.append("fileDescriptor", fileDescripor);
         doc.append("pathName", pathName);
         doc.append("position", position);

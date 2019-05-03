@@ -23,15 +23,17 @@ public class Sendsocket {
                 doc.append("path",fileSystemEvent.path);
                 doc.append("name",fileSystemEvent.name);
                 doc.append("command",fileSystemEvent.event.toString()+"_REQUEST");
+                Eventlist.addDocument(doc);
                 return doc;
 
 
     }
-    public static void sendtosocket(Document doc,BufferedWriter out){
+    public static void sendtosocket(Document doc,Socket socket){
 
         try {
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
             out.write(doc.toJson()+"\n");
-            System.out.println("our peer send " + doc.toJson() + " to somewhere");
+            System.out.println("our peer send " + doc.toJson() + " to " + socket.getInetAddress());
             out.flush();
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,9 +41,9 @@ public class Sendsocket {
 
     }
     public static void sendDoc(Document doc){
-        for (BufferedWriter out: Connectionlist.returnoutputstream()
+        for (Socket socket : Connectionlist.returnsocketlist()
         ) {
-                sendtosocket(doc,out);
+                sendtosocket(doc,socket);
         }
     }
 }
