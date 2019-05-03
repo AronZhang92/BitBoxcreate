@@ -47,7 +47,7 @@ public class ServerWorker implements Runnable {
 							.toJson() + "\n");
 					out.flush();
 					Connectionlist.addNewSocket(clientSocket);
-                    synevents.synevent(clientSocket);
+                    //synevents.synevent(clientSocket);
 					while ((clientMsg = in.readLine()) != null) {
                         try {
                             function2.funtional(Document.parse(clientMsg),clientSocket); //send jason object to class funtional
@@ -69,9 +69,7 @@ public class ServerWorker implements Runnable {
 
 			} catch (SocketException e) {
 				System.out.println("closed...");
-			} catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            }
+			}
             clientSocket.close();
 		} catch (SocketException ex) {
 			ex.printStackTrace();
