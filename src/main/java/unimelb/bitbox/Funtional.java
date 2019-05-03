@@ -19,7 +19,9 @@ public class Funtional {
 
 		FileSystemObserver ob = Peer.getServerMain();
 		FileSystemManager fsm = new FileSystemManager("share", ob); // should be replaced when generating
-        System.out.println(doc.toJson());
+		Document fileDescriper = (Document) doc.get("fileDescriptor"); // get Json object for fileDescriper
+		
+
         System.out.println("The number of connectionlist is " + Connectionlist.connum());
         for (Socket sock:Connectionlist.returnsocketlist()
              ) {
@@ -27,12 +29,8 @@ public class Funtional {
         }
 		switch (doc.getString("command")) {
 		case "FILE_CREATE_REQUEST":
-			Document fileDescriper = (Document) doc.get("fileDescriptor");
-            System.out.println("the file descriptor is : " + fileDescriper.toJson());
 			if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
-                System.out.println("is sage pathname");
 				if (!fsm.fileNameExists(doc.getString("pathName"))) { // when the file name doesn't exist
-                    System.out.println("The name is not exist");
 					fsm.createFileLoader(doc.getString("pathName"), fileDescriper.getString("md5"), // create file
 
                             // loader
@@ -59,7 +57,11 @@ public class Funtional {
 				break;
 				
 		case "FILE_CREATE_RESPONSE":
-			System.out.println(doc.toString());
+			System.out.println("FILE_CREATE_RESPONSE is: " + doc.getString("message"));
+			break;
+			
+		case "FILE_BYTES_REQUEST":
+			fsm.readFile(fileDescriper.getString("md5"), doc.getLong("position"), doc.getLong("length"));
 				
 		case "FILE_DELETE":
 			fsm.deleteFile(doc.getString("pathName"), doc.getLong("lastModicied"), doc.getString("md5"));
