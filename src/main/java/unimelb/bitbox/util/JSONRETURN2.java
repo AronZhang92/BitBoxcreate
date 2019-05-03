@@ -125,6 +125,7 @@ public class JSONRETURN2 {
         doc.append("command", "FILE_MODIFY_RESPONSE");
         doc.append("fileDescriptor", fileDescripor);
         doc.append("pathName", pathName);
+        doc.append("message", message);
         doc.append("status", status);
         return doc;
     }

@@ -146,6 +146,7 @@ public class function2 {
 				if (fsm.fileNameExists(doc.getString("pathName"))) { // when the file name exist
 					fsm.deleteFile(doc.getString("pathName"), fileDescriper.getLong("lastModified"),
 							fileDescriper.getString("md5")); // delete the file first
+					System.out.println("the deletion is successed");
 					System.out.println("The name is exist");
 					fsm.createFileLoader(doc.getString("pathName"), fileDescriper.getString("md5"), // create file
 							// loader
