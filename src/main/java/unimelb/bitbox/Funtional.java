@@ -29,16 +29,28 @@ public class Funtional {
 																									// loader
 							Long.parseLong(fileDescriper.getString("fileSize")),
 							Long.parseLong(fileDescriper.getString("lastModified")));
+					Sendsocket.sendDoc(JSONRETURN.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"), 
+							"file loader ready ", true));  // send response when success creating file loader
 
 					if (fsm.checkShortcut(doc.getString("pathName"))) {
 						break; // stop when there is a shortcut
 					} else { // when there is no shortcut
 						JSONRETURN.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"));
 					}
+				}else { // when file already exist
+					Sendsocket.sendDoc(JSONRETURN.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"), 
+							"file name already exist ", false));
 				}
-			} else
+			} else {
+				Sendsocket.sendDoc(JSONRETURN.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"), 
+						"pathName not safe ", false));
+			}
 
 				break;
+				
+		case "FILE_CREATE_RESPONSE":
+			System.out.println(doc.toString());
+				
 		case "FILE_DELETE":
 			fsm.deleteFile(doc.getString("pathName"), doc.getLong("lastModicied"), doc.getString("md5"));
 			break;
