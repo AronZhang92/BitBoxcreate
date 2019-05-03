@@ -52,12 +52,13 @@ public class JSONRETURN {
         return doc;
     }
     
-    public static Document FILE_BYTES_REQUEST(String md5, long position, long length) { // need to be change
+    public static Document FILE_BYTES_REQUEST(Document fileDescripor, String pathName) { // need to be change
     	Document doc = new Document();
     	doc.append("command", "FILE_BYTES_REQUEST");
-    	doc.append("md5", md5);
-    	doc.append("start", Long.toString(position));  //notice the key of start position
-    	doc.append("fileSize", Long.toString(length));
+    	doc.append("fileDescriptor", fileDescripor.toString());
+    	doc.append("pathName", pathName);
+    	doc.append("postion", 0);
+    	doc.append("length", fileDescripor.getString("fileSize"));
     	return doc;
     }
 
