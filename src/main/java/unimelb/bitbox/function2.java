@@ -61,7 +61,7 @@ public class function2 {
                 System.out.println("in FILE_BYTES_REQUEST Get the length " + blocklength + " position " + start + " filesize " + filesize);
 
                     if (start + blocklength < filesize) {
-                        byte[] b= fsm.readFile(fileDescriper.getString("md5"), start, blocklength).array();
+                        byte[] b= fsm.readFile(fileDescriper.getString("md5"), start, blocklength-start).array();
                         byte[] BiteStream = Base64.getEncoder().encode(b);
                         String bite = Base64.getEncoder().encodeToString(BiteStream);
                         Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONCE(fileDescriper, doc.getString("pathName"),bite, "read successful", true, start,blocklength),socket);
