@@ -53,34 +53,34 @@ public class JSONRETURN2 {
         return doc;
     }
 
-    public static Document FILE_BYTES_REQUEST(Document fileDescripor, String pathName,Long postion,Long length) {
+    public static Document FILE_BYTES_REQUEST(Document fileDescripor, String pathName,Long position,Long length) {
         Document doc = new Document();
         doc.append("command", "FILE_BYTES_REQUEST");
         doc.append("fileDescriptor", fileDescripor);
         doc.append("pathName", pathName);
-        doc.append("postion", postion);
+        doc.append("position", position);
         doc.append("length", length);
         return doc;
     }
-    public static Document FILE_BYTES_RESPONCE(Document fileDescripor, String pathName,String bytes,String message,Boolean status,Long postion,Long length) {
+    public static Document FILE_BYTES_RESPONCE(Document fileDescripor, String pathName,String bytes,String message,Boolean status,Long position,Long length) {
         Document doc = new Document();
         doc.append("command", "FILE_BYTES_RESPONSE");
         doc.append("fileDescriptor", fileDescripor);
         doc.append("pathName", pathName);
         doc.append("content",bytes);
-        doc.append("postion", postion);
+        doc.append("position", position);
         doc.append("length", length);
         doc.append("message", message);
         doc.append("status", status);
         return doc;
     }
 
-    public static Document FILE_CREATE_RESPONSE(Document fileDescripor, String pathName, String message, Boolean status,Long postion) {
+    public static Document FILE_CREATE_RESPONSE(Document fileDescripor, String pathName, String message, Boolean status,Long position) {
         Document doc = new Document();
         doc.append("command", "FILE_BYTES_RESPONSE");
         doc.append("fileDescriptor", fileDescripor);
         doc.append("pathName", pathName);
-        doc.append("postion", postion);
+        doc.append("position", position);
         doc.append("length", fileDescripor.getLong("fileSize"));
         doc.append("message", message);
         doc.append("status", status);
