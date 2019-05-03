@@ -29,11 +29,6 @@ public class ServerWorker implements Runnable {
 
 	public void run() {
 		try {
-		    if(Connectionlist.contain(clientSocket.getInetAddress().toString())){
-                System.out.println(" Already connected, refuse connection");
-                clientSocket.close();
-
-            }
 			BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(), "UTF-8"));
 			BufferedWriter out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "UTF-8"));
 

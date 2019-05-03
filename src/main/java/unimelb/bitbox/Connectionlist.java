@@ -14,9 +14,10 @@ public class Connectionlist {
     public static ArrayList<Socket> returnsocketlist(){
         return connectionSocket;
     }
+    //check if the ipadress is already in the list.
     public static boolean contain(String ipadress){
         boolean include = false;
-        System.out.println("The target ipadress is "+ ipadress);
+        //System.out.println("The target ipadress is "+ ipadress);
         for (Socket socket: connectionSocket
              ) {
             System.out.println("The check socket is " + socket.getInetAddress().toString());
@@ -28,6 +29,7 @@ public class Connectionlist {
         }
         return include;
     }
+    //return how many connection are set
     public static int connum(){
         return connectionSocket.size();
     }

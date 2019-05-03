@@ -39,10 +39,6 @@ public class peerworker implements Runnable {
 			// socket bound to localhost on port 4444
 
 			// Get the input/output streams for reading/writing data from/to the socket
-            if(Connectionlist.contain(socket.getInetAddress().toString())){
-                System.out.println("Already connected to server part, disconnect");
-                socket.close();
-            }
 			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
 			BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
 			Document json = JSONRETURN.HANDSHAKE_REQUEST(socket.getInetAddress().toString(), socket.getPort());
