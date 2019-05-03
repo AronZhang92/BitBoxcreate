@@ -33,11 +33,7 @@ public class Funtional {
 					if (fsm.checkShortcut(doc.getString("pathName"))) {
 						break; // stop when there is a shortcut
 					} else { // when there is no shortcut
-						for (Socket socket : Connectionlist.returnsocketlist()) { // send file_Byte_request
-							BufferedWriter out = new BufferedWriter(
-									new OutputStreamWriter(socket.getOutputStream(), "UTF-8")); // paused
-
-						}
+						JSONRETURN.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"));
 					}
 				}
 			} else
