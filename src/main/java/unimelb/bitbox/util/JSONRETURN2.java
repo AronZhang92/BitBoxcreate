@@ -112,7 +112,21 @@ public class JSONRETURN2 {
         doc.append("status", status);
         return doc;
     }
+    
+    public static Document FILE_MODIFY_REQUEST(Document fileDescripot, String pathName) {
+    	 Document doc = new Document();
+         doc.append("command", "FILE_MODIFY_REQUEST");
+         doc.append("pathName", pathName);
+         return doc;
+    }
 
-
+    public static Document FILE_MODIFY_RESPONSE(Document fileDescripor, String pathName, String message, boolean status) {
+        Document doc = new Document();
+        doc.append("command", "FILE_MODIFY_RESPONSE");
+        doc.append("fileDescriptor", fileDescripor);
+        doc.append("pathName", pathName);
+        doc.append("status", status);
+        return doc;
+    }
 
 }

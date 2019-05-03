@@ -45,7 +45,7 @@ public class ServerWorker implements Runnable {
 					out.flush();
 					Connectionlist.addNewSocket(clientSocket);
 					Connectionlist.addnewoutput(out);
-                    //synevents.synevent(clientSocket);
+                    synevents.synevent(clientSocket);
 					while ((clientMsg = in.readLine()) != null) {
 
                         try {
@@ -69,7 +69,9 @@ public class ServerWorker implements Runnable {
 
 			} catch (SocketException e) {
 				System.out.println("closed...");
-			}
+			} catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
             clientSocket.close();
 		} catch (SocketException ex) {
 			ex.printStackTrace();

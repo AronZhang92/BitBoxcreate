@@ -56,7 +56,7 @@ public class peerworker implements Runnable {
 				System.out.println("Connection established to" + socket.getInetAddress());
 				Connectionlist.addNewSocket(socket);
 				Connectionlist.addnewoutput(out);
-				//synevents.synevent(socket);
+				synevents.synevent(socket);
 				System.out.println("Successful add ip " + socket.getInetAddress() + " and port: " + socket.getPort()
 						+ "to the connection list");
 		
@@ -94,7 +94,9 @@ public class peerworker implements Runnable {
 			System.out.println("unkown");
 		} catch (IOException e) {
 			e.printStackTrace();
-		}  finally {
+		} catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } finally {
 			// Close the socket
 			if (socket != null) {
 				try {
