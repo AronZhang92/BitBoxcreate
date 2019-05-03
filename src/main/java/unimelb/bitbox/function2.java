@@ -78,7 +78,7 @@ public class function2 {
 
                 break;
             case "FILE_BYTES_RESPONSE":
-                if(!fsm.checkWriteComplete(doc.getString("pathName"))) {
+
                     Long blocklength1 = doc.getLong("length");
                     Long start1 = doc.getLong("position");
                     Long filesize1 = fileDescriper.getLong("fileSize");
@@ -87,18 +87,21 @@ public class function2 {
                     String content = doc.getString("content");
                     if (content != null){
                         byte[] bites = Base64.getDecoder().decode(content);
+                        System.out.println(" the text reveived is :"+ByteBuffer.wrap(bites));
                         fsm.writeFile(doc.getString("pathName"), ByteBuffer.wrap(bites), start1);
                     } else {
-                        System.out.println("System read nothing form the file");
+                        System.out.println("System read nothing form the response");
                     }
+
                     if (start1 + blocklength1 < filesize1) {
                         Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), start1 + blocklength1, blocklength1), socket);
                     } else if(start1 + blocklength1 > filesize1){
                         Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), start1 + blocklength1, filesize1-start1), socket);
                     }
                     else {
+                        fsm.checkWriteComplete(doc.getString("pathName"));
                    }
-                }
+
                 break;
 
             case "FILE_CREATE_RESPONSE":
