@@ -30,11 +30,90 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/function2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="129" column="87" selection-start-line="129" selection-start-column="87" selection-end-line="129" selection-end-column="87" />
+            <state relative-caret-position="49">
+              <caret line="81" column="33" selection-start-line="81" selection-start-column="33" selection-end-line="81" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/util/FileSystemManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="219">
+              <caret line="445" column="76" selection-start-line="445" selection-start-column="70" selection-end-line="445" selection-end-column="76" />
+              <folding>
+                <element signature="e#2383#2605#0" />
+                <element signature="e#2663#2905#0" />
+                <element signature="e#3667#3956#0" />
+                <element signature="e#3667#6008#0" />
+                <element signature="e#6014#6082#0" />
+                <element signature="e#7159#7742#0" />
+                <element signature="e#7159#8548#0" />
+                <element signature="e#8555#8573#0" />
+                <element signature="e#8626#9676#0" />
+                <element signature="e#9702#10165#0" />
+                <element signature="e#10172#10703#0" />
+                <element signature="e#10709#10966#0" />
+                <element signature="e#10709#11309#0" />
+                <element signature="e#11329#11740#0" />
+                <element signature="e#11329#11985#0" />
+                <element signature="e#11991#12482#0" />
+                <element signature="e#11991#12855#0" />
+                <element signature="e#12861#13279#0" />
+                <element signature="e#12861#13979#0" />
+                <element signature="e#13985#15198#0" />
+                <element signature="e#13985#15778#0" />
+                <element signature="e#15784#16330#0" />
+                <element signature="e#15784#16767#0" />
+                <element signature="e#16773#17363#0" />
+                <element signature="e#18905#19984#0" />
+                <element signature="e#20832#21684#0" />
+                <element signature="e#20832#22516#0" />
+                <element signature="e#22522#23992#0" />
+                <element signature="e#23998#24507#0" />
+                <element signature="e#23998#25319#0" />
+                <element signature="e#25349#25630#0" />
+                <element signature="e#25349#26629#0" />
+                <element signature="e#26635#26655#0" />
+                <element signature="e#26703#30533#0" />
+                <element signature="e#30865#33339#0" />
+                <element signature="e#33345#33779#0" />
+                <element signature="e#33785#34240#0" />
+                <element signature="e#34246#36135#0" />
+                <element signature="e#36141#36344#0" />
+                <element signature="e#36350#36542#0" />
+                <element signature="e#36548#36880#0" />
+                <element signature="e#36886#37030#0" />
+                <element signature="e#37036#37236#0" />
+                <element signature="e#37242#37370#0" />
+                <element signature="e#37376#37502#0" />
+                <element signature="e#37508#38101#0" />
+                <element signature="e#38107#38746#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/util/test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="103">
+              <caret line="32" column="73" lean-forward="true" selection-start-line="32" selection-start-column="73" selection-end-line="32" selection-end-column="73" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/configuration.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="26" lean-forward="true" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -44,18 +123,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="509">
               <caret line="92" lean-forward="true" selection-start-line="92" selection-end-line="92" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/ClientMain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -92,39 +159,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/Eventlist.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#243#253#0" expanded="true" />
-                <element signature="e#246#247#0" expanded="true" />
-                <element signature="e#280#281#0" expanded="true" />
-                <element signature="e#717#718#0" expanded="true" />
-                <element signature="e#745#746#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/Peer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="128">
               <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/synevents.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -285,7 +323,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556878268507" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556879498601" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -373,18 +411,18 @@
       <workItem from="1556789771945" duration="2263000" />
       <workItem from="1556803415200" duration="289000" />
       <workItem from="1556843253677" duration="5141000" />
-      <workItem from="1556865203215" duration="10426000" />
+      <workItem from="1556865203215" duration="11644000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89726000" />
+    <option name="totallyTimeSpent" value="90944000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1916972" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1916972" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -393,7 +431,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32941177" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32941177" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32941177" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -520,62 +558,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/util/FileSystemManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="494" column="30" selection-start-line="494" selection-start-column="30" selection-end-line="494" selection-end-column="30" />
-          <folding>
-            <element signature="e#2383#2605#0" />
-            <element signature="e#2663#2905#0" />
-            <element signature="e#3667#3956#0" />
-            <element signature="e#3667#6008#0" />
-            <element signature="e#6014#6082#0" />
-            <element signature="e#7159#7742#0" />
-            <element signature="e#7159#8548#0" />
-            <element signature="e#8555#8573#0" />
-            <element signature="e#8626#9676#0" />
-            <element signature="e#9702#10165#0" />
-            <element signature="e#10172#10703#0" />
-            <element signature="e#10709#10966#0" />
-            <element signature="e#10709#11309#0" />
-            <element signature="e#11329#11740#0" />
-            <element signature="e#11329#11985#0" />
-            <element signature="e#11991#12482#0" />
-            <element signature="e#11991#12855#0" />
-            <element signature="e#12861#13279#0" />
-            <element signature="e#12861#13979#0" />
-            <element signature="e#13985#15198#0" />
-            <element signature="e#13985#15778#0" />
-            <element signature="e#15784#16330#0" />
-            <element signature="e#15784#16767#0" />
-            <element signature="e#16773#17363#0" />
-            <element signature="e#18905#19984#0" />
-            <element signature="e#20832#21684#0" />
-            <element signature="e#20832#22516#0" />
-            <element signature="e#22522#23992#0" />
-            <element signature="e#23998#24507#0" />
-            <element signature="e#23998#25319#0" />
-            <element signature="e#25349#25630#0" />
-            <element signature="e#25349#26629#0" />
-            <element signature="e#26635#26655#0" />
-            <element signature="e#26703#30533#0" />
-            <element signature="e#30865#33339#0" />
-            <element signature="e#33345#33779#0" />
-            <element signature="e#33785#34240#0" />
-            <element signature="e#34246#36135#0" />
-            <element signature="e#36141#36344#0" />
-            <element signature="e#36350#36542#0" />
-            <element signature="e#36548#36880#0" />
-            <element signature="e#36886#37030#0" />
-            <element signature="e#37036#37236#0" />
-            <element signature="e#37242#37370#0" />
-            <element signature="e#37376#37502#0" />
-            <element signature="e#37508#38101#0" />
-            <element signature="e#38107#38746#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Downloads/kopi-o-master/src/activitystreamer/Client.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-518" />
@@ -596,16 +578,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/util/test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/ServerMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="319">
@@ -614,13 +586,6 @@
             <element signature="e#1058#1059#0" expanded="true" />
             <element signature="e#1094#1095#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configuration.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" selection-start-line="4" selection-end-line="5" />
         </state>
       </provider>
     </entry>
@@ -728,10 +693,83 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/util/test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="32" column="73" lean-forward="true" selection-start-line="32" selection-start-column="73" selection-end-line="32" selection-end-column="73" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/util/FileSystemManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="445" column="76" selection-start-line="445" selection-start-column="70" selection-end-line="445" selection-end-column="76" />
+          <folding>
+            <element signature="e#2383#2605#0" />
+            <element signature="e#2663#2905#0" />
+            <element signature="e#3667#3956#0" />
+            <element signature="e#3667#6008#0" />
+            <element signature="e#6014#6082#0" />
+            <element signature="e#7159#7742#0" />
+            <element signature="e#7159#8548#0" />
+            <element signature="e#8555#8573#0" />
+            <element signature="e#8626#9676#0" />
+            <element signature="e#9702#10165#0" />
+            <element signature="e#10172#10703#0" />
+            <element signature="e#10709#10966#0" />
+            <element signature="e#10709#11309#0" />
+            <element signature="e#11329#11740#0" />
+            <element signature="e#11329#11985#0" />
+            <element signature="e#11991#12482#0" />
+            <element signature="e#11991#12855#0" />
+            <element signature="e#12861#13279#0" />
+            <element signature="e#12861#13979#0" />
+            <element signature="e#13985#15198#0" />
+            <element signature="e#13985#15778#0" />
+            <element signature="e#15784#16330#0" />
+            <element signature="e#15784#16767#0" />
+            <element signature="e#16773#17363#0" />
+            <element signature="e#18905#19984#0" />
+            <element signature="e#20832#21684#0" />
+            <element signature="e#20832#22516#0" />
+            <element signature="e#22522#23992#0" />
+            <element signature="e#23998#24507#0" />
+            <element signature="e#23998#25319#0" />
+            <element signature="e#25349#25630#0" />
+            <element signature="e#25349#26629#0" />
+            <element signature="e#26635#26655#0" />
+            <element signature="e#26703#30533#0" />
+            <element signature="e#30865#33339#0" />
+            <element signature="e#33345#33779#0" />
+            <element signature="e#33785#34240#0" />
+            <element signature="e#34246#36135#0" />
+            <element signature="e#36141#36344#0" />
+            <element signature="e#36350#36542#0" />
+            <element signature="e#36548#36880#0" />
+            <element signature="e#36886#37030#0" />
+            <element signature="e#37036#37236#0" />
+            <element signature="e#37242#37370#0" />
+            <element signature="e#37376#37502#0" />
+            <element signature="e#37508#38101#0" />
+            <element signature="e#38107#38746#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configuration.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="26" lean-forward="true" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/function2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="129" column="87" selection-start-line="129" selection-start-column="87" selection-end-line="129" selection-end-column="87" />
+        <state relative-caret-position="49">
+          <caret line="81" column="33" selection-start-line="81" selection-start-column="33" selection-end-line="81" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

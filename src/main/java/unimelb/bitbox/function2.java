@@ -37,8 +37,11 @@ public class function2 {
                             break; // stop when there is a shortcut
                         }
                         else { // when there is no shortcut
-                            Long position1 = 0L;
-                            Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), position1,blocksize),socket);
+                            if(blocksize > fileDescriper.getLong("fileSize")){
+                                Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), 0L,fileDescriper.getLong("fileSize")),socket);
+                            } else {
+                                Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), 0L, blocksize), socket);
+                            }
                             System.out.println("Call to wait read the file from " + socket.getInetAddress());
 
 
@@ -61,21 +64,17 @@ public class function2 {
 
                 System.out.println("in FILE_BYTES_REQUEST Get the length " + blocklength + " position " + start + " filesize " + filesize);
 
-                    if (start + blocklength < filesize) {
-                        byte[] b= fsm.readFile(fileDescriper.getString("md5"), start, blocklength-start).array();
+                        byte[] b= fsm.readFile(fileDescriper.getString("md5"), start, blocklength).array();
                         byte[] BiteStream = Base64.getEncoder().encode(b);
                         String bite = Base64.getEncoder().encodeToString(BiteStream);
-                        Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONCE(fileDescriper, doc.getString("pathName"),bite, "read successful", true, start,blocklength),socket);
-                    } else {
-                        //
+                        if (start + blocklength < filesize) {
+                            Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONCE(fileDescriper, doc.getString("pathName"), bite, "read successful", true, start+blocklength, blocklength), socket);
+                        } else if(start == filesize){
 
-                        byte[] b= fsm.readFile(fileDescriper.getString("md5"), start, filesize-start).array();
-                        byte[] BiteStream = Base64.getEncoder().encode(b);
-                        String bite = Base64.getEncoder().encodeToString(BiteStream);
-                        System.out.println("The byte we write the " + bite + "in the FILE_BYTES_RESPOND");
-                        Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONCE(fileDescriper, doc.getString("pathName"),bite,"read successful", true, start,blocklength),socket);
-                        System.out.println("the filesize is " + filesize +"  blocklength "+blocklength + " in the FILE_BYTES_RESPOND");
-                    }
+                        }
+                        else {
+                            Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONCE(fileDescriper, doc.getString("pathName"), bite, "read successful", true, start+blocklength, filesize-start-blocklength), socket);
+                        }
 
                 break;
             case "FILE_BYTES_RESPONSE":
@@ -92,9 +91,13 @@ public class function2 {
                     } else {
                         System.out.println("System read nothing form the file");
                     }
-                    if (start1 < filesize1) {
+                    if (start1 + blocklength1 < filesize1) {
                         Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), start1 + blocklength1, blocklength1), socket);
+                    } else if(start1 + blocklength1 > filesize1){
+                        Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), start1 + blocklength1, filesize1-start1), socket);
                     }
+                    else {
+                   }
                 }
                 break;
 
