@@ -31,6 +31,7 @@ public class Sendsocket {
 
         try {
             out.write(doc.toJson()+"\n");
+            System.out.println("our peer send " + doc.toJson() + " to somewhere");
             out.flush();
         } catch (IOException e) {
             e.printStackTrace();

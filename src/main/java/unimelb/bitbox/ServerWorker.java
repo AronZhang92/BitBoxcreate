@@ -38,7 +38,7 @@ public class ServerWorker implements Runnable {
 
 				if (doc.getString("command").equals("HANDSHAKE_REQUEST")
 						&& Connectionlist.connum() < maxcon) {
-					// System.out.println("received request");
+					 System.out.println("received request from : " + clientSocket.getInetAddress());
 					out.write(JSONRETURN2
 							.HANDSHAKE_RESPONSE(clientSocket.getInetAddress().toString(), clientSocket.getPort())
 							.toJson() + "\n");
@@ -47,6 +47,7 @@ public class ServerWorker implements Runnable {
 					Connectionlist.addnewoutput(out);
                     //synevents.synevent(clientSocket);
 					while ((clientMsg = in.readLine()) != null) {
+
                         try {
                             System.out.println("the server part received : " + clientMsg);
                             function2.funtional(Document.parse(clientMsg),out); //send jason object to class funtional
