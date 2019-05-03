@@ -53,7 +53,7 @@ public class function2 {
                 }
 
                 break;
-            case "FILE_BYTES_RESQUEST":
+            case "FILE_BYTES_REQUEST":
 
                 Long blocklength = doc.getLong("length");
                 Long start = doc.getLong("position");
