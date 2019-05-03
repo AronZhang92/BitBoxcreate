@@ -44,9 +44,13 @@ public class ServerMain implements FileSystemObserver,Runnable {
             ServerWorker w;
             try {
                 System.out.println("The server port is:" + port);
-                w = new ServerWorker(listeningSocket.accept());
-                Thread t = new Thread(w);
-                t.start();
+                if(Connectionlist.contain(listeningSocket.getInetAddress().toString())){
+                    System.out.println("Already connected (adding by client)");
+                } else {
+                    w = new ServerWorker(listeningSocket.accept());
+                    Thread t = new Thread(w);
+                    t.start();
+                }
 
             } catch (IOException e) {
                 System.out.println("Accept failed: " + port);

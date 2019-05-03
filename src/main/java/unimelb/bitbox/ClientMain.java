@@ -22,10 +22,14 @@ public class ClientMain {
             portnumber = Integer.parseInt(middlepeers[1]);
             System.out.println("the address is " + address + "\n the port number is " + portnumber);
             try {
-                socket = new Socket(address,portnumber);
-                peerworker w = new peerworker(socket);
-                Thread t = new Thread(w);
-                t.start();
+                if(Connectionlist.contain(address)){
+                    System.out.println("Already exist in the connection list (adding by server)");
+                } else {
+                    socket = new Socket(address, portnumber);
+                    peerworker w = new peerworker(socket);
+                    Thread t = new Thread(w);
+                    t.start();
+                }
 
             } catch (UnknownHostException e) {
                 // TODO Auto-generated catch block
