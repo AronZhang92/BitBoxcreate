@@ -1,11 +1,10 @@
 package unimelb.bitbox;
 
-import unimelb.bitbox.util.FileSystemManager;
-
+import unimelb.bitbox.util.Document;
 import java.util.ArrayList;
 
 public class Eventlist {
-    static ArrayList<FileSystemManager.FileSystemEvent> eventlist = new ArrayList<FileSystemManager.FileSystemEvent>();
+    static ArrayList<Document> eventlist = new ArrayList<Document>();
 
 
 }
