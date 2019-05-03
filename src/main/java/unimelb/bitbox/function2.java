@@ -120,7 +120,13 @@ public class function2 {
                 break;
 
             case "FILE_DELETE":
-                fsm.deleteFile(doc.getString("pathName"), doc.getLong("lastModicied"), doc.getString("md5"));
+                if (fsm.isSafePathName(doc.getString("pathName"))) {
+                    if (!fsm.fileNameExists(doc.getString("pathName"))) {
+                        fsm.deleteFile(doc.getString("pathName"), doc.getLong("lastModicied"), doc.getString("md5"));
+                    }
+
+                }
+
                 break;
             case "FILE_MODIFY":
                 break;
@@ -132,13 +138,17 @@ public class function2 {
                 }
                 break;
             case "DIRECTORY_DELETE_REQUEST":
+                String pathName = doc.getString("pathName");
 
-                if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
+                if (fsm.isSafePathName(pathName)) { // check if the pathname is safe
 
-                    if (fsm.dirNameExists(doc.getString("pathName"))) { // when the directory name exist
+                    if (fsm.dirNameExists(pathName)) { // when the directory name exist
 
-                        fsm.deleteDirectory(doc.getString("pathName"));
+                        fsm.deleteDirectory(pathName);
+                        Sendsocket.sendtosocket(JSONRETURN2.FILE_DELETE_RESPONCE(fileDescriper,pathName,"successful delete",true),socket);
 
+                    } else {
+                        Sendsocket.sendtosocket(JSONRETURN2.FILE_DELETE_RESPONCE(fileDescriper,pathName,"pathname does not exist",false),socket);
                     }
                 }
                 break;
