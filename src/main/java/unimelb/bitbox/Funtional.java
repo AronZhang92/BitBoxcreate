@@ -1,5 +1,6 @@
 package unimelb.bitbox;
 
+import unimelb.bitbox.util.Configuration;
 import unimelb.bitbox.util.Document;
 import unimelb.bitbox.util.FileSystemManager;
 import unimelb.bitbox.util.FileSystemObserver;
@@ -20,6 +21,7 @@ public class Funtional {
 		FileSystemObserver ob = Peer.getServerMain();
 		FileSystemManager fsm = new FileSystemManager("share", ob); // should be replaced when generating
 		Document fileDescriper = (Document) doc.get("fileDescriptor"); // get Json object for fileDescriper
+		Long Maxblock = Long.parseLong(Configuration.getConfigurationValue("blockSize"));
 		
 
         System.out.println("The number of connectionlist is " + Connectionlist.connum());
@@ -61,13 +63,13 @@ public class Funtional {
 			break;
 			
 		case "FILE_BYTES_REQUEST":
-			fsm.readFile(fileDescriper.getString("md5"), doc.getLong("position"), doc.getLong("length"));
+			byte[] b= new byte[fsm.readFile(fileDescriper.getString("md5"), doc.getLong("position"), doc.getLong("length")).remaining()];
 				
 		case "FILE_DELETE":
 			fsm.deleteFile(doc.getString("pathName"), doc.getLong("lastModicied"), doc.getString("md5"));
 			break;
 		case "FILE_MODIFY":
-			break;
+                break;
 		case "DIRECTORY_CREATE_REQUEST":
 			if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
 				if (!fsm.dirNameExists(doc.getString("pathName"))) { // when the directory name doesn't exist
