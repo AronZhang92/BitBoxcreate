@@ -20,8 +20,6 @@ public class Sendsocket {
                 doc.append("fileDescriptor",do1);
                 }
                 doc.append("pathName",fileSystemEvent.pathName);
-                doc.append("path",fileSystemEvent.path);
-                doc.append("name",fileSystemEvent.name);
                 doc.append("command",fileSystemEvent.event.toString()+"_REQUEST");
                 Eventlist.addDocument(doc);
                 return doc;

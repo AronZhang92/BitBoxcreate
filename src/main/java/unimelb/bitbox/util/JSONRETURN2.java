@@ -62,6 +62,23 @@ public class JSONRETURN2 {
         doc.append("length", length);
         return doc;
     }
+    public static Document FILE_DELETE_REQUEST(Document fileDescripor, String pathName) {
+        Document doc = new Document();
+        doc.append("command", "FILE_DELETE_REQUEST");
+        doc.append("fileDescriptor", fileDescripor);
+        doc.append("pathName", pathName);
+
+        return doc;
+    }
+    public static Document FILE_DELETE_RESPONCE(Document fileDescripor, String pathName,String message,boolean status) {
+        Document doc = new Document();
+        doc.append("command", "FILE_DELETE_RESPONCE");
+        doc.append("fileDescriptor", fileDescripor);
+        doc.append("pathName", pathName);
+        doc.append("message", message);
+        doc.append("status", status);
+        return doc;
+    }
     public static Document FILE_BYTES_RESPONCE(Document fileDescripor, String pathName,String bytes,String message,Boolean status,Long position,Long length) {
         Document doc = new Document();
         doc.append("command", "FILE_BYTES_RESPONSE");
