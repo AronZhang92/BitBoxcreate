@@ -127,6 +127,7 @@ public class function2 {
                 }
                 break;
             default:
+                System.out.println("Can not match any command" + doc.getString("command"));
                 break;
         }
 
