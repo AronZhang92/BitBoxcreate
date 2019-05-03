@@ -34,12 +34,13 @@ public class function2 {
                                 "file loader ready ", true),socket);  // send response when success creating file loader
 
                         if (fsm.checkShortcut(doc.getString("pathName"))) {
+                            System.out.println("Already check the short cut");
                             break; // stop when there is a shortcut
                         }
                         else { // when there is no shortcut
                             Long position1 = 0L;
                             Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"), position1,blocksize),socket);
-
+                            System.out.println("Call to wait read the file");
 
 
                         }
@@ -54,9 +55,12 @@ public class function2 {
 
                 break;
             case "FILE_BYTES_RESQUEST":
+
                 Long blocklength = doc.getLong("length");
                 Long start = doc.getLong("position");
                 Long filesize = fileDescriper.getLong("fileSize");
+
+                System.out.println("in FILE_BYTES_REQUEST Get the length " + blocklength + " position " + start + " filesize " + filesize);
 
                     if (start + blocklength < filesize) {
                         byte[] b= new byte[fsm.readFile(fileDescriper.getString("md5"), start, start+blocklength).remaining()];
@@ -76,6 +80,8 @@ public class function2 {
                     Long blocklength1 = doc.getLong("length");
                     Long start1 = doc.getLong("position");
                     Long filesize1 = fileDescriper.getLong("fileSize");
+
+                    System.out.println(" In the FILE_BYTES_RESPONSE Get the length " + blocklength1 + " position " + start1 + " filesize " + filesize1);
 
                     byte[] bites = Base64.getDecoder().decode(doc.getString("content"));
                     fsm.writeFile(doc.getString("pathName"), ByteBuffer.wrap(bites), start1);
