@@ -22,7 +22,9 @@ public class test implements FileSystemObserver {
 
         FileSystemObserver a = new test();
         FileSystemManager fsm = new FileSystemManager("share", a); // should be replaced when generating
-        fsm.deleteDirectory("untitled folder");
+        if(fsm.dirNameExists("untitled folder 2")){
+            System.out.println("The file name exists");
+        }
 
     }
 
@@ -32,9 +34,11 @@ public class test implements FileSystemObserver {
         System.out.println(fileSystemEvent);
         FileSystemManager.FileDescriptor fd = fileSystemEvent.fileDescriptor;
         Document doc = new Document();
+        Document doc1 = new Document();
         if (fd != null) {
-             doc = fd.toDoc();
+             doc1 = fd.toDoc();
         }
+        doc.append("fileDescriptor",doc1);
         doc.append("pathName",fileSystemEvent.pathName);
         doc.append("path",fileSystemEvent.path);
         doc.append("name",fileSystemEvent.name);

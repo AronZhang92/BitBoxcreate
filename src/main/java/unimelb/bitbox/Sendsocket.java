@@ -12,10 +12,13 @@ public class Sendsocket {
     public static Document sendsocket(FileSystemManager.FileSystemEvent fileSystemEvent){
 
                 FileSystemManager.FileDescriptor fd = fileSystemEvent.fileDescriptor;
+
                 Document doc = new Document();
+                Document do1 = new Document();
                 if (fd != null) {
-                    doc = fd.toDoc();
+                    do1 = fd.toDoc();
                 }
+                doc.append("fileDescriptor",do1);
                 doc.append("pathName",fileSystemEvent.pathName);
                 doc.append("path",fileSystemEvent.path);
                 doc.append("name",fileSystemEvent.name);

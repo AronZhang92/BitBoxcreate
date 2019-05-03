@@ -19,16 +19,26 @@ public class Funtional {
 
 		FileSystemObserver ob = Peer.getServerMain();
 		FileSystemManager fsm = new FileSystemManager("share", ob); // should be replaced when generating
-
+        System.out.println(doc.toJson());
+        System.out.println("The number of connectionlist is " + Connectionlist.connum());
+        for (Socket sock:Connectionlist.returnsocketlist()
+             ) {
+            System.out.println(" the socket is :" +sock.getInetAddress());
+        }
 		switch (doc.getString("command")) {
-		case "FILE_CREATE_REQEST":
+		case "FILE_CREATE_REQUEST":
 			Document fileDescriper = (Document) doc.get("fileDescriptor");
+            System.out.println("the file descriptor is : " + fileDescriper.toJson());
 			if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
+                System.out.println("is sage pathname");
 				if (!fsm.fileNameExists(doc.getString("pathName"))) { // when the file name doesn't exist
+                    System.out.println("The name is not exist");
 					fsm.createFileLoader(doc.getString("pathName"), fileDescriper.getString("md5"), // create file
-																									// loader
+
+                            // loader
 							Long.parseLong(fileDescriper.getString("fileSize")),
 							Long.parseLong(fileDescriper.getString("lastModified")));
+                    System.out.println("Successful create file loaser");
 					Sendsocket.sendDoc(JSONRETURN.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"), 
 							"file loader ready ", true));  // send response when success creating file loader
 
@@ -58,15 +68,19 @@ public class Funtional {
 			break;
 		case "DIRECTORY_CREATE_REQUEST":
 			if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
-				if (!fsm.fileNameExists(doc.getString("pathName"))) { // when the directory name doesn't exist
+				if (!fsm.dirNameExists(doc.getString("pathName"))) { // when the directory name doesn't exist
 					fsm.makeDirectory(doc.getString("pathName"));
 				}
 			}
 			break;
 		case "DIRECTORY_DELETE_REQUEST":
+
 			if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
-				if (fsm.fileNameExists(doc.getString("pathName"))) { // when the directory name exist
+
+				if (fsm.dirNameExists(doc.getString("pathName"))) { // when the directory name exist
+
 					fsm.deleteDirectory(doc.getString("pathName"));
+
 				}
 			}
 			break;
