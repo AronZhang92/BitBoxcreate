@@ -65,7 +65,7 @@ public class Funtional {
 			fsm.deleteFile(doc.getString("pathName"), doc.getLong("lastModicied"), doc.getString("md5"));
 			break;
 		case "FILE_MODIFY":
-			break;
+                break;
 		case "DIRECTORY_CREATE_REQUEST":
 			if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
 				if (!fsm.dirNameExists(doc.getString("pathName"))) { // when the directory name doesn't exist

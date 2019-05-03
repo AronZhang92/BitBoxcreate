@@ -27,17 +27,21 @@ public class Sendsocket {
 
 
     }
+    public static void sendtosocket(Document doc,Socket socket){
+
+        try {
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
+            out.write(doc.toJson()+"\n");
+            out.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
     public static void sendDoc(Document doc){
         for (Socket socket: Connectionlist.returnsocketlist()
         ) {
-            try {
-                BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
-                out.write(doc.toJson()+"\n");
-                out.flush();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+                sendtosocket(doc,socket);
         }
     }
 }
