@@ -55,7 +55,7 @@ public class JSONRETURN {
     public static Document FILE_BYTES_REQUEST(Document fileDescripor, String pathName) {
     	Document doc = new Document();
     	doc.append("command", "FILE_BYTES_REQUEST");
-    	doc.append("fileDescriptor", fileDescripor.toString());
+    	doc.append("fileDescriptor", fileDescripor);
     	doc.append("pathName", pathName);
     	doc.append("postion", 0);
     	doc.append("length", fileDescripor.getLong("fileSize"));
@@ -64,7 +64,7 @@ public class JSONRETURN {
     
     public static Document FILE_CREATE_RESPONSE(Document fileDescripor, String pathName, String message, Boolean status) { 
     	Document doc = new Document();
-    	doc.append("command", "FILE_BYTES_REQUEST");
+    	doc.append("command", "FILE_BYTES_RESPONSE");
     	doc.append("fileDescriptor", fileDescripor);
     	doc.append("pathName", pathName);
     	doc.append("postion", 0);
