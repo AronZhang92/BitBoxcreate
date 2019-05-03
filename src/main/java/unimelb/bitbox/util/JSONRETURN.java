@@ -58,19 +58,19 @@ public class JSONRETURN {
     	doc.append("fileDescriptor", fileDescripor.toString());
     	doc.append("pathName", pathName);
     	doc.append("postion", 0);
-    	doc.append("length", fileDescripor.getString("fileSize"));
+    	doc.append("length", fileDescripor.getLong("fileSize"));
     	return doc;
     }
     
     public static Document FILE_CREATE_RESPONSE(Document fileDescripor, String pathName, String message, Boolean status) { 
     	Document doc = new Document();
     	doc.append("command", "FILE_BYTES_REQUEST");
-    	doc.append("fileDescriptor", fileDescripor.toString());
+    	doc.append("fileDescriptor", fileDescripor);
     	doc.append("pathName", pathName);
     	doc.append("postion", 0);
-    	doc.append("length", fileDescripor.getString("fileSize"));
+    	doc.append("length", fileDescripor.getLong("fileSize"));
     	doc.append("message", message);
-    	doc.append("status", status.toString());
+    	doc.append("status", status);
     	return doc;
     }
 
