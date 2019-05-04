@@ -82,7 +82,7 @@ public class JSONRETURN2 {
 
     public static Document DIRECTORY_DELETE_RESPONSE( String pathName,String message,boolean status) {
         Document doc = new Document();
-        doc.append("command", "DIRECTORY_DELETE_RESPONCE");
+        doc.append("command", "DIRECTORY_DELETE_RESPONSE");
         doc.append("pathName", pathName);
         doc.append("message", message);
         doc.append("status", status);
@@ -129,5 +129,16 @@ public class JSONRETURN2 {
         doc.append("status", status);
         return doc;
     }
+    
+    public static Document DIRECTORY_CREATE_RESPONSE(String pathName, String message, boolean status) {
+    	Document doc = new Document();
+        doc.append("command", "DIRECTORY_CREATE_RESPONSE");
+        doc.append("pathName", pathName);
+        doc.append("message", message);
+        doc.append("status", status);
+        return doc;
+    }
+    
+    
 
 }

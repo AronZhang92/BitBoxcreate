@@ -21,14 +21,11 @@ public class function2 {
 		switch (doc.getString("command")) {
 		case "FILE_CREATE_REQUEST":
 			if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
-				System.out.println("is sage pathname");
 				if (!fsm.fileNameExists(doc.getString("pathName"))) { // when the file name doesn't exist
-					System.out.println("The name is not exist");
 					fsm.createFileLoader(doc.getString("pathName"), fileDescriper.getString("md5"), // create file
 
 							// loader
 							fileDescriper.getLong("fileSize"), fileDescriper.getLong("lastModified"));
-					System.out.println("Successful create file loaser");
 					Sendsocket.sendtosocket(JSONRETURN2.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"),
 							"file loader ready ", true, 0L), socket); // send response when success creating file loader
 
@@ -117,7 +114,8 @@ public class function2 {
 			break;
 
 		case "FILE_CREATE_RESPONSE":
-			System.out.println("THis is a FILE_CREATE_RESPONSE");
+			System.out.println("Response of creating file " + doc.getString("pathName") + " is: "
+					+ doc.getString("message") + ", staus: " + doc.getBoolean("status"));
 
 			break;
 
@@ -143,33 +141,42 @@ public class function2 {
 		case "FILE_MODIFY_REQUEST":
 			if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
 				System.out.println("is sage pathname");
-				if (fsm.fileNameExists(doc.getString("pathName"))) { // when the file name exist
-					System.out.println("the deletion is successed");
-					System.out.println("The name is exist");
-					fsm.modifyFileLoader(doc.getString("pathName"), fileDescriper.getString("md5"), // modify the file
-							// loader
-							fileDescriper.getLong("lastModified"));
-					System.out.println("Successful create file loaser");
-					Sendsocket.sendtosocket(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper, doc.getString("pathName"),
-							"file loader ready ", true), socket); // send response when success creating file loader
+				if (fsm.fileNameExists(doc.getString("pathName"))) { // when the file exist
+					if (!fsm.fileNameExists(doc.getString("pathName"), fileDescriper.getString("md5"))) { // when the
+																											// content
+																											// different
+						System.out.println("the deletion is successed");
+						System.out.println("The name is exist");
+						fsm.modifyFileLoader(doc.getString("pathName"), fileDescriper.getString("md5"), // modify the
+																										// file
+								// loader
+								fileDescriper.getLong("lastModified"));
+						System.out.println("Successful create file loaser");
+						Sendsocket.sendtosocket(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper,
+								doc.getString("pathName"), "file loader ready ", true), socket); // send response when
+																									// success creating
+																									// file loader
 
-					if (fsm.checkShortcut(doc.getString("pathName"))) {
-						System.out.println("Already check the short cut");
-						break; // stop when there is a shortcut
-					} else { // when there is no shortcut
-						if (blocksize > fileDescriper.getLong("fileSize")) {
-							Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper,
-									doc.getString("pathName"), 0L, fileDescriper.getLong("fileSize")), socket);
-						} else {
-							Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper,
-									doc.getString("pathName"), 0L, blocksize), socket);
+						if (fsm.checkShortcut(doc.getString("pathName"))) {
+							break; // stop when there is a shortcut
+						} else { // when there is no shortcut
+							if (blocksize > fileDescriper.getLong("fileSize")) {
+								Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper,
+										doc.getString("pathName"), 0L, fileDescriper.getLong("fileSize")), socket);
+							} else {
+								Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper,
+										doc.getString("pathName"), 0L, blocksize), socket);
+							}
+							System.out.println("Call to wait read the file from " + socket.getInetAddress());
+
 						}
-						System.out.println("Call to wait read the file from " + socket.getInetAddress());
-
+					} else { // when file already exist
+						Sendsocket.sendDoc(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper, doc.getString("pathName"),
+								"the content of the file are same ", false));
 					}
-				} else { // when file already exist
+				}else {
 					Sendsocket.sendDoc(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper, doc.getString("pathName"),
-							"file name doesn't exist ", false));
+							"the fileName doesn't exist ", false));
 				}
 			} else {
 				Sendsocket.sendDoc(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper, doc.getString("pathName"),
@@ -179,15 +186,30 @@ public class function2 {
 			break;
 
 		case "FILE_MODIFY_RESPONSE":
-			System.out.println("File_MODIFY_RESPONSE is " + doc.toJson());
+			System.out.println("Response of modifing file " + doc.getString("pathName") + " is: "
+					+ doc.getString("message") + ", staus: " + doc.getBoolean("status"));
 
 		case "DIRECTORY_CREATE_REQUEST":
 			if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
 				if (!fsm.dirNameExists(doc.getString("pathName"))) { // when the directory name doesn't exist
 					fsm.makeDirectory(doc.getString("pathName"));
+					Sendsocket.sendDoc(JSONRETURN2.DIRECTORY_CREATE_RESPONSE(doc.getString("pathName"),
+							"Directory create successfully", true));
+				} else {
+					Sendsocket.sendDoc(JSONRETURN2.DIRECTORY_CREATE_RESPONSE(doc.getString("pathName"),
+							"pathName already exist", false)); // when the directory name exist
 				}
+			} else {
+				Sendsocket.sendDoc(
+						JSONRETURN2.DIRECTORY_CREATE_RESPONSE(doc.getString("pathName"), "pathName not Safe", false));
 			}
 			break;
+
+		case "DIRECTORY_CREATE_RESPONSE":
+			System.out.println("Response of creating directory " + doc.getString("pathName") + " is: "
+					+ doc.getString("message") + ", staus: " + doc.getBoolean("status"));
+			break;
+
 		case "DIRECTORY_DELETE_REQUEST":
 			String pathName1 = doc.getString("pathName");
 			if (fsm.isSafePathName(pathName1)) { // check if the pathname is safe
@@ -199,15 +221,21 @@ public class function2 {
 					Sendsocket.sendtosocket(
 							JSONRETURN2.DIRECTORY_DELETE_RESPONSE(pathName1, "pathname does not exist", false), socket);
 				}
+			} else {
+				Sendsocket.sendDoc(
+						JSONRETURN2.DIRECTORY_DELETE_RESPONSE(doc.getString("pathName"), "pathName not Safe", false));
 			}
 
 			break;
-            case "INVALID_PROTOCOL" :
-                break;
+
+		case "DIRECTORY_DELETE_RESPONSE":
+			System.out.println("Response of deleting directory " + doc.getString("pathName") + " is: "
+					+ doc.getString("message") + ", staus: " + doc.getBoolean("status"));
+			break;
+		case "INVALID_PROTOCOL":
+			break;
 		default:
-			Sendsocket.sendtosocket(
-			        JSONRETURN2.INVALID_PROTOCOL(),socket
-            );
+			Sendsocket.sendtosocket(JSONRETURN2.INVALID_PROTOCOL(), socket);
 
 			break;
 		}
