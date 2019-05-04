@@ -17,6 +17,7 @@ public class Peer
         log.info("BitBox Peer starting...");
          Configuration.getConfiguration();
          String timeString = Configuration.getConfigurationValue("syncInterval");
+         //syn time the time that the program need to be syn
          Long syntime = Long.parseLong(timeString)*1000;
 
 

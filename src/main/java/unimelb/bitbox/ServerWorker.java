@@ -2,7 +2,7 @@ package unimelb.bitbox;
 
 import unimelb.bitbox.util.*;
 
-import javax.print.Doc;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -10,15 +10,11 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.net.SocketException;
-import java.net.InetAddress;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Logger;
 
 public class ServerWorker implements Runnable {
 	private Socket clientSocket;
-	private int clientNumber;
-	String portstring = Configuration.getConfigurationValue("port");
-	final int port = Integer.parseInt(portstring);
 	private String maximumconnection = Configuration.getConfigurationValue("maximumIncommingConnections");
 	private int maxcon = Integer.parseInt(maximumconnection);
     private static Logger log = Logger.getLogger(ServerWorker.class.getName());
@@ -39,12 +35,12 @@ public class ServerWorker implements Runnable {
 				String frombuffer = in.readLine();
 				Document doc = Document.parse(frombuffer);
                 if(Connectionlist.contain(clientSocket.getInetAddress().toString())){
-                    System.out.println("Already in the connection list.... close connection");
+                    log.info("Already in the connection list.... close connection");
                     clientSocket.close();
                 }
 				if (doc.getString("command").equals("HANDSHAKE_REQUEST")
 						&& Connectionlist.connum() < maxcon) {
-					 System.out.println("received request from : " + clientSocket.getInetAddress());
+					 log.info("received request from : " + clientSocket.getInetAddress());
 					out.write(JSONRETURN2
 							.HANDSHAKE_RESPONSE(clientSocket.getInetAddress().toString(), clientSocket.getPort())
 							.toJson() + "\n");
@@ -54,7 +50,6 @@ public class ServerWorker implements Runnable {
 					Connectionlist.addnewoutput(out);
                     synevents.synevent(clientSocket);
 					while ((clientMsg = in.readLine()) != null && Connectionlist.containsocket(clientSocket)) {
-
                         try {
                             function2.funtional(Document.parse(clientMsg),clientSocket); //send jason object to class funtional
                         } catch (NoSuchAlgorithmException e) {
@@ -83,7 +78,7 @@ public class ServerWorker implements Runnable {
 		}catch (SocketException e){
             log.info("Connection disconnect due to the socket Exception");
         } catch (IOException e) {
-			e.printStackTrace();
+			log.info("Can not build a socket with due to the IOException");
 		}
 	}
 

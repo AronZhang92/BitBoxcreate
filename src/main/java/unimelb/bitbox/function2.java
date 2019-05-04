@@ -39,7 +39,6 @@ public class function2 {
 							Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper,
 									doc.getString("pathName"), 0L, blocksize), socket);
 						}
-						System.out.println("Call to wait read the file from " + socket.getInetAddress());
 
 					}
 				} else { // when file already exist
@@ -58,8 +57,6 @@ public class function2 {
 			Long start = doc.getLong("position");
 			Long filesize = fileDescriper.getLong("fileSize");
 
-			//System.out.println("in FILE_BYTES_REQUEST Get the length " + blocklength + " position " + start
-			//		+ " filesize " + filesize);
 
 			byte[] b = fsm.readFile(fileDescriper.getString("md5"), start, blocklength).array();
 			String bite = Base64.getEncoder().encodeToString(b);
@@ -81,9 +78,8 @@ public class function2 {
 			Long blocklength1 = doc.getLong("length");
 			Long start1 = doc.getLong("position");
 			Long filesize1 = fileDescriper.getLong("fileSize");
-
-			
 			String content = doc.getString("content");
+
 			if (content != null) {
 				byte[] bites = Base64.getDecoder().decode(content);
 				System.out.println(" the text reveived is :" + ByteBuffer.wrap(bites));
@@ -100,6 +96,7 @@ public class function2 {
 				}
 
 			} else if (start1 + blocklength1 + blocklength1 <= filesize1) {
+			    // remian still bigger or equal than the blocksize
 				Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"),
 						start1 + blocklength1, blocklength1), socket);
 			} else if (start1 + blocklength1 + blocklength1 > filesize1) {
