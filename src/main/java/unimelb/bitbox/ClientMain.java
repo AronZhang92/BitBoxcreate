@@ -55,6 +55,17 @@ public class ClientMain {
 
         }
     }
+    public static void reconnection(String ip,int port) {
+        Socket socket = null;
+        try {
+            socket = new Socket(ip, port);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        peerworker w = new peerworker(socket);
+        Thread t = new Thread(w);
+        t.start();
+    }
 
 
 

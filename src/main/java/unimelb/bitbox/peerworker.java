@@ -56,7 +56,7 @@ public class peerworker implements Runnable {
                     System.out.println("Successful add ip " + socket.getInetAddress() + " and port: " + socket.getPort()
                             + "to the connection list");
 
-                    while ((clientMsg = in.readLine()) != null) { //deal with recerived commands
+                    while ((clientMsg = in.readLine()) != null && Connectionlist.containsocket(socket)) { //deal with recerived commands
                         try {
                             System.out.println("The client part receive the :" + clientMsg + "from " + socket.getInetAddress());
                             function2.funtional(Document.parse(clientMsg), socket); //send jason object to class funtional
@@ -80,7 +80,11 @@ public class peerworker implements Runnable {
                     } catch (UnknownHostException e) {
                         e.printStackTrace();
                         System.out.println("unkown");
-                    } catch (IOException e) {
+                    } catch (SocketException e){
+
+
+                    }
+                    catch (IOException e) {
                         e.printStackTrace();
                     } finally {
                         // Close the socket
@@ -101,9 +105,14 @@ public class peerworker implements Runnable {
                 e.printStackTrace();
             } catch (SocketException e){
                 System.out.println("Connection disconnect");
-            }
-            catch(IOException e){
-
+                System.out.println("The socket might be closed, trying to reconnection");
+                ClientMain.reconnection(socket.getInetAddress().toString().substring(1),socket.getPort());
+                try {
+                    socket.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            } catch(IOException e){
                 e.printStackTrace();
             }
         }
