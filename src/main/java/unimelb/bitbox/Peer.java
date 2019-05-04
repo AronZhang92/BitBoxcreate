@@ -24,8 +24,14 @@ public class Peer
 
 
         ClientMain.ClientMain();
-
-        
+        Long starttime = System.currentTimeMillis();
+        while(true){
+           Long endtime = System.currentTimeMillis();
+           if(endtime - starttime == 60000L){
+               starttime = endtime;
+               synevents.syneventtoall(Connectionlist.returnsocketlist());
+           }
+        }
     }
     
     public static ServerMain getServerMain() {
