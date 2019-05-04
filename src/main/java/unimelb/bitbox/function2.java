@@ -148,9 +148,9 @@ public class function2 {
 							fileDescriper.getString("md5")); // delete the file first
 					System.out.println("the deletion is successed");
 					System.out.println("The name is exist");
-					fsm.createFileLoader(doc.getString("pathName"), fileDescriper.getString("md5"), // create file
+					fsm.modifyFileLoader(doc.getString("pathName"), fileDescriper.getString("md5"), // modify the file
 							// loader
-							fileDescriper.getLong("fileSize"), fileDescriper.getLong("lastModified"));
+							fileDescriper.getLong("lastModified"));
 					System.out.println("Successful create file loaser");
 					Sendsocket.sendtosocket(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper, doc.getString("pathName"),
 							"file loader ready ", true), socket); // send response when success creating file loader
