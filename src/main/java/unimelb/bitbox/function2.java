@@ -137,6 +137,13 @@ public class function2 {
 			}
 
 			break;
+			
+		case  "FILE_DELETE_RESPONSE":
+			System.out.println("Response of deleting file " + doc.getString("pathName") + " is: "
+					+ doc.getString("message") + ", staus: " + doc.getBoolean("status"));
+			break;
+			
+		
 		case "FILE_MODIFY_REQUEST":
 			if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
 				if (fsm.fileNameExists(doc.getString("pathName"))) { // when the file exist
@@ -228,10 +235,10 @@ public class function2 {
 					+ doc.getString("message") + ", staus: " + doc.getBoolean("status"));
 			break;
 		case "INVALID_PROTOCOL":
+			System.out.println("Received INVALID_PROTOCOL response " + doc.getString("message"));
 			break;
 		default:
 			Sendsocket.sendtosocket(JSONRETURN2.INVALID_PROTOCOL(), socket);
-
 			break;
 		}
 
