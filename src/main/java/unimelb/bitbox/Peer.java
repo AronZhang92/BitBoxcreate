@@ -15,7 +15,9 @@ public class Peer
     	System.setProperty("java.util.logging.SimpleFormatter.format",
                 "[%1$tc] %2$s %4$s: %5$s%n");
         log.info("BitBox Peer starting...");
-        Configuration.getConfiguration();
+         Configuration.getConfiguration();
+         String timeString = Configuration.getConfigurationValue("syncInterval");
+         Long syntime = Long.parseLong(timeString)*1000;
 
 
         serverMain = new ServerMain();
@@ -27,7 +29,7 @@ public class Peer
         Long starttime = System.currentTimeMillis();
         while(true){
            Long endtime = System.currentTimeMillis();
-           if(endtime - starttime == 60000L){
+           if(endtime - starttime == syntime){
                starttime = endtime;
                synevents.syneventtoall(Connectionlist.returnsocketlist());
            }

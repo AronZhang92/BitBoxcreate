@@ -67,7 +67,6 @@ public class JSONRETURN2 {
         doc.append("command", "FILE_DELETE_REQUEST");
         doc.append("fileDescriptor", fileDescripor);
         doc.append("pathName", pathName);
-
         return doc;
     }
     public static Document FILE_DELETE_RESPONSE(Document fileDescripor, String pathName,String message,boolean status) {

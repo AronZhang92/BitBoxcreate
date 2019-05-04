@@ -7,9 +7,10 @@ import java.net.ConnectException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.logging.Logger;
 
 public class ClientMain {
-
+    private static Logger log = Logger.getLogger(ClientMain.class.getName());
     public static void ClientMain() {
         //what we wrote, multithreading client
         Socket socket;
@@ -45,7 +46,7 @@ public class ClientMain {
                     }
 
                 } catch (ConnectException e){
-                    System.out.println("The ipadress cannot be reached due to the other peer is closed, try others");
+                    log.info("The ipadress cannot be reached due to the other peer is closed, try others");
                 }
                 catch (UnknownHostException e) {
                     // TODO Auto-generated catch block

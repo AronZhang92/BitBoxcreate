@@ -5,7 +5,6 @@ import javax.crypto.SecretKey;
 
 class DesEncrypter {
     Cipher ecipher;
-
     Cipher dcipher;
 
     DesEncrypter(SecretKey key) throws Exception {

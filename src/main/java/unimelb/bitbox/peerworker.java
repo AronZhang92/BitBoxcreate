@@ -10,10 +10,11 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 
 public class peerworker implements Runnable {
-
+    private static Logger log = Logger.getLogger(peerworker.class.getName());
     private Socket socket;
     final private String maximumconnection = Configuration.getConfigurationValue("maximumIncommingConnections");
     final private int maxcon = Integer.parseInt(maximumconnection);
@@ -53,7 +54,7 @@ public class peerworker implements Runnable {
                     Connectionlist.addNewSocket(socket);
                     Connectionlist.addnewoutput(out);
                     synevents.synevent(socket);
-                    System.out.println("Successful add ip " + socket.getInetAddress() + " and port: " + socket.getPort()
+                    log.info("Successful add ip " + socket.getInetAddress() + " and port: " + socket.getPort()
                             + "to the connection list");
 
                     while ((clientMsg = in.readLine()) != null && Connectionlist.containsocket(socket)) { //deal with recerived commands
@@ -73,14 +74,13 @@ public class peerworker implements Runnable {
                         if (address != null) {
                             AnotherConnection.AnotherConnection(address);
                         } else {
-                            System.out.println("The socket closed due to wrong answer :" + frombuffer);
+                            log.info("The socket closed due to wrong answer :" + frombuffer);
                             socket.close();
                         }
                     } catch (UnknownHostException e) {
-                        e.printStackTrace();
-                        System.out.println("unkown");
+                        log.info("unkown host try another one");
                     } catch (SocketException e){
-
+                        log.info("Sock lost due to the other peer offline");
 
                     }
                     catch (IOException e) {
@@ -91,8 +91,7 @@ public class peerworker implements Runnable {
                             try {
                                 socket.close();
                             } catch (IOException e) {
-                                e.printStackTrace();
-                                System.out.println("another io ex");
+                                log.info(" Cann't close the socket due to the IO exception");
                             }
                         }
                     }
@@ -103,8 +102,8 @@ public class peerworker implements Runnable {
             } catch(UnsupportedEncodingException e){
                 e.printStackTrace();
             } catch (SocketException e){
-                System.out.println("Connection disconnect");
-                System.out.println("The socket might be closed, trying to reconnection");
+                log.info("Connection disconnect");
+                log.info("The socket might be closed, trying to reconnection");
                 ClientMain.reconnection(socket.getInetAddress().toString().substring(1),socket.getPort());
                 try {
                     socket.close();

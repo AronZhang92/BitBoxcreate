@@ -7,11 +7,12 @@ import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import java.util.logging.Logger;
 
 public class function2 {
 	private static FileSystemManager.FileDescriptor fd;
 	private static final Long blocksize = Long.parseLong(Configuration.getConfigurationValue("blockSize"));
-
+    private static Logger log = Logger.getLogger(function2.class.getName());
 	public static void funtional(Document doc, Socket socket) throws IOException, NoSuchAlgorithmException {
 
 		FileSystemManager fsm = ServerMain.returnfilesm(); // should be replaced when generating
@@ -28,7 +29,7 @@ public class function2 {
 							"file loader ready ", true, 0L), socket); // send response when success creating file loader
 
 					if (fsm.checkShortcut(doc.getString("pathName"))) {
-						System.out.println("Already check the short cut");
+						//System.out.println("Already check the short cut");
 						break; // stop when there is a shortcut
 					} else { // when there is no shortcut
 						if (blocksize > fileDescriper.getLong("fileSize")) {
@@ -57,8 +58,8 @@ public class function2 {
 			Long start = doc.getLong("position");
 			Long filesize = fileDescriper.getLong("fileSize");
 
-			System.out.println("in FILE_BYTES_REQUEST Get the length " + blocklength + " position " + start
-					+ " filesize " + filesize);
+			//System.out.println("in FILE_BYTES_REQUEST Get the length " + blocklength + " position " + start
+			//		+ " filesize " + filesize);
 
 			byte[] b = fsm.readFile(fileDescriper.getString("md5"), start, blocklength).array();
 			String bite = Base64.getEncoder().encodeToString(b);
@@ -88,30 +89,28 @@ public class function2 {
 				System.out.println(" the text reveived is :" + ByteBuffer.wrap(bites));
 				fsm.writeFile(doc.getString("pathName"), ByteBuffer.wrap(bites), start1);
 			} else {
-				System.out.println("System read nothing form the response");
+				log.info("System read nothing form the response");
 			}
 			if (start1 + blocklength1 == filesize1) {
 				if (fsm.checkWriteComplete(doc.getString("pathName"))) {
 					// System.out.println("Already check the complete and it is complete");
 					fsm.cancelFileLoader(doc.getString("pathName"));
 				} else {
-					System.out.println(" failed to check complete");
+					log.info(" failed to check complete");
 				}
-				System.out.println("now in the equal part: position equal fileSize");
-			} else if (start1 + blocklength1 + blocklength1 < filesize1) {
+
+			} else if (start1 + blocklength1 + blocklength1 <= filesize1) {
 				Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"),
 						start1 + blocklength1, blocklength1), socket);
 			} else if (start1 + blocklength1 + blocklength1 > filesize1) {
 				Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"),
 						start1 + blocklength1, filesize1 - start1 - blocklength1), socket);
-			} else {
-
 			}
 
 			break;
 
 		case "FILE_CREATE_RESPONSE":
-			System.out.println("Response of creating file " + doc.getString("pathName") + " is: "
+			log.info("Response of creating file " + doc.getString("pathName") + " is: "
 					+ doc.getString("message") + ", staus: " + doc.getBoolean("status"));
 
 			break;
@@ -137,7 +136,7 @@ public class function2 {
 			break;
 			
 		case  "FILE_DELETE_RESPONSE":
-			System.out.println("Response of deleting file " + doc.getString("pathName") + " is: "
+			log.info("Response of deleting file " + doc.getString("pathName") + " is: "
 					+ doc.getString("message") + ", staus: " + doc.getBoolean("status"));
 			break;
 			
@@ -167,7 +166,6 @@ public class function2 {
 								Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper,
 										doc.getString("pathName"), 0L, blocksize), socket);
 							}
-							System.out.println("Call to wait read the file from " + socket.getInetAddress());
 
 						}
 					} else { // when file already exist
@@ -186,7 +184,7 @@ public class function2 {
 			break;
 
 		case "FILE_MODIFY_RESPONSE":
-			System.out.println("Response of modifing file " + doc.getString("pathName") + " is: "
+			log.info("Response of modifing file " + doc.getString("pathName") + " is: "
 					+ doc.getString("message") + ", staus: " + doc.getBoolean("status"));
 			break;
 
@@ -207,7 +205,7 @@ public class function2 {
 			break;
 
 		case "DIRECTORY_CREATE_RESPONSE":
-			System.out.println("Response of creating directory " + doc.getString("pathName") + " is: "
+			log.info("Response of creating directory " + doc.getString("pathName") + " is: "
 					+ doc.getString("message") + ", staus: " + doc.getBoolean("status"));
 			break;
 
@@ -230,11 +228,11 @@ public class function2 {
 			break;
 
 		case "DIRECTORY_DELETE_RESPONSE":
-			System.out.println("Response of deleting directory " + doc.getString("pathName") + " is: "
+			log.info("Response of deleting directory " + doc.getString("pathName") + " is: "
 					+ doc.getString("message") + ", staus: " + doc.getBoolean("status"));
 			break;
 		case "INVALID_PROTOCOL":
-			System.out.println("Received INVALID_PROTOCOL response " + doc.getString("message"));
+			log.info("Received INVALID_PROTOCOL response " + doc.getString("message"));
 			break;
 		default:
 			Sendsocket.sendtosocket(JSONRETURN2.INVALID_PROTOCOL(), socket);

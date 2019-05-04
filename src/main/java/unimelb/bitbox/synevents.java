@@ -25,18 +25,20 @@ public class synevents {
         }
     }
     public static void syneventtoall(ArrayList<Socket> socketlist) throws IOException, NoSuchAlgorithmException {
-        FileSystemObserver ob = Peer.getServerMain();
-        FileSystemManager fsm = new FileSystemManager("share", ob);
-
-        ArrayList<FileSystemManager.FileSystemEvent> eventslist = fsm.generateSyncEvents();
-        for (Socket socket:socketlist
-             ) {
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
-            for (FileSystemManager.FileSystemEvent event: eventslist
+        if (socketlist.size() ==  0) {
+            FileSystemObserver ob = Peer.getServerMain();
+            FileSystemManager fsm = new FileSystemManager("share", ob);
+            ArrayList<FileSystemManager.FileSystemEvent> eventslist = fsm.generateSyncEvents();
+            for (Socket socket : socketlist
             ) {
-                Sendsocket.sendDoc(Sendsocket.sendsocket(event));
-            }
-        }
+                BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
+                for (FileSystemManager.FileSystemEvent event : eventslist
+                ) {
+                    Sendsocket.sendDoc(Sendsocket.sendsocket(event));
 
+                }
+            }
+
+        }
     }
 }

@@ -12,6 +12,7 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.net.InetAddress;
 import java.security.NoSuchAlgorithmException;
+import java.util.logging.Logger;
 
 public class ServerWorker implements Runnable {
 	private Socket clientSocket;
@@ -20,7 +21,7 @@ public class ServerWorker implements Runnable {
 	final int port = Integer.parseInt(portstring);
 	private String maximumconnection = Configuration.getConfigurationValue("maximumIncommingConnections");
 	private int maxcon = Integer.parseInt(maximumconnection);
-
+    private static Logger log = Logger.getLogger(ServerWorker.class.getName());
 	public ServerWorker(Socket client) {
 		this.clientSocket = client;
 	}
@@ -49,6 +50,7 @@ public class ServerWorker implements Runnable {
 							.toJson() + "\n");
 					out.flush();
 					Connectionlist.addNewSocket(clientSocket);
+					log.info("Connect to the" + clientSocket.getInetAddress().toString());
 					Connectionlist.addnewoutput(out);
                     synevents.synevent(clientSocket);
 					while ((clientMsg = in.readLine()) != null && Connectionlist.containsocket(clientSocket)) {
@@ -61,24 +63,25 @@ public class ServerWorker implements Runnable {
                         }
 
 					}
-					System.out.println("The connection is lose");
+					log.info("The connection is lose");
 					Connectionlist.remove(clientSocket);
+					clientSocket.close();
 				} else {
 					out.write(JSONRETURN2.CONNCECTION_REFUSED().toJson() + "\n");
 					out.flush();
-					System.out.println(
+					log.info(
 							"The system get maximum number, try another server.:" + clientSocket.getInetAddress());
 					clientSocket.close();
 				}
 
 			} catch (SocketException e) {
-				System.out.println("closed...");
+				log.info("closed due to the socket exception");
 			} catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
+                log.info("Can't use the algorithm write in the project");
             }
             clientSocket.close();
 		}catch (SocketException e){
-            System.out.println("Connection disconnect");
+            log.info("Connection disconnect due to the socket Exception");
         } catch (IOException e) {
 			e.printStackTrace();
 		}
