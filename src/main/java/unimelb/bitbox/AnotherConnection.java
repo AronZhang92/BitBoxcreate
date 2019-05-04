@@ -12,16 +12,20 @@ public class AnotherConnection {
     public static void AnotherConnection(ArrayList<Document> address){
         try {
             for (Document dou : address) {
-                int port = dou.getInteger("port");
-                String IPaddress = dou.getString("IPadress");
-                if (!Connectionlist.contain(dou.getString("IPadress"))) {
-                    Socket socket = new Socket(IPaddress, port);
-                    peerworker w = new peerworker(socket);
-                    Thread t = new Thread(w);
-                    t.start();
-                    break;
-                } else {
-                    System.out.println("The system return null post, try another one");
+                if(dou != null) {
+                    int port = dou.getInteger("port");
+                    String IPaddress = dou.getString("IPadress");
+                    if (!Connectionlist.contain(dou.getString("IPadress"))) {
+                        Socket socket = new Socket(IPaddress, port);
+                        peerworker w = new peerworker(socket);
+                        Thread t = new Thread(w);
+                        t.start();
+                        break;
+                    } else {
+                        System.out.println("The system return null post, try another one");
+                    }
+                }else{
+                    System.out.println("wrong document, try again");
                 }
             }
         } catch (UnknownHostException e) {

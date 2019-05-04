@@ -5,6 +5,7 @@ import unimelb.bitbox.util.FileSystemManager;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InterruptedIOException;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
@@ -33,7 +34,18 @@ public class Sendsocket {
             out.write(doc.toJson()+"\n");
             System.out.println("our peer send " + doc.toJson() + " to " + socket.getInetAddress());
             out.flush();
-        } catch (IOException e) {
+        } catch (InterruptedIOException e){
+            System.out.println("The IO operation is interrupted, try again");
+            try {
+                BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
+                out.write(doc.toJson()+"\n");
+                out.flush();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
 
