@@ -17,6 +17,9 @@ public class ClientMain {
         try {
             addr = InetAddress.getLocalHost().toString();
             System.out.println(" The host address is " + addr);
+            String[] a = addr.split("/");
+            addr = a[1];
+            System.out.println("The addr is " + addr);
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
