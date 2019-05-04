@@ -1,3 +1,7 @@
 
 hello world
+<<<<<<< HEAD
 hello world.
+=======
+hello world.
+>>>>>>> 25d3faf7a14abb8a8e70e7a12edc36e7909fc291
