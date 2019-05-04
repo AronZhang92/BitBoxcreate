@@ -104,7 +104,6 @@ public class peerworker implements Runnable {
             } catch (SocketException e){
                 log.info("Connection disconnect");
                 log.info("The socket might be closed, trying to reconnection");
-                ClientMain.reconnection(socket.getInetAddress().toString().substring(1),socket.getPort());
                 try {
                     socket.close();
                 } catch (IOException e1) {

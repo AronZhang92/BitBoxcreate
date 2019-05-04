@@ -25,9 +25,9 @@ public class Connectionlist {
         //System.out.println("The target ipadress is "+ ipadress);
         for (Socket socket: connectionSocket
              ) {
-            System.out.println("The check socket is " + socket.getInetAddress().toString());
+            //System.out.println("The check socket is " + socket.getInetAddress().toString());
             if(ipadress.equals(socket.getInetAddress().toString())){
-                System.out.println("now in the equails mode.");
+                //System.out.println("now in the equails mode.");
                 include = true;
                 break;
             }

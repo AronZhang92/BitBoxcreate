@@ -26,7 +26,7 @@ public class ClientMain {
             e.printStackTrace();
         }
         if (peer.length() != 0) {
-            String[] peers = peer.split(";");
+            String[] peers = peer.split(",");
             String address = "";
             int portnumber = 0;
             int i = 0;
