@@ -82,8 +82,7 @@ public class function2 {
 			Long start1 = doc.getLong("position");
 			Long filesize1 = fileDescriper.getLong("fileSize");
 
-			System.out.println(" In the FILE_BYTES_RESPONSE Get the length " + blocklength1 + " position " + start1
-					+ " filesize " + filesize1);
+			
 			String content = doc.getString("content");
 			if (content != null) {
 				byte[] bites = Base64.getDecoder().decode(content);
@@ -190,6 +189,7 @@ public class function2 {
 		case "FILE_MODIFY_RESPONSE":
 			System.out.println("Response of modifing file " + doc.getString("pathName") + " is: "
 					+ doc.getString("message") + ", staus: " + doc.getBoolean("status"));
+			break;
 
 		case "DIRECTORY_CREATE_REQUEST":
 			if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
