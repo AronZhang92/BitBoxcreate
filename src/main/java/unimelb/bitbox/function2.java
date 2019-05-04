@@ -2,7 +2,6 @@ package unimelb.bitbox;
 
 import unimelb.bitbox.util.*;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.net.Socket;
 import java.nio.ByteBuffer;

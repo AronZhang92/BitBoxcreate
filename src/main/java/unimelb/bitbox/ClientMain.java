@@ -3,6 +3,7 @@ package unimelb.bitbox;
 import unimelb.bitbox.util.Configuration;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -43,7 +44,10 @@ public class ClientMain {
                         t.start();
                     }
 
-                } catch (UnknownHostException e) {
+                } catch (ConnectException e){
+                    System.out.println("The ipadress cannot be reached due to the other peer is closed, try others");
+                }
+                catch (UnknownHostException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (IOException e) {

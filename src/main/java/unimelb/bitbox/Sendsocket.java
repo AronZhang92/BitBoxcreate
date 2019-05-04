@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class Sendsocket {
     public static Document sendsocket(FileSystemManager.FileSystemEvent fileSystemEvent){
@@ -44,6 +45,8 @@ public class Sendsocket {
                 e1.printStackTrace();
             }
 
+        } catch (SocketException e){
+            System.out.println("The connect is disconnect");
         }
         catch (IOException e) {
             e.printStackTrace();
