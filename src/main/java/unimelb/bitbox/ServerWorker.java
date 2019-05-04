@@ -37,7 +37,10 @@ public class ServerWorker implements Runnable {
 			try {
 				String frombuffer = in.readLine();
 				Document doc = Document.parse(frombuffer);
-
+                if(Connectionlist.contain(clientSocket.getInetAddress().toString())){
+                    System.out.println("Already in the connection list.... close connection");
+                    clientSocket.close();
+                }
 				if (doc.getString("command").equals("HANDSHAKE_REQUEST")
 						&& Connectionlist.connum() < maxcon) {
 					 System.out.println("received request from : " + clientSocket.getInetAddress());
@@ -75,9 +78,9 @@ public class ServerWorker implements Runnable {
                 e.printStackTrace();
             }
             clientSocket.close();
-		} catch (SocketException ex) {
-			ex.printStackTrace();
-		} catch (IOException e) {
+		}catch (SocketException e){
+            System.out.println("Connection disconnect");
+        } catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

@@ -6,6 +6,7 @@ import unimelb.bitbox.util.JSONRETURN2;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -27,6 +28,10 @@ public class peerworker implements Runnable {
         // TODO Auto-generated method stub
         if (Connectionlist.connum() < maxcon) {
             try {
+                if(Connectionlist.contain(socket.getInetAddress().toString())){
+                    System.out.println("Already in the connection list.... close connection");
+                    socket.close();
+                }
                 // Create a stream socket bounded to any port and connect it to the
                 // socket bound to localhost on port 4444
                 // Get the input/output streams for reading/writing data from/to the socket
@@ -94,7 +99,11 @@ public class peerworker implements Runnable {
                 e.printStackTrace();
             } catch(UnsupportedEncodingException e){
                 e.printStackTrace();
-            } catch(IOException e){
+            } catch (SocketException e){
+                System.out.println("Connection disconnect");
+            }
+            catch(IOException e){
+
                 e.printStackTrace();
             }
         }
