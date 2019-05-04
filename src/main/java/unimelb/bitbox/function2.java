@@ -143,7 +143,7 @@ public class function2 {
 		case "FILE_MODIFY_REQUEST":
 			if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
 				System.out.println("is sage pathname");
-				if (fsm.fileNameExists(doc.getString("pathName"),fileDescriper.getString("md5"))) { // when the file name exist
+				if (fsm.fileNameExists(doc.getString("pathName"))) { // when the file name exist
 					System.out.println("the deletion is successed");
 					System.out.println("The name is exist");
 					fsm.modifyFileLoader(doc.getString("pathName"), fileDescriper.getString("md5"), // modify the file
@@ -202,6 +202,8 @@ public class function2 {
 			}
 
 			break;
+            case "INVALID_PROTOCOL" :
+                break;
 		default:
 			Sendsocket.sendtosocket(
 			        JSONRETURN2.INVALID_PROTOCOL(),socket
