@@ -54,7 +54,6 @@ public class ServerWorker implements Runnable {
 					while ((clientMsg = in.readLine()) != null && Connectionlist.containsocket(clientSocket)) {
 
                         try {
-      //                      System.out.println("the server part received : " + clientMsg + "from " + clientSocket.getInetAddress());
                             function2.funtional(Document.parse(clientMsg),clientSocket); //send jason object to class funtional
                         } catch (NoSuchAlgorithmException e) {
                             // TODO Auto-generated catch block

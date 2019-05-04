@@ -16,7 +16,6 @@ public class function2 {
 	public static void funtional(Document doc, Socket socket) throws IOException, NoSuchAlgorithmException {
 
 		FileSystemManager fsm = ServerMain.returnfilesm(); // should be replaced when generating
-		System.out.println(doc.toJson());
 		Document fileDescriper = (Document) doc.get("fileDescriptor");
 		switch (doc.getString("command")) {
 		case "FILE_CREATE_REQUEST":

@@ -32,7 +32,7 @@ public class Sendsocket {
         try {
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
             out.write(doc.toJson()+"\n");
-            System.out.println("our peer send " + doc.toJson() + " to " + socket.getInetAddress());
+ //           System.out.println("our peer send " + doc.toJson() + " to " + socket.getInetAddress());
             out.flush();
         } catch (InterruptedIOException e){
             System.out.println("The IO operation is interrupted, try again");
