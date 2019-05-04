@@ -144,8 +144,6 @@ public class function2 {
 			if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
 				System.out.println("is sage pathname");
 				if (fsm.fileNameExists(doc.getString("pathName"))) { // when the file name exist
-					fsm.deleteFile(doc.getString("pathName"), fileDescriper.getLong("lastModified"),
-							fileDescriper.getString("md5")); // delete the file first
 					System.out.println("the deletion is successed");
 					System.out.println("The name is exist");
 					fsm.modifyFileLoader(doc.getString("pathName"), fileDescriper.getString("md5"), // modify the file
