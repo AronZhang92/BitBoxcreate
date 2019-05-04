@@ -51,7 +51,7 @@ public class ServerWorker implements Runnable {
 					Connectionlist.addNewSocket(clientSocket);
 					Connectionlist.addnewoutput(out);
                     synevents.synevent(clientSocket);
-					while ((clientMsg = in.readLine()) != null) {
+					while ((clientMsg = in.readLine()) != null && Connectionlist.containsocket(clientSocket)) {
 
                         try {
                             System.out.println("the server part received : " + clientMsg + "from " + clientSocket.getInetAddress());

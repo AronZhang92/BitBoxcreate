@@ -56,7 +56,7 @@ public class peerworker implements Runnable {
                     System.out.println("Successful add ip " + socket.getInetAddress() + " and port: " + socket.getPort()
                             + "to the connection list");
 
-                    while ((clientMsg = in.readLine()) != null) { //deal with recerived commands
+                    while ((clientMsg = in.readLine()) != null && Connectionlist.containsocket(socket)) { //deal with recerived commands
                         try {
                             System.out.println("The client part receive the :" + clientMsg + "from " + socket.getInetAddress());
                             function2.funtional(Document.parse(clientMsg), socket); //send jason object to class funtional

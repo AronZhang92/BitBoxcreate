@@ -4,6 +4,7 @@ import unimelb.bitbox.util.Document;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 
@@ -12,7 +13,8 @@ public class Connectionlist {
     private static ArrayList<BufferedWriter> albw = new ArrayList<BufferedWriter>();
     static int a=0;
     public static void addNewSocket(Socket socket){
-        connectionSocket.add(socket);
+        if(!contain(socket.getInetAddress().toString()))
+            connectionSocket.add(socket);
     }
     public static ArrayList<Socket> returnsocketlist(){
         return connectionSocket;
@@ -31,6 +33,10 @@ public class Connectionlist {
             }
         }
         return include;
+    }
+    //check if the ipadress is already in the list.
+    public static boolean containsocket(Socket socket){
+        return connectionSocket.contains(socket);
     }
     public static void addnewoutput(BufferedWriter out){
         albw.add(out);
