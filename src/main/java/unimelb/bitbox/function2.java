@@ -69,13 +69,13 @@ public class function2 {
 			String bite = Base64.getEncoder().encodeToString(b);
 
 			if (start == filesize) {
-				Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONCE(fileDescriper, doc.getString("pathName"), bite,
+				Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONSE(fileDescriper, doc.getString("pathName"), bite,
 						"read successful", true, start, filesize), socket);
 			} else if (start + blocklength >= filesize) {
-				Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONCE(fileDescriper, doc.getString("pathName"), bite,
+				Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONSE(fileDescriper, doc.getString("pathName"), bite,
 						"read successful", true, start, filesize - start), socket);
 			} else {
-				Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONCE(fileDescriper, doc.getString("pathName"), bite,
+				Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONSE(fileDescriper, doc.getString("pathName"), bite,
 						"read successful", true, start, blocklength), socket);
 			}
 
@@ -129,12 +129,12 @@ public class function2 {
 
 					fsm.deleteFile(pathName, fileDescriper.getLong("lastModified"), fileDescriper.getString("md5"));
 					Sendsocket.sendtosocket(
-							JSONRETURN2.FILE_DELETE_RESPONCE(fileDescriper, pathName, "successful delete", true),
+							JSONRETURN2.FILE_DELETE_RESPONSE(fileDescriper, pathName, "successful delete", true),
 							socket);
 
 				} else {
 					Sendsocket.sendtosocket(
-							JSONRETURN2.FILE_DELETE_RESPONCE(fileDescriper, pathName, "pathname does not exist", false),
+							JSONRETURN2.FILE_DELETE_RESPONSE(fileDescriper, pathName, "pathname does not exist", false),
 							socket);
 				}
 			}
@@ -193,28 +193,23 @@ public class function2 {
 			if (fsm.isSafePathName(pathName1)) { // check if the pathname is safe
 				if (fsm.dirNameExists(pathName1)) { // when the directory name exist
 					fsm.deleteDirectory(pathName1);
-					Sendsocket.sendtosocket(JSONRETURN2.DIRECTORY_DELETE_RESPONCE(pathName1, "successful delete", true),
+					Sendsocket.sendtosocket(JSONRETURN2.DIRECTORY_DELETE_RESPONSE(pathName1, "successful delete", true),
 							socket);
 				} else {
 					Sendsocket.sendtosocket(
-							JSONRETURN2.DIRECTORY_DELETE_RESPONCE(pathName1, "pathname does not exist", false), socket);
+							JSONRETURN2.DIRECTORY_DELETE_RESPONSE(pathName1, "pathname does not exist", false), socket);
 				}
 			}
 
 			break;
 		default:
-			System.out.println("Can not match any command" + doc.getString("command"));
+			Sendsocket.sendtosocket(
+			        JSONRETURN2.INVALID_PROTOCOL(),socket
+            );
+
 			break;
 		}
 
 	}
 
-	private static void createfile(FileSystemManager.FileSystemEvent event, FileSystemManager fsm, ByteBuffer bb,
-			long position) throws IOException, NoSuchAlgorithmException {
-		String path = event.path;
-		fd = event.fileDescriptor;
-		fsm.createFileLoader(event.pathName, fd.md5, fd.fileSize, fd.lastModified);
-		fsm.writeFile(event.pathName, bb, position);
-
-	}
 }
