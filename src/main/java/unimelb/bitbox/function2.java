@@ -139,18 +139,14 @@ public class function2 {
 			break;
 		case "FILE_MODIFY_REQUEST":
 			if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
-				System.out.println("is sage pathname");
 				if (fsm.fileNameExists(doc.getString("pathName"))) { // when the file exist
 					if (!fsm.fileNameExists(doc.getString("pathName"), fileDescriper.getString("md5"))) { // when the
 																											// content
 																											// different
-						System.out.println("the deletion is successed");
-						System.out.println("The name is exist");
 						fsm.modifyFileLoader(doc.getString("pathName"), fileDescriper.getString("md5"), // modify the
 																										// file
 								// loader
 								fileDescriper.getLong("lastModified"));
-						System.out.println("Successful create file loaser");
 						Sendsocket.sendtosocket(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper,
 								doc.getString("pathName"), "file loader ready ", true), socket); // send response when
 																									// success creating
