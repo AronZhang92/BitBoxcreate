@@ -70,9 +70,9 @@ public class JSONRETURN2 {
 
         return doc;
     }
-    public static Document FILE_DELETE_RESPONCE(Document fileDescripor, String pathName,String message,boolean status) {
+    public static Document FILE_DELETE_RESPONSE(Document fileDescripor, String pathName,String message,boolean status) {
         Document doc = new Document();
-        doc.append("command", "FILE_DELETE_RESPONCE");
+        doc.append("command", "FILE_DELETE_RESPONSE");
         doc.append("fileDescriptor", fileDescripor);
         doc.append("pathName", pathName);
         doc.append("message", message);
@@ -80,7 +80,7 @@ public class JSONRETURN2 {
         return doc;
     }
 
-    public static Document DIRECTORY_DELETE_RESPONCE( String pathName,String message,boolean status) {
+    public static Document DIRECTORY_DELETE_RESPONSE( String pathName,String message,boolean status) {
         Document doc = new Document();
         doc.append("command", "DIRECTORY_DELETE_RESPONCE");
         doc.append("pathName", pathName);
@@ -88,7 +88,7 @@ public class JSONRETURN2 {
         doc.append("status", status);
         return doc;
     }
-    public static Document FILE_BYTES_RESPONCE(Document fileDescripor, String pathName,String bytes,String message,Boolean status,Long position,Long length) {
+    public static Document FILE_BYTES_RESPONSE(Document fileDescripor, String pathName,String bytes,String message,Boolean status,Long position,Long length) {
         Document doc = new Document();
         doc.append("command", "FILE_BYTES_RESPONSE");
         doc.append("fileDescriptor", fileDescripor);
