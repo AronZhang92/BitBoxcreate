@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.net.SocketException;
+import java.net.InetAddress;
 import java.security.NoSuchAlgorithmException;
 
 public class ServerWorker implements Runnable {
@@ -28,6 +29,7 @@ public class ServerWorker implements Runnable {
 		try {
 			BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(), "UTF-8"));
 			BufferedWriter out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "UTF-8"));
+
 
 			String clientMsg = null;
 			Document ack = null;

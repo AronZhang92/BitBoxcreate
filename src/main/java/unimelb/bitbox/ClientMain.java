@@ -3,6 +3,7 @@ package unimelb.bitbox;
 import unimelb.bitbox.util.Configuration;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -12,6 +13,12 @@ public class ClientMain {
         //what we wrote, multithreading client
         Socket socket;
         String peer = Configuration.getConfigurationValue("peers");
+        String addr = null;
+        try {
+            addr = InetAddress.getLocalHost().toString();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
         if (peer.length() != 0) {
             String[] peers = peer.split(";");
             String address = "";
@@ -23,7 +30,7 @@ public class ClientMain {
                 portnumber = Integer.parseInt(middlepeers[1]);
                 System.out.println("the address is " + address + "\n the port number is " + portnumber);
                 try {
-                    if (Connectionlist.contain(address)) {
+                    if (Connectionlist.contain(address) || addr.equals(address)) {
                         System.out.println("Already exist in the connection list (adding by server)");
                     } else {
                         socket = new Socket(address, portnumber);
