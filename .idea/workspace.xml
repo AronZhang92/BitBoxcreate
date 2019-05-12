@@ -4,215 +4,17 @@
     <list default="true" id="9ff881b5-2661-4e5f-a56b-66157aaaf83f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configuration.properties" beforeDir="false" afterPath="$PROJECT_DIR$/configuration.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/(10th Edition) Modern Database Management.pdf(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/.DS_Store__" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/.goutputstream-VYUA1Z" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/.vs/VSWorkspaceState.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/.yanli.txt.swp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/Micheal'sworte.docx(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/PrettyChicken.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/Alamofire.framework/Alamofire(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/Alamofire.framework/Resources/Info.plist(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/Alamofire.framework/Versions/A/Alamofire(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/Alamofire.framework/Versions/A/Resources/Info.plist(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/Alamofire.framework/Versions/A/_CodeSignature/CodeResources(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/Alamofire.framework/Versions/Current/Alamofire(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/Alamofire.framework/Versions/Current/Resources/Info.plist(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/Alamofire.framework/Versions/Current/_CodeSignature/CodeResources(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/GCDWebServer.framework/GCDWebServer(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/GCDWebServer.framework/Resources/Info.plist(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/GCDWebServer.framework/Versions/A/GCDWebServer(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/GCDWebServer.framework/Versions/A/Resources/Info.plist(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/GCDWebServer.framework/Versions/A/_CodeSignature/CodeResources(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/GCDWebServer.framework/Versions/Current/GCDWebServer(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/GCDWebServer.framework/Versions/Current/Resources/Info.plist(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/GCDWebServer.framework/Versions/Current/_CodeSignature/CodeResources(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/MASShortcut(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Resources/Info.plist(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Resources/MASShortcut.bundle/Contents/Info.plist(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Resources/MASShortcut.bundle/Contents/Resources/cs.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Resources/MASShortcut.bundle/Contents/Resources/de.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Resources/MASShortcut.bundle/Contents/Resources/en.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Resources/MASShortcut.bundle/Contents/Resources/es.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Resources/MASShortcut.bundle/Contents/Resources/fr.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Resources/MASShortcut.bundle/Contents/Resources/it.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Resources/MASShortcut.bundle/Contents/Resources/ja.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Resources/MASShortcut.bundle/Contents/Resources/ko.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Resources/MASShortcut.bundle/Contents/Resources/nl.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Resources/MASShortcut.bundle/Contents/Resources/pl.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Resources/MASShortcut.bundle/Contents/Resources/ru.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Resources/MASShortcut.bundle/Contents/Resources/zh-Hans.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Resources/MASShortcut.bundle/Contents/Resources/zh-Hant.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Resources/MASShortcut.bundle/Contents/_CodeSignature/CodeDirectory(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Resources/MASShortcut.bundle/Contents/_CodeSignature/CodeRequirements(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Resources/MASShortcut.bundle/Contents/_CodeSignature/CodeRequirements-1(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Resources/MASShortcut.bundle/Contents/_CodeSignature/CodeResources(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Resources/MASShortcut.bundle/Contents/_CodeSignature/CodeSignature" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/A/MASShortcut(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/A/Resources/Info.plist(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/A/Resources/MASShortcut.bundle/Contents/Info.plist(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/A/Resources/MASShortcut.bundle/Contents/Resources/cs.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/A/Resources/MASShortcut.bundle/Contents/Resources/de.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/A/Resources/MASShortcut.bundle/Contents/Resources/en.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/A/Resources/MASShortcut.bundle/Contents/Resources/es.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/A/Resources/MASShortcut.bundle/Contents/Resources/fr.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/A/Resources/MASShortcut.bundle/Contents/Resources/it.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/A/Resources/MASShortcut.bundle/Contents/Resources/ja.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/A/Resources/MASShortcut.bundle/Contents/Resources/ko.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/A/Resources/MASShortcut.bundle/Contents/Resources/nl.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/A/Resources/MASShortcut.bundle/Contents/Resources/pl.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/A/Resources/MASShortcut.bundle/Contents/Resources/ru.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/A/Resources/MASShortcut.bundle/Contents/Resources/zh-Hans.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/A/Resources/MASShortcut.bundle/Contents/Resources/zh-Hant.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/A/Resources/MASShortcut.bundle/Contents/_CodeSignature/CodeDirectory(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/A/Resources/MASShortcut.bundle/Contents/_CodeSignature/CodeRequirements(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/A/Resources/MASShortcut.bundle/Contents/_CodeSignature/CodeRequirements-1(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/A/Resources/MASShortcut.bundle/Contents/_CodeSignature/CodeResources(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/A/Resources/MASShortcut.bundle/Contents/_CodeSignature/CodeSignature" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/A/_CodeSignature/CodeResources(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/Current/MASShortcut(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/Current/Resources/Info.plist(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/Current/Resources/MASShortcut.bundle/Contents/Info.plist(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/Current/Resources/MASShortcut.bundle/Contents/Resources/cs.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/Current/Resources/MASShortcut.bundle/Contents/Resources/de.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/Current/Resources/MASShortcut.bundle/Contents/Resources/en.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/Current/Resources/MASShortcut.bundle/Contents/Resources/es.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/Current/Resources/MASShortcut.bundle/Contents/Resources/fr.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/Current/Resources/MASShortcut.bundle/Contents/Resources/it.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/Current/Resources/MASShortcut.bundle/Contents/Resources/ja.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/Current/Resources/MASShortcut.bundle/Contents/Resources/ko.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/Current/Resources/MASShortcut.bundle/Contents/Resources/nl.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/Current/Resources/MASShortcut.bundle/Contents/Resources/pl.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/Current/Resources/MASShortcut.bundle/Contents/Resources/ru.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/Current/Resources/MASShortcut.bundle/Contents/Resources/zh-Hans.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/Current/Resources/MASShortcut.bundle/Contents/Resources/zh-Hant.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/Current/Resources/MASShortcut.bundle/Contents/_CodeSignature/CodeDirectory(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/Current/Resources/MASShortcut.bundle/Contents/_CodeSignature/CodeRequirements(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/Current/Resources/MASShortcut.bundle/Contents/_CodeSignature/CodeRequirements-1(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/Current/Resources/MASShortcut.bundle/Contents/_CodeSignature/CodeResources(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/Current/Resources/MASShortcut.bundle/Contents/_CodeSignature/CodeSignature" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/MASShortcut.framework/Versions/Current/_CodeSignature/CodeResources(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/RxCocoa.framework/Resources/Info.plist(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/RxCocoa.framework/RxCocoa(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/RxCocoa.framework/Versions/A/Resources/Info.plist(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/RxCocoa.framework/Versions/A/RxCocoa(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/RxCocoa.framework/Versions/A/_CodeSignature/CodeResources(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/RxCocoa.framework/Versions/Current/Resources/Info.plist(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/RxCocoa.framework/Versions/Current/RxCocoa(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/RxCocoa.framework/Versions/Current/_CodeSignature/CodeResources(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/RxSwift.framework/Resources/Info.plist(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/RxSwift.framework/RxSwift(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/RxSwift.framework/Versions/A/Resources/Info.plist(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/RxSwift.framework/Versions/A/RxSwift(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/RxSwift.framework/Versions/A/_CodeSignature/CodeResources(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/RxSwift.framework/Versions/Current/Resources/Info.plist(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/RxSwift.framework/Versions/Current/RxSwift(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/RxSwift.framework/Versions/Current/_CodeSignature/CodeResources(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/libswiftAppKit.dylib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/libswiftCore.dylib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/libswiftCoreData.dylib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/libswiftCoreFoundation.dylib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/libswiftCoreGraphics.dylib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/libswiftCoreImage.dylib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/libswiftDarwin.dylib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/libswiftDispatch.dylib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/libswiftFoundation.dylib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/libswiftIOKit.dylib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/libswiftMetal.dylib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/libswiftObjectiveC.dylib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/libswiftQuartzCore.dylib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/libswiftXPC.dylib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Frameworks/libswiftos.dylib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Info.plist(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Library/LoginItems/LaunchHelper.app/Contents/Info.plist(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Library/LoginItems/LaunchHelper.app/Contents/MacOS/LaunchHelper(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Library/LoginItems/LaunchHelper.app/Contents/PkgInfo(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Library/LoginItems/LaunchHelper.app/Contents/Resources/Base.lproj/MainMenu.nib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Library/LoginItems/LaunchHelper.app/Contents/_CodeSignature/CodeResources(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/MacOS/ShadowsocksX-NG(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/PkgInfo(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/AppIcon.icns(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/Assets.car(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/Base.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/Base.lproj/MainMenu.nib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/Base.lproj/PreferencesWinController.nib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/Base.lproj/PreferencesWindowController.nib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/Base.lproj/ShareServerProfilesWindowController.nib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/Base.lproj/UserRulesController.nib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/Credits.rtf(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/SWBQRCodeWindowController.nib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/ToastWindowController.nib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/abp.js(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/command-512.png(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/example-gui-config.json(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/fix_dir_owner.sh(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/gfwlist.txt(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/http.png(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/icons8-Blind Filled-50.png(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/icons8-Eye Filled-50.png(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/install_helper.sh(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/install_kcptun.sh(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/install_privoxy.sh(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/install_simple_obfs.sh(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/install_ss_local.sh(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/kcptun_client(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/libcares.2.dylib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/libev.4.dylib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/libmbedcrypto.2.12.0.dylib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/libpcre.1.dylib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/libsodium.23.dylib(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/menu_g_icon.tiff(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/menu_icon.tiff(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/menu_icon_disabled.tiff(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/menu_m_icon.tiff(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/menu_p_icon.tiff(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/obfs-local(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/privoxy(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/privoxy.config.example(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/proxy_conf_helper(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/ss-local(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/start_privoxy.sh(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/start_ss_local.sh(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/stop_privoxy.sh(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/stop_ss_local.sh(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/user-rule.txt(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/virtual-server-icon-3.png(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/zh-Hans.lproj/Localizable.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/zh-Hans.lproj/MainMenu.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/zh-Hans.lproj/PreferencesWinController.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/zh-Hans.lproj/PreferencesWindowController.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/zh-Hans.lproj/ShareServerProfilesWindowController.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/Resources/zh-Hans.lproj/UserRulesController.strings(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/ShadowsocksX-NG.app/Contents/_CodeSignature/CodeResources(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/file" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/good men.txt(bitbox)" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/新建文本文档 (2).txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/新建文本文档 (3).txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/新建文本文档.txt(bitbox)" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/ClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/ClientMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/Connectionlist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/Connectionlist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/Peer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/Peer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/Sendsocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/Sendsocket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/ServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/ServerMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/ServerWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/ServerWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/function2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/function2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/peerworker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/peerworker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/synevents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unimelb/bitbox/synevents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/unimelb/bitbox/AnotherConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/unimelb/bitbox/AnotherConnection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/unimelb/bitbox/ClientMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/unimelb/bitbox/ClientMain.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/unimelb/bitbox/Connectionlist.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/unimelb/bitbox/Connectionlist.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/unimelb/bitbox/Eventlist.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/unimelb/bitbox/Eventlist.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/unimelb/bitbox/Eventlist.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/unimelb/bitbox/Peer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/unimelb/bitbox/Peer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/unimelb/bitbox/ServerMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/unimelb/bitbox/ServerMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/unimelb/bitbox/ServerWorker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/unimelb/bitbox/ServerWorker.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/unimelb/bitbox/peerworker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/unimelb/bitbox/peerworker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/unimelb/bitbox/util/Configuration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/unimelb/bitbox/util/Configuration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/unimelb/bitbox/util/Document.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/unimelb/bitbox/util/Document.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/unimelb/bitbox/util/FileSystemManager$EVENT.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/unimelb/bitbox/util/FileSystemManager$EVENT.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/unimelb/bitbox/util/FileSystemManager$FileDescriptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/unimelb/bitbox/util/FileSystemManager$FileDescriptor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/unimelb/bitbox/util/FileSystemManager$FileLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/unimelb/bitbox/util/FileSystemManager$FileLoader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/unimelb/bitbox/util/FileSystemManager$FileSystemEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/unimelb/bitbox/util/FileSystemManager$FileSystemEvent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/unimelb/bitbox/util/FileSystemManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/unimelb/bitbox/util/FileSystemManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/unimelb/bitbox/util/FileSystemObserver.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/unimelb/bitbox/util/FileSystemObserver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/unimelb/bitbox/util/HostPort.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/unimelb/bitbox/util/HostPort.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/unimelb/bitbox/util/test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/unimelb/bitbox/util/test.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -242,74 +44,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/ServerMain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="451">
-              <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1058#1059#0" expanded="true" />
-                <element signature="e#1095#1096#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/synevents.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/DesEncrypter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/peerworker.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-398">
-              <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/Eventlist.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#246#247#0" expanded="true" />
-                <element signature="e#284#285#0" expanded="true" />
-                <element signature="e#717#718#0" expanded="true" />
-                <element signature="e#758#759#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/Sendsocket.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/Connectionlist.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="29" column="82" selection-start-line="29" selection-start-column="82" selection-end-line="29" selection-end-column="82" />
+            <state relative-caret-position="210">
+              <caret line="16" column="28" lean-forward="true" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#492#493#0" expanded="true" />
+                <element signature="e#516#517#0" expanded="true" />
+                <element signature="e#574#575#0" expanded="true" />
+                <element signature="e#599#600#0" expanded="true" />
+                <element signature="e#645#646#0" expanded="true" />
+                <element signature="e#676#677#0" expanded="true" />
+                <element signature="e#1397#1398#0" expanded="true" />
+                <element signature="e#1425#1426#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/AEScrypt.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -356,16 +115,17 @@
         <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/test2.java" />
         <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/DesEncrypter.java" />
         <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/util/JSONRETURN2.java" />
-        <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/ClientMain.java" />
-        <option value="$PROJECT_DIR$/configuration.properties" />
         <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/function2.java" />
-        <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/ServerWorker.java" />
-        <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/Connectionlist.java" />
         <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/Peer.java" />
         <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/ServerMain.java" />
         <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/synevents.java" />
-        <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/peerworker.java" />
         <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/Sendsocket.java" />
+        <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/ServerWorker.java" />
+        <option value="$PROJECT_DIR$/configuration.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/peerworker.java" />
+        <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/ClientMain.java" />
+        <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/AEScrypt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/unimelb/bitbox/Connectionlist.java" />
       </list>
     </option>
   </component>
@@ -378,7 +138,6 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-24" />
     <option name="y" value="23" />
     <option name="width" value="1680" />
     <option name="height" value="1027" />
@@ -389,6 +148,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -435,14 +195,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556964250061" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557475957133" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -545,17 +304,21 @@
       <workItem from="1556803415200" duration="289000" />
       <workItem from="1556843253677" duration="5141000" />
       <workItem from="1556865203215" duration="17391000" />
+      <workItem from="1556965936228" duration="56000" />
+      <workItem from="1556966019201" duration="840000" />
+      <workItem from="1556971502031" duration="877000" />
+      <workItem from="1557474363673" duration="1556000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115110000" />
+    <option name="totallyTimeSpent" value="119302000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="34" y="23" width="1680" height="1027" extended-state="0" />
+    <frame x="0" y="23" width="1680" height="1027" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1916972" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22466423" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -563,8 +326,8 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32941177" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32941177" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32941177" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32857144" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -725,13 +488,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/configuration.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="86" selection-start-line="9" selection-start-column="86" selection-end-line="9" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/util/JSONRETURN2.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1253">
@@ -752,59 +508,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/ClientMain.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/Eventlist.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/synevents.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="75" selection-start-line="75" selection-end-line="75" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/function2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1658">
-          <caret line="98" column="48" selection-start-line="98" selection-start-column="48" selection-end-line="98" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/ServerWorker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="80" column="72" selection-start-line="80" selection-start-column="72" selection-end-line="80" selection-end-column="72" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/Connectionlist.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="43" column="9" lean-forward="true" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/Peer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="19" column="60" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/ServerMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
+        <state relative-caret-position="690">
           <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -814,10 +528,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/synevents.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/Sendsocket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="39" column="43" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/function2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1365">
+          <caret line="98" column="48" selection-start-line="98" selection-start-column="48" selection-end-line="98" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/ServerWorker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="60" column="41" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configuration.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
+          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/Peer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="19" column="60" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/peerworker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="855">
+          <caret line="110" column="50" selection-start-line="110" selection-start-column="50" selection-end-line="110" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -831,36 +595,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/peerworker.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/ClientMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-398">
-          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
+        <state relative-caret-position="705">
+          <caret line="47" column="17" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/Eventlist.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/AEScrypt.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
+        <state relative-caret-position="300">
+          <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#246#247#0" expanded="true" />
-            <element signature="e#284#285#0" expanded="true" />
-            <element signature="e#717#718#0" expanded="true" />
-            <element signature="e#758#759#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/Sendsocket.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/unimelb/bitbox/Connectionlist.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="29" column="82" selection-start-line="29" selection-start-column="82" selection-end-line="29" selection-end-column="82" />
+        <state relative-caret-position="210">
+          <caret line="16" column="28" lean-forward="true" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#492#493#0" expanded="true" />
+            <element signature="e#516#517#0" expanded="true" />
+            <element signature="e#574#575#0" expanded="true" />
+            <element signature="e#599#600#0" expanded="true" />
+            <element signature="e#645#646#0" expanded="true" />
+            <element signature="e#676#677#0" expanded="true" />
+            <element signature="e#1397#1398#0" expanded="true" />
+            <element signature="e#1425#1426#0" expanded="true" />
           </folding>
         </state>
       </provider>

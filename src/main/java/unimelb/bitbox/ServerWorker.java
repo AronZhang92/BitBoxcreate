@@ -47,7 +47,6 @@ public class ServerWorker implements Runnable {
 					out.flush();
 					Connectionlist.addNewSocket(clientSocket);
 					log.info("Connect to the" + clientSocket.getInetAddress().toString());
-					Connectionlist.addnewoutput(out);
                     synevents.synevent(clientSocket);
 					while ((clientMsg = in.readLine()) != null && Connectionlist.containsocket(clientSocket)) {
                         try {

@@ -29,10 +29,6 @@ public class peerworker implements Runnable {
         // TODO Auto-generated method stub
         if (Connectionlist.connum() < maxcon) {
             try {
-                if(Connectionlist.contain(socket.getInetAddress().toString())){
-                    log.info("Already in the connection list.... close connection");
-                    socket.close();
-                }
                 String host = Configuration.getConfigurationValue("advertisedName");
                 String portString = Configuration.getConfigurationValue("port");
                 int port = Integer.parseInt(portString);
@@ -78,6 +74,7 @@ public class peerworker implements Runnable {
                         } else {
                             log.info("The socket closed due to wrong answer :" + frombuffer);
                             socket.close();
+                            Connectionlist.remove(socket);
                         }
                     } catch (UnknownHostException e) {
                         log.info("unkown host try another one");
@@ -92,8 +89,10 @@ public class peerworker implements Runnable {
                         if (socket != null) {
                             try {
                                 socket.close();
+                                Connectionlist.remove(socket);
                             } catch (IOException e) {
                                 log.info(" Cann't close the socket due to the IO exception");
+                                Connectionlist.remove(socket);
                             }
                         }
                     }
@@ -102,13 +101,19 @@ public class peerworker implements Runnable {
             } catch(NoSuchAlgorithmException e){
                 e.printStackTrace();
             } catch(UnsupportedEncodingException e){
-                e.printStackTrace();
+                Sendsocket.sendtosocket(JSONRETURN2.INVALID_PROTOCOL(),socket);
             } catch (SocketException e){
                 log.info("Connection disconnect");
                 log.info("The socket might be closed, trying to reconnection");
+                ClientMain.reconnection(socket.getInetAddress().toString(),socket.getPort());
                 try {
                     socket.close();
-                } catch (IOException e1) {
+                    Connectionlist.remove(socket);
+                }
+                catch (UnknownHostException ue){
+                    log.info("the host is unknow might cause by the wrong type or the discorrect ipadress ");
+                }
+                catch (IOException e1) {
                     e1.printStackTrace();
                 }
             } catch(IOException e){

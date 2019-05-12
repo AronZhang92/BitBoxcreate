@@ -1,15 +1,26 @@
 package unimelb.bitbox;
 
 
-import java.io.BufferedWriter;
 import java.net.Socket;
+import java.security.Key;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Connectionlist {
     private static ArrayList<Socket> connectionSocket = new ArrayList<Socket>();
+    private static Map<Socket, Key> map;
     public static void addNewSocket(Socket socket){
         if(!contain(socket.getInetAddress().toString()))
             connectionSocket.add(socket);
+    }
+    public static void setkey(Socket socket,Key key){
+        map.put(socket,key);
+    }
+    public static Map<Socket,Key> returnmap(){
+        return map;
+    }
+    public static Key getkey(Socket socket){
+        return map.get(socket);
     }
     public static ArrayList<Socket> returnsocketlist(){
         return connectionSocket;
@@ -42,6 +53,9 @@ public class Connectionlist {
         } else {
             connectionSocket.remove(socket);
         }
+    }
+    public static boolean checkport(Socket socket,int port){
+        return false;
     }
 
 }
