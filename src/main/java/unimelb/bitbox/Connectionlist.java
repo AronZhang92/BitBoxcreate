@@ -30,13 +30,9 @@ public class Connectionlist {
         boolean include = false;
         for (Socket socket: connectionSocket
              ) {
-<<<<<<< HEAD
             //System.out.println("The check socket is " + socket.getInetAddress().toString());
             if(ipadress.equals(socket.getInetAddress().toString())){
                 //System.out.println("now in the equails mode.");
-=======
-            if(ipadress.equals(socket.getInetAddress().toString())){
->>>>>>> 8ed4405ae3bd2da2a611623c59efef42e665ffbb
                 include = true;
                 break;
             }
