@@ -1,15 +1,11 @@
 package unimelb.bitbox;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
-import java.net.Socket;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Logger;
 
 import unimelb.bitbox.util.Configuration;
-import unimelb.bitbox.util.Document;
 import unimelb.bitbox.util.FileSystemManager;
 import unimelb.bitbox.util.FileSystemObserver;
 import unimelb.bitbox.util.FileSystemManager.FileSystemEvent;
@@ -24,33 +20,29 @@ public class ServerMain implements FileSystemObserver,Runnable {
 	public ServerMain() throws NumberFormatException, IOException, NoSuchAlgorithmException {
 		fileSystemManager=new FileSystemManager(Configuration.getConfigurationValue("path"),this);
 	}
+
     public static FileSystemManager returnfilesm(){
 	    return fileSystemManager;
     }
+
 	@Override
 	public void processFileSystemEvent(FileSystemEvent fileSystemEvent) {
-    Sendsocket.sendDoc(Sendsocket.sendsocket(fileSystemEvent));
-
-        //System.out.println(fileSystemEvent);
-
+        Sendsocket.sendDoc(Sendsocket.sendsocket(fileSystemEvent));
 	}
 
 	public void run(){
         ServerSocket listeningSocket = null;
-
-
         try{
             listeningSocket = new ServerSocket(port);
         } catch (IOException e) {
-            System.out.println("Could not listen on port " + port);
-            System.exit(-1);
+            log.info("Could not listen on port " + port);
         }
+
         while (true) {
             ServerWorker w;
             try {
-                System.out.println("The server port is:" + port);
                 if(Connectionlist.contain(listeningSocket.getInetAddress().toString())){
-                    System.out.println("Already connected (adding by client)");
+                    log.info("Already connected");
                 } else {
                     w = new ServerWorker(listeningSocket.accept());
                     Thread t = new Thread(w);
@@ -58,7 +50,7 @@ public class ServerMain implements FileSystemObserver,Runnable {
                 }
 
             } catch (IOException e) {
-                System.out.println("Accept failed: " + port);
+               log.info("Accept failed: " + port);
                 System.exit(-1);
             }
         }

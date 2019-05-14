@@ -29,16 +29,15 @@ public class peerworker implements Runnable {
         // TODO Auto-generated method stub
         if (Connectionlist.connum() < maxcon) {
             try {
-                if(Connectionlist.contain(socket.getInetAddress().toString())){
-                    System.out.println("Already in the connection list.... close connection");
-                    socket.close();
-                }
+                String host = Configuration.getConfigurationValue("advertisedName");
+                String portString = Configuration.getConfigurationValue("port");
+                int port = Integer.parseInt(portString);
                 // Create a stream socket bounded to any port and connect it to the
                 // socket bound to localhost on port 4444
                 // Get the input/output streams for reading/writing data from/to the socket
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
                 BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
-                Document json = JSONRETURN2.HANDSHAKE_REQUEST(socket.getInetAddress().toString(), socket.getPort());
+                Document json = JSONRETURN2.HANDSHAKE_REQUEST(host,port);
                 // Three way handshake
                 out.write(json.toJson() + "\n");
                 out.flush();
@@ -50,9 +49,8 @@ public class peerworker implements Runnable {
                 if (ack.getString("command").equals(JSONRETURN2
                         .HANDSHAKE_RESPONSE(socket.getInetAddress().toString(), socket.getPort()).getString("command"))) {
                     // System.out.println("received OK");
-                    System.out.println("Connection established to" + socket.getInetAddress());
+                    log.info("Connection established to" + socket.getInetAddress());
                     Connectionlist.addNewSocket(socket);
-                    Connectionlist.addnewoutput(out);
                     synevents.synevent(socket);
                     log.info("Successful add ip " + socket.getInetAddress() + " and port: " + socket.getPort()
                             + "to the connection list");
@@ -76,6 +74,7 @@ public class peerworker implements Runnable {
                         } else {
                             log.info("The socket closed due to wrong answer :" + frombuffer);
                             socket.close();
+                            Connectionlist.remove(socket);
                         }
                     } catch (UnknownHostException e) {
                         log.info("unkown host try another one");
@@ -90,8 +89,10 @@ public class peerworker implements Runnable {
                         if (socket != null) {
                             try {
                                 socket.close();
+                                Connectionlist.remove(socket);
                             } catch (IOException e) {
                                 log.info(" Cann't close the socket due to the IO exception");
+                                Connectionlist.remove(socket);
                             }
                         }
                     }
@@ -100,13 +101,22 @@ public class peerworker implements Runnable {
             } catch(NoSuchAlgorithmException e){
                 e.printStackTrace();
             } catch(UnsupportedEncodingException e){
-                e.printStackTrace();
+                Sendsocket.sendtosocket(JSONRETURN2.INVALID_PROTOCOL(),socket);
             } catch (SocketException e){
                 log.info("Connection disconnect");
                 log.info("The socket might be closed, trying to reconnection");
+<<<<<<< HEAD
+=======
+                ClientMain.reconnection(socket.getInetAddress().toString(),socket.getPort());
+>>>>>>> 8ed4405ae3bd2da2a611623c59efef42e665ffbb
                 try {
                     socket.close();
-                } catch (IOException e1) {
+                    Connectionlist.remove(socket);
+                }
+                catch (UnknownHostException ue){
+                    log.info("the host is unknow might cause by the wrong type or the discorrect ipadress ");
+                }
+                catch (IOException e1) {
                     e1.printStackTrace();
                 }
             } catch(IOException e){

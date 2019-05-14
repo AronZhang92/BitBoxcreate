@@ -18,10 +18,8 @@ public class ClientMain {
         String addr = null;
         try {
             addr = InetAddress.getLocalHost().toString();
-            System.out.println(" The host address is " + addr);
             String[] a = addr.split("/");
             addr = a[1];
-            System.out.println("The addr is " + addr);
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
@@ -34,10 +32,10 @@ public class ClientMain {
                 String[] middlepeers = peers[i].split(":");
                 address = middlepeers[0];
                 portnumber = Integer.parseInt(middlepeers[1]);
-                System.out.println("the address is " + address + "\n the port number is " + portnumber);
+               log.info(" \n the address is " + address + "\n the port number is " + portnumber);
                 try {
                     if (Connectionlist.contain(address) || addr.equals(address)) {
-                        System.out.println("Already exist in the connection list (adding by server)");
+                        log.info("Already exist in the connection list (adding by server)");
                     } else {
                         socket = new Socket(address, portnumber);
                         peerworker w = new peerworker(socket);
