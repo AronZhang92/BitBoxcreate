@@ -9,6 +9,7 @@ import unimelb.bitbox.util.Configuration;
 public class Peer 
 {
 	private static ServerMain serverMain = null;
+	private static SecureServer secureServer = null;
 	private static Logger log = Logger.getLogger(Peer.class.getName());
     public static void main(String[] args) throws IOException, NumberFormatException, NoSuchAlgorithmException
     {
@@ -24,6 +25,12 @@ public class Peer
         serverMain = new ServerMain();
         Thread t = new Thread(serverMain);
         t.start();
+        
+        //create thread for secure server 
+        secureServer= new SecureServer();
+        Thread h = new Thread(secureServer);
+        h.start();
+        
 
 
         ClientMain.ClientMain();

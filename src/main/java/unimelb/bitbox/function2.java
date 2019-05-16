@@ -6,13 +6,20 @@ import java.io.IOException;
 import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.logging.Logger;
+
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 
 public class function2 {
 	private static FileSystemManager.FileDescriptor fd;
 	private static final Long blocksize = Long.parseLong(Configuration.getConfigurationValue("blockSize"));
-    private static Logger log = Logger.getLogger(function2.class.getName());
+	private static Logger log = Logger.getLogger(function2.class.getName());
+
 	public static void funtional(Document doc, Socket socket) throws IOException, NoSuchAlgorithmException {
 
 		FileSystemManager fsm = ServerMain.returnfilesm(); // should be replaced when generating
@@ -29,7 +36,7 @@ public class function2 {
 							"file loader ready ", true, 0L), socket); // send response when success creating file loader
 
 					if (fsm.checkShortcut(doc.getString("pathName"))) {
-						//System.out.println("Already check the short cut");
+						// System.out.println("Already check the short cut");
 						break; // stop when there is a shortcut
 					} else { // when there is no shortcut
 						if (blocksize > fileDescriper.getLong("fileSize")) {
@@ -56,7 +63,6 @@ public class function2 {
 			Long blocklength = doc.getLong("length");
 			Long start = doc.getLong("position");
 			Long filesize = fileDescriper.getLong("fileSize");
-
 
 			byte[] b = fsm.readFile(fileDescriper.getString("md5"), start, blocklength).array();
 			String bite = Base64.getEncoder().encodeToString(b);
@@ -96,7 +102,7 @@ public class function2 {
 				}
 
 			} else if (start1 + blocklength1 + blocklength1 <= filesize1) {
-			    // remian still bigger or equal than the blocksize
+				// remian still bigger or equal than the blocksize
 				Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"),
 						start1 + blocklength1, blocklength1), socket);
 			} else if (start1 + blocklength1 + blocklength1 > filesize1) {
@@ -107,8 +113,8 @@ public class function2 {
 			break;
 
 		case "FILE_CREATE_RESPONSE":
-			log.info("Response of creating file " + doc.getString("pathName") + " is: "
-					+ doc.getString("message") + ", staus: " + doc.getBoolean("status"));
+			log.info("Response of creating file " + doc.getString("pathName") + " is: " + doc.getString("message")
+					+ ", staus: " + doc.getBoolean("status"));
 
 			break;
 
@@ -131,13 +137,12 @@ public class function2 {
 			}
 
 			break;
-			
-		case  "FILE_DELETE_RESPONSE":
-			log.info("Response of deleting file " + doc.getString("pathName") + " is: "
-					+ doc.getString("message") + ", staus: " + doc.getBoolean("status"));
+
+		case "FILE_DELETE_RESPONSE":
+			log.info("Response of deleting file " + doc.getString("pathName") + " is: " + doc.getString("message")
+					+ ", staus: " + doc.getBoolean("status"));
 			break;
-			
-		
+
 		case "FILE_MODIFY_REQUEST":
 			if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
 				if (fsm.fileNameExists(doc.getString("pathName"))) { // when the file exist
@@ -169,7 +174,7 @@ public class function2 {
 						Sendsocket.sendDoc(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper, doc.getString("pathName"),
 								"the content of the file are same ", false));
 					}
-				}else {
+				} else {
 					Sendsocket.sendDoc(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper, doc.getString("pathName"),
 							"the fileName doesn't exist ", false));
 				}
@@ -181,8 +186,8 @@ public class function2 {
 			break;
 
 		case "FILE_MODIFY_RESPONSE":
-			log.info("Response of modifing file " + doc.getString("pathName") + " is: "
-					+ doc.getString("message") + ", staus: " + doc.getBoolean("status"));
+			log.info("Response of modifing file " + doc.getString("pathName") + " is: " + doc.getString("message")
+					+ ", staus: " + doc.getBoolean("status"));
 			break;
 
 		case "DIRECTORY_CREATE_REQUEST":
@@ -202,8 +207,8 @@ public class function2 {
 			break;
 
 		case "DIRECTORY_CREATE_RESPONSE":
-			log.info("Response of creating directory " + doc.getString("pathName") + " is: "
-					+ doc.getString("message") + ", staus: " + doc.getBoolean("status"));
+			log.info("Response of creating directory " + doc.getString("pathName") + " is: " + doc.getString("message")
+					+ ", staus: " + doc.getBoolean("status"));
 			break;
 
 		case "DIRECTORY_DELETE_REQUEST":
@@ -225,16 +230,55 @@ public class function2 {
 			break;
 
 		case "DIRECTORY_DELETE_RESPONSE":
-			log.info("Response of deleting directory " + doc.getString("pathName") + " is: "
-					+ doc.getString("message") + ", staus: " + doc.getBoolean("status"));
+			log.info("Response of deleting directory " + doc.getString("pathName") + " is: " + doc.getString("message")
+					+ ", staus: " + doc.getBoolean("status"));
 			break;
 		case "INVALID_PROTOCOL":
 			log.info("Received INVALID_PROTOCOL response " + doc.getString("message"));
 			break;
-			
-	   // For client security connection
+
+		// For client security connection
 		case "AUTH_REQUEST":
-			
+			// check if identity exist
+			String[] identityList = Configuration.getConfigurationValue("authorized_keys").split(",");
+			ArrayList<String> identities = new ArrayList<String>();
+			ArrayList<String> publicKeys = new ArrayList<String>();
+			for (String identity : identityList) {
+				identities.add(identity.split(" ")[2]);
+				publicKeys.add(identity.split(" ")[1]);
+			}
+			// when identity exist
+			if (identities.contains(doc.getString("identity"))) {
+				int index = identities.indexOf(doc.getString("identity"));
+				// generate a new AES common key
+				KeyGenerator keyGen = null;
+				try {
+					keyGen = KeyGenerator.getInstance("AES");
+				} catch (NoSuchAlgorithmException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				keyGen.init(128);
+				SecretKey commenKey = keyGen.generateKey();
+				// commen key to String
+				String commenKeyToStr = Base64.getEncoder().encodeToString(commenKey.getEncoded());
+				byte[] commenKeyToByte = commenKey.getEncoded();
+				// change public key from String to key
+				try {
+					PublicKey publicKey = RSAcrypt.getPublicKey(publicKeys.get(index)); // !!have exception, need to be
+																						// changed!!!!!
+					byte[] enCommenKey = RSAcrypt.encrypt(publicKey, commenKeyToByte);
+					String enCommenKeyToStr = Base64.getEncoder().encodeToString(enCommenKey);
+					//send response to client
+					Sendsocket.sendtosocket(JSONRETURN2.AUTH_RESPONSE(enCommenKeyToStr, true, "public key found"),
+							socket);
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
 			break;
 		default:
 			Sendsocket.sendtosocket(JSONRETURN2.INVALID_PROTOCOL(), socket);
