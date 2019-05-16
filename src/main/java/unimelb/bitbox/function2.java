@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
@@ -239,17 +240,17 @@ public class function2 {
 		// For client security connection
 		case "AUTH_REQUEST":
 			// check if identity exist
-			String[] identityList = Configuration.getConfigurationValue("identity").split(",");
+			String[] identityList = Configuration.getConfigurationValue("authorized_keys").split(",");
 			ArrayList<String> identities = new ArrayList<String>();
 			ArrayList<String> publicKeys = new ArrayList<String>();
-			int count = 0;
 			for (String identity : identityList) {
-				identities.add(identity.split(":")[0]);
-				publicKeys.add(identity.split(":")[1]);
-				count++;
+				identities.add(identity.split(" ")[2]);
+				publicKeys.add(identity.split(" ")[1]);
 			}
 			// when identity exist
 			if (identities.contains(doc.getString("identity"))) {
+				int index = identities.indexOf(doc.getString("identity"));
+				// generate a new AES common key
 				KeyGenerator keyGen = null;
 				try {
 					keyGen = KeyGenerator.getInstance("AES");
@@ -260,8 +261,23 @@ public class function2 {
 				keyGen.init(128);
 				SecretKey commenKey = keyGen.generateKey();
 				// commen key to String
-				String commenKeyToStr = Base64.getEncoder().encodeToString(commenKey.getEncoded()); 
-                
+				String commenKeyToStr = Base64.getEncoder().encodeToString(commenKey.getEncoded());
+				byte[] commenKeyToByte = commenKey.getEncoded();
+				// change public key from String to key
+				try {
+					PublicKey publicKey = RSAcrypt.getPublicKey(publicKeys.get(index)); // !!have exception, need to be
+																						// changed!!!!!
+					byte[] enCommenKey = RSAcrypt.encrypt(publicKey, commenKeyToByte);
+					String enCommenKeyToStr = Base64.getEncoder().encodeToString(enCommenKey);
+					//send response to client
+					Sendsocket.sendtosocket(JSONRETURN2.AUTH_RESPONSE(enCommenKeyToStr, true, "public key found"),
+							socket);
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
 			break;
 		default:

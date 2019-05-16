@@ -16,22 +16,19 @@ import unimelb.bitbox.util.Configuration;
 
 public class test2 {
    public static void main(String[] args) {
-	   String publick = Configuration.getConfigurationValue("publickey");
-	   System.out.println(Configuration.getConfigurationValue("publickey"));
-	   byte[] publicBytes = Base64.getDecoder().decode(publick);
-	   KeyFactory keyFactory = null;
-	try {
-		keyFactory = KeyFactory.getInstance("RSA");
-	} catch (NoSuchAlgorithmException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	   X509EncodedKeySpec speckey = new X509EncodedKeySpec(publicBytes);
-	   try {
-		PublicKey pubKey = keyFactory.generatePublic(speckey);
-	} catch (InvalidKeySpecException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+	   String[] identityList = Configuration.getConfigurationValue("authorized_keys").split(",");
+		ArrayList<String> identities = new ArrayList<String>();
+		ArrayList<String> publicKeys = new ArrayList<String>();
+		for (String identity : identityList) {
+			identities.add(identity.split(" ")[2]);
+			publicKeys.add(identity.split(" ")[1]);
+		}
+		try {
+			System.out.println(publicKeys.get(0));
+			RSAcrypt.getPublicKey(publicKeys.get(0));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 }
 }
