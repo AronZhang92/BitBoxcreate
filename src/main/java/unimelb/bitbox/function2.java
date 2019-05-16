@@ -231,6 +231,11 @@ public class function2 {
 		case "INVALID_PROTOCOL":
 			log.info("Received INVALID_PROTOCOL response " + doc.getString("message"));
 			break;
+			
+	   // For client security connection
+		case "AUTH_REQUEST":
+			
+			break;
 		default:
 			Sendsocket.sendtosocket(JSONRETURN2.INVALID_PROTOCOL(), socket);
 			break;
