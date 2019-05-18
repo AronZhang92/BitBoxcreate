@@ -29,6 +29,41 @@
           <version>2.33</version>
       </dependency>
 
+      <dependency>
+          <groupId>org.bouncycastle</groupId>
+          <artifactId>bcprov-jdk16</artifactId>
+          <version>1.44</version>
+      </dependency>
+
+      <dependency>
+          <groupId>com.google.guava</groupId>
+          <artifactId>guava</artifactId>
+          <version>27.1-jre</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.jclouds</groupId>
+          <artifactId>jclouds-core</artifactId>
+          <version>1.6.0</version>
+          <scope>test</scope>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/org.jclouds.driver/jclouds-sshj -->
+      <dependency>
+          <groupId>org.jclouds.driver</groupId>
+          <artifactId>jclouds-sshj</artifactId>
+          <version>1.6.0</version>
+          <scope>test</scope>
+      </dependency>
+
+
+
+
+
+
+
+
+
+
 
   </dependencies>
   
