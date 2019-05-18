@@ -3,6 +3,7 @@ package unimelb.bitbox;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Logger;
+import udp.udp;
 
 import unimelb.bitbox.util.Configuration;
 
@@ -11,8 +12,22 @@ public class Peer
 	private static ServerMain serverMain = null;
 	private static SecureServer secureServer = null;
 	private static Logger log = Logger.getLogger(Peer.class.getName());
-    public static void main(String[] args) throws IOException, NumberFormatException, NoSuchAlgorithmException
+	
+	public static void main(String[] args) throws NumberFormatException, NoSuchAlgorithmException, IOException {
+		// decide which mode is used
+		String mode = Configuration.getConfigurationValue("mode");
+		if(mode.equals("tcp")) {
+			Peer.tcp();
+		} else {
+			udp.udpMode();
+		}
+	}
+	
+	
+	
+    public static void tcp() throws IOException, NumberFormatException, NoSuchAlgorithmException
     {
+    	System.out.println("tcp mode started");
     	System.setProperty("java.util.logging.SimpleFormatter.format",
                 "[%1$tc] %2$s %4$s: %5$s%n");
         log.info("BitBox Peer starting...");

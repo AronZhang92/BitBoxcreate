@@ -19,7 +19,8 @@ public class function2 {
 	private static FileSystemManager.FileDescriptor fd;
 	private static final Long blocksize = Long.parseLong(Configuration.getConfigurationValue("blockSize"));
 	private static Logger log = Logger.getLogger(function2.class.getName());
-
+    private static SecretKey commenKey = null;
+	
 	public static void funtional(Document doc, Socket socket) throws IOException, NoSuchAlgorithmException {
 
 		FileSystemManager fsm = ServerMain.returnfilesm(); // should be replaced when generating
@@ -259,7 +260,7 @@ public class function2 {
 					e.printStackTrace();
 				}
 				keyGen.init(128);
-				SecretKey commenKey = keyGen.generateKey();
+			    commenKey = keyGen.generateKey();
 				// commen key to String
 				String commenKeyToStr = Base64.getEncoder().encodeToString(commenKey.getEncoded());
 				byte[] commenKeyToByte = commenKey.getEncoded();
@@ -278,13 +279,32 @@ public class function2 {
 					e.printStackTrace();
 				}
 
+			} else {
+				Sendsocket.sendtosocket(JSONRETURN2.AUTH_RESPONSE( false, "public key not found"),
+						socket);
 			}
 			break;
+			
+		case "LIST_PEERS_REQUEST":
+			// send connected peer list, wait to be implemented
+			break;
+			
+		case "CONNECT_PEER_REQUEST":
+			// connect a peer, wait to be implemented
+			break;
+			
+		case "DISCONNECT_PEER_REQUEST":
+		   // disconnect a peer, wait to be implemented
+		   break;
+		
 		default:
 			Sendsocket.sendtosocket(JSONRETURN2.INVALID_PROTOCOL(), socket);
 			break;
 		}
 
 	}
-
+    
+	public static SecretKey getSecreteKey() {
+		return commenKey;
+	}
 }
