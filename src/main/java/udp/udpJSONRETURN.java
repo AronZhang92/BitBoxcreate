@@ -20,12 +20,17 @@ public class udpJSONRETURN {
 	        doc.append("message", "connection limit reached");
 	        ArrayList<Document> docs = new ArrayList<Document>();
 	        Document doc1 = new Document();
-	        for (Socket socket: Connectionlist.returnsocketlist()
-	        ) {
-	            doc.append("host",socket.getInetAddress().toString());
-	            doc.append("port",socket.getPort());
+	        ArrayList<String> peers = udpConnectionList.getall();
+            for (String peer:peers
+                 ) {
+                String[] middlepeers = peer.split(":");
+                String address = middlepeers[0];
+                int portnumber = Integer.parseInt(middlepeers[1]);
+
+	            doc1.append("host",address);
+	            doc1.append("port",portnumber);
 	            docs.add(doc1);
-	        }
+            }
 	        doc.append("peers", docs);
 	        doc.toJson();
 	        return doc;
