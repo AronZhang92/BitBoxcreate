@@ -1,6 +1,7 @@
 package udp;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.security.NoSuchAlgorithmException;
@@ -27,7 +28,7 @@ public class udpFunction {
 	private static Logger log = Logger.getLogger(function2.class.getName());
     private static SecretKey commenKey = null;
 	
-	public static void funtional(Document doc, Socket socket) throws IOException, NoSuchAlgorithmException {
+	public static void funtional(Document doc, InetAddress address, int port) throws IOException, NoSuchAlgorithmException {
 
 		FileSystemManager fsm = ServerMain.returnfilesm(); // should be replaced when generating
 		Document fileDescriper = (Document) doc.get("fileDescriptor");
