@@ -72,7 +72,7 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 						}
 
 					}else { // when the command is not handshake_request
-						
+						udpFunction.funtional(doc, socket);
 					}
 				}
 
