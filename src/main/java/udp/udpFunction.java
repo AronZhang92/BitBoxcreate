@@ -1,5 +1,8 @@
 package udp;
 
+import unimelb.bitbox.RSAcrypt;
+import unimelb.bitbox.util.*;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -7,30 +10,22 @@ import java.nio.ByteBuffer;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.logging.Logger;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
-import unimelb.bitbox.RSAcrypt;
-import unimelb.bitbox.Sendsocket;
-import unimelb.bitbox.ServerMain;
-import unimelb.bitbox.function2;
-import unimelb.bitbox.util.Configuration;
-import unimelb.bitbox.util.Document;
-import unimelb.bitbox.util.FileSystemManager;
-import unimelb.bitbox.util.JSONRETURN2;
-
 public class udpFunction {
 	private static FileSystemManager.FileDescriptor fd;
 	private static final Long blocksize = Long.parseLong(Configuration.getConfigurationValue("blockSize"));
-	private static Logger log = Logger.getLogger(function2.class.getName());
+	private static Logger log = Logger.getLogger(udpFunction.class.getName());
     private static SecretKey commenKey = null;
 	
 	public static void funtional(Document doc, InetAddress address, int port) throws IOException, NoSuchAlgorithmException {
 
-		FileSystemManager fsm = ServerMain.returnfilesm(); // should be replaced when generating
+		FileSystemManager fsm = udpServerMain.returnfilesm(); // should be replaced when generating
 		Document fileDescriper = (Document) doc.get("fileDescriptor");
 		switch (doc.getString("command")) {
 		case "FILE_CREATE_REQUEST":
@@ -40,29 +35,29 @@ public class udpFunction {
 
 							// loader
 							fileDescriper.getLong("fileSize"), fileDescriper.getLong("lastModified"));
-					Sendsocket.sendtosocket(JSONRETURN2.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"),
-							"file loader ready ", true, 0L), socket); // send response when success creating file loader
+					udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"),
+							"file loader ready ", true, 0L)), address, port); // send response when success creating file loader
 
 					if (fsm.checkShortcut(doc.getString("pathName"))) {
 						// System.out.println("Already check the short cut");
 						break; // stop when there is a shortcut
 					} else { // when there is no shortcut
 						if (blocksize > fileDescriper.getLong("fileSize")) {
-							Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper,
-									doc.getString("pathName"), 0L, fileDescriper.getLong("fileSize")), socket);
+							udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper,
+									doc.getString("pathName"), 0L, fileDescriper.getLong("fileSize"))), address, port);
 						} else {
-							Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper,
-									doc.getString("pathName"), 0L, blocksize), socket);
+							udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper,
+									doc.getString("pathName"), 0L, blocksize)), address, port);
 						}
 
 					}
 				} else { // when file already exist
-					Sendsocket.sendDoc(JSONRETURN2.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"),
-							"file name already exist ", false, 0L));
+					udpSendSocket.sendToAllPeers(udpSendSocket.doctoByte(JSONRETURN2.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"),
+							"file name already exist ", false, 0L)));
 				}
 			} else {
-				Sendsocket.sendDoc(JSONRETURN2.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"),
-						"pathName not safe ", false, 0L));
+				udpSendSocket.sendToAllPeers(udpSendSocket.doctoByte(JSONRETURN2.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"),
+						"pathName not safe ", false, 0L)));
 			}
 
 			break;
@@ -76,14 +71,14 @@ public class udpFunction {
 			String bite = Base64.getEncoder().encodeToString(b);
 
 			if (start == filesize) {
-				Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONSE(fileDescriper, doc.getString("pathName"), bite,
-						"read successful", true, start, filesize), socket);
+				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_RESPONSE(fileDescriper, doc.getString("pathName"), bite,
+						"read successful", true, start, filesize)), address, port);
 			} else if (start + blocklength >= filesize) {
-				Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONSE(fileDescriper, doc.getString("pathName"), bite,
-						"read successful", true, start, filesize - start), socket);
+				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_RESPONSE(fileDescriper, doc.getString("pathName"), bite,
+						"read successful", true, start, filesize - start)), address, port);
 			} else {
-				Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_RESPONSE(fileDescriper, doc.getString("pathName"), bite,
-						"read successful", true, start, blocklength), socket);
+				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_RESPONSE(fileDescriper, doc.getString("pathName"), bite,
+						"read successful", true, start, blocklength)), address, port);
 			}
 
 			break;
@@ -111,11 +106,11 @@ public class udpFunction {
 
 			} else if (start1 + blocklength1 + blocklength1 <= filesize1) {
 				// remian still bigger or equal than the blocksize
-				Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"),
-						start1 + blocklength1, blocklength1), socket);
+				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"),
+						start1 + blocklength1, blocklength1)), address, port);
 			} else if (start1 + blocklength1 + blocklength1 > filesize1) {
-				Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"),
-						start1 + blocklength1, filesize1 - start1 - blocklength1), socket);
+				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"),
+						start1 + blocklength1, filesize1 - start1 - blocklength1)), address, port);
 			}
 
 			break;
@@ -133,14 +128,14 @@ public class udpFunction {
 				if (fsm.fileNameExists(pathName)) { // when the directory name exist
 
 					fsm.deleteFile(pathName, fileDescriper.getLong("lastModified"), fileDescriper.getString("md5"));
-					Sendsocket.sendtosocket(
-							JSONRETURN2.FILE_DELETE_RESPONSE(fileDescriper, pathName, "successful delete", true),
-							socket);
+					udpSendSocket.sendtosocket(
+							udpSendSocket.doctoByte(JSONRETURN2.FILE_DELETE_RESPONSE(fileDescriper, pathName, "successful delete", true)),
+							address, port);
 
 				} else {
-					Sendsocket.sendtosocket(
-							JSONRETURN2.FILE_DELETE_RESPONSE(fileDescriper, pathName, "pathname does not exist", false),
-							socket);
+					udpSendSocket.sendtosocket(
+							udpSendSocket.doctoByte(JSONRETURN2.FILE_DELETE_RESPONSE(fileDescriper, pathName, "pathname does not exist", false)),
+							address, port);
 				}
 			}
 
@@ -161,8 +156,8 @@ public class udpFunction {
 																										// file
 								// loader
 								fileDescriper.getLong("lastModified"));
-						Sendsocket.sendtosocket(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper,
-								doc.getString("pathName"), "file loader ready ", true), socket); // send response when
+						udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper,
+								doc.getString("pathName"), "file loader ready ", true)), address, port); // send response when
 																									// success creating
 																									// file loader
 
@@ -170,25 +165,25 @@ public class udpFunction {
 							break; // stop when there is a shortcut
 						} else { // when there is no shortcut
 							if (blocksize > fileDescriper.getLong("fileSize")) {
-								Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper,
-										doc.getString("pathName"), 0L, fileDescriper.getLong("fileSize")), socket);
+								udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper,
+										doc.getString("pathName"), 0L, fileDescriper.getLong("fileSize"))), address, port);
 							} else {
-								Sendsocket.sendtosocket(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper,
-										doc.getString("pathName"), 0L, blocksize), socket);
+								udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper,
+										doc.getString("pathName"), 0L, blocksize)), address, port);
 							}
 
 						}
 					} else { // when file already exist
-						Sendsocket.sendDoc(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper, doc.getString("pathName"),
-								"the content of the file are same ", false));
+						udpSendSocket.sendToAllPeers(udpSendSocket.doctoByte(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper, doc.getString("pathName"),
+								"the content of the file are same ", false)));
 					}
 				} else {
-					Sendsocket.sendDoc(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper, doc.getString("pathName"),
-							"the fileName doesn't exist ", false));
+					udpSendSocket.sendToAllPeers(udpSendSocket.doctoByte(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper, doc.getString("pathName"),
+							"the fileName doesn't exist ", false)));
 				}
 			} else {
-				Sendsocket.sendDoc(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper, doc.getString("pathName"),
-						"pathName not safe ", false));
+				udpSendSocket.sendToAllPeers(udpSendSocket.doctoByte(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper, doc.getString("pathName"),
+						"pathName not safe ", false)));
 			}
 
 			break;
@@ -202,15 +197,15 @@ public class udpFunction {
 			if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
 				if (!fsm.dirNameExists(doc.getString("pathName"))) { // when the directory name doesn't exist
 					fsm.makeDirectory(doc.getString("pathName"));
-					Sendsocket.sendDoc(JSONRETURN2.DIRECTORY_CREATE_RESPONSE(doc.getString("pathName"),
-							"Directory create successfully", true));
+					udpSendSocket.sendToAllPeers(udpSendSocket.doctoByte(JSONRETURN2.DIRECTORY_CREATE_RESPONSE(doc.getString("pathName"),
+							"Directory create successfully", true)));
 				} else {
-					Sendsocket.sendDoc(JSONRETURN2.DIRECTORY_CREATE_RESPONSE(doc.getString("pathName"),
-							"pathName already exist", false)); // when the directory name exist
+					udpSendSocket.sendToAllPeers(udpSendSocket.doctoByte(JSONRETURN2.DIRECTORY_CREATE_RESPONSE(doc.getString("pathName"),
+							"pathName already exist", false))); // when the directory name exist
 				}
 			} else {
-				Sendsocket.sendDoc(
-						JSONRETURN2.DIRECTORY_CREATE_RESPONSE(doc.getString("pathName"), "pathName not Safe", false));
+				udpSendSocket.sendToAllPeers(
+						udpSendSocket.doctoByte(JSONRETURN2.DIRECTORY_CREATE_RESPONSE(doc.getString("pathName"), "pathName not Safe", false)));
 			}
 			break;
 
@@ -224,15 +219,15 @@ public class udpFunction {
 			if (fsm.isSafePathName(pathName1)) { // check if the pathname is safe
 				if (fsm.dirNameExists(pathName1)) { // when the directory name exist
 					fsm.deleteDirectory(pathName1);
-					Sendsocket.sendtosocket(JSONRETURN2.DIRECTORY_DELETE_RESPONSE(pathName1, "successful delete", true),
-							socket);
+					udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.DIRECTORY_DELETE_RESPONSE(pathName1, "successful delete", true)),
+							address, port);
 				} else {
-					Sendsocket.sendtosocket(
-							JSONRETURN2.DIRECTORY_DELETE_RESPONSE(pathName1, "pathname does not exist", false), socket);
+					udpSendSocket.sendtosocket(
+							udpSendSocket.doctoByte(JSONRETURN2.DIRECTORY_DELETE_RESPONSE(pathName1, "pathname does not exist", false)), address, port);
 				}
 			} else {
-				Sendsocket.sendDoc(
-						JSONRETURN2.DIRECTORY_DELETE_RESPONSE(doc.getString("pathName"), "pathName not Safe", false));
+				udpSendSocket.sendToAllPeers(
+						udpSendSocket.doctoByte(JSONRETURN2.DIRECTORY_DELETE_RESPONSE(doc.getString("pathName"), "pathName not Safe", false)));
 			}
 
 			break;
@@ -277,8 +272,8 @@ public class udpFunction {
 					byte[] enCommenKey = RSAcrypt.encrypt(publicKey, commenKeyToByte);
 					String enCommenKeyToStr = Base64.getEncoder().encodeToString(enCommenKey);
 					//send response to client
-					Sendsocket.sendtosocket(JSONRETURN2.AUTH_RESPONSE(enCommenKeyToStr, true, "public key found"),
-							socket);
+					udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.AUTH_RESPONSE(enCommenKeyToStr, true, "public key found")),
+							address, port);
 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -286,8 +281,8 @@ public class udpFunction {
 				}
 
 			} else {
-				Sendsocket.sendtosocket(JSONRETURN2.AUTH_RESPONSE( false, "public key not found"),
-						socket);
+				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.AUTH_RESPONSE( false, "public key not found")),
+						address, port);
 			}
 			break;
 			
@@ -304,7 +299,7 @@ public class udpFunction {
 		   break;
 		
 		default:
-			Sendsocket.sendtosocket(JSONRETURN2.INVALID_PROTOCOL(), socket);
+			udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.INVALID_PROTOCOL()), address, port);
 			break;
 		}
 
@@ -314,5 +309,3 @@ public class udpFunction {
 		return commenKey;
 	}
 }
-
-

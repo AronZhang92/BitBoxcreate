@@ -39,7 +39,9 @@ public class udpSendSocket {
           bSocket.send(msg);
       }
   }
-	  public static void sendToPeer(byte[] data, InetAddress address, int port) throws IOException {
+	
+	  //send to one peer
+	  public static void sendtosocket(byte[] data, InetAddress address, int port) throws IOException {
 	        DatagramSocket bSocket = udpPeer.getDatagramSocket();
 	        DatagramPacket msg = new DatagramPacket(data, data.length, address,port);
 	        bSocket.send(msg);

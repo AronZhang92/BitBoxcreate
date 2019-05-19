@@ -16,12 +16,11 @@ public class udpPeer {
 	private static udpServerMain udpServerMain = null;
 	private static SecureServer secureServer = null;
 	private static Logger log = Logger.getLogger(Peer.class.getName());
-	private static DatagramSocket socket ;
-	
+	private static DatagramSocket socket;
 
 	public static void udpMode() throws NumberFormatException, NoSuchAlgorithmException, IOException {
-		socket =  new DatagramSocket(Integer.parseInt(Configuration.getConfigurationValue("udpProt")));
-		
+		socket = new DatagramSocket(Integer.parseInt(Configuration.getConfigurationValue("udpProt")));
+
 		System.out.println("tcp mode started");
 		System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$tc] %2$s %4$s: %5$s%n");
 		log.info("BitBox Peer starting...");
@@ -29,9 +28,8 @@ public class udpPeer {
 		String timeString = Configuration.getConfigurationValue("syncInterval");
 		// syn time the time that the program need to be syn
 		Long syntime = Long.parseLong(timeString) * 1000;
-		
 
-		udpServerMain = new udpServerMain();   //changing
+		udpServerMain = new udpServerMain(); // changing
 		Thread t = new Thread(udpServerMain);
 		t.start();
 
@@ -40,21 +38,14 @@ public class udpPeer {
 		Thread h = new Thread(secureServer);
 		h.start();
 
-		ClientMain.ClientMain();  //wait for changing
-		Long starttime = System.currentTimeMillis();
-		while (true) {
-			Long endtime = System.currentTimeMillis();
-			if (endtime - starttime == syntime) {
-				starttime = endtime;
-				synevents.syneventtoall(Connectionlist.returnsocketlist());
-			}
-		}
+		udpSendSocket.sendToAllPeers(udpSendSocket.doctoByte(
+				udpJSONRETURN.HANDSHAKE_REQUEST(socket.getLocalAddress().toString(), socket.getLocalPort())));
 	}
 
 	public static udpServerMain getServerMain() {
 		return udpServerMain;
 	}
-	
+
 	public static DatagramSocket getDatagramSocket() {
 		return socket;
 	}

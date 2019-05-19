@@ -37,7 +37,12 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 	@Override
 	public void processFileSystemEvent(FileSystemEvent fileSystemEvent) {
 		byte[] msg = udpSendSocket.doctoByte(udpSendSocket.eventToDoc(fileSystemEvent)); // changing
-//		udpSendSocket.SendToPeers(msg, udpConnectionList.returnsocketlist()); wait for change
+		try {
+			udpSendSocket.sendToAllPeers(msg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void run() { // wait for change
@@ -72,7 +77,7 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 						}
 
 					}else { // when the command is not handshake_request
-						udpFunction.funtional(doc, socket);
+						udpFunction.funtional(doc, request.getAddress(), request.getPort());
 					}
 				}
 

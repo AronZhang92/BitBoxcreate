@@ -21,7 +21,7 @@ public class udpSynEvents {
 		ArrayList<FileSystemManager.FileSystemEvent> eventslist = fsm.generateSyncEvents();
 		for (FileSystemManager.FileSystemEvent event : eventslist) {
 			byte[] msg = udpSendSocket.doctoByte(udpSendSocket.eventToDoc(event));
-			udpSendSocket.sendToPeer(msg, address, port);
+			udpSendSocket.sendtosocket(msg, address, port);
 		}
 	}
 
