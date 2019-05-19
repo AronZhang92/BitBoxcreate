@@ -266,8 +266,7 @@ public class function2 {
 				byte[] commenKeyToByte = commenKey.getEncoded();
 				// change public key from String to key
 				try {
-					PublicKey publicKey = RSAcrypt.getPublicKey(publicKeys.get(index)); // !!have exception, need to be
-																						// changed!!!!!
+					PublicKey publicKey = RSAcrypt.getPublicKey(publicKeys.get(index)); // change String to public key
 					byte[] enCommenKey = RSAcrypt.encrypt(publicKey, commenKeyToByte);
 					String enCommenKeyToStr = Base64.getEncoder().encodeToString(enCommenKey);
 					//send response to client

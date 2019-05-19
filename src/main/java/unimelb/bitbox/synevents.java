@@ -10,11 +10,13 @@ import java.net.Socket;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
+import udp.udpServerMain;
+
 public class synevents {
 
     public static void synevent(Socket socket) throws IOException, NoSuchAlgorithmException {
         FileSystemObserver ob = Peer.getServerMain();
-        FileSystemManager fsm = new FileSystemManager("share", ob);
+        FileSystemManager fsm = ServerMain.fileSystemManager;;
         BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
         ArrayList<FileSystemManager.FileSystemEvent> eventslist = fsm.generateSyncEvents();
         for (FileSystemManager.FileSystemEvent event: eventslist
@@ -25,7 +27,7 @@ public class synevents {
     public static void syneventtoall(ArrayList<Socket> socketlist) throws IOException, NoSuchAlgorithmException {
         if (socketlist.size() ==  0) {
             FileSystemObserver ob = Peer.getServerMain();
-            FileSystemManager fsm = new FileSystemManager("share", ob);
+            FileSystemManager fsm = ServerMain.fileSystemManager;;
             ArrayList<FileSystemManager.FileSystemEvent> eventslist = fsm.generateSyncEvents();
             for (Socket socket : socketlist
             ) {

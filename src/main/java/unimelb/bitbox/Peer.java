@@ -3,8 +3,7 @@ package unimelb.bitbox;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Logger;
-import udp.udp;
-
+import udp.udpPeer;
 import unimelb.bitbox.util.Configuration;
 
 public class Peer 
@@ -19,7 +18,7 @@ public class Peer
 		if(mode.equals("tcp")) {
 			Peer.tcp();
 		} else {
-			udp.udpMode();
+			udpPeer.udpMode();
 		}
 	}
 	

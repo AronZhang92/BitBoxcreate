@@ -15,7 +15,7 @@ public class JSONRETURN2 {
         return doc;
     }
 
-    public static Document CONNCECTION_REFUSED (){
+    public static Document CONNCECTION_REFUSED (){ //waiting for changing 
         Document doc = new Document();
         doc.append("command", "CONNECTION_REFUSED");
         doc.append("message", "connection limit reached");
