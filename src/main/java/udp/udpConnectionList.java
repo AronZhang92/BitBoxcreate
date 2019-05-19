@@ -39,7 +39,7 @@ public class udpConnectionList {
 
     public static ArrayList<String> getall(){
         ArrayList<String> array = new ArrayList<String>();
-        if(map.size() == 0){
+        if(map == null){
             return null;
         }
         Set<String> newset = map.keySet();
