@@ -68,10 +68,11 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 								udpSynEvents.synevent(request.getAddress(), request.getPort());
 							}
 						} else { // when maximun connection number reached
-							Document refuseRes = JSONRETURN2.HANDSHAKE_RESPONSE(socket.getInetAddress().toString(),
-									socket.getLocalPort());
+							Document refuseRes = JSONRETURN2.CONNCECTION_REFUSED();
 						}
 
+					}else { // when the command is not handshake_request
+						
 					}
 				}
 
