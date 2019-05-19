@@ -24,8 +24,7 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 	protected static FileSystemManager fileSystemManager;
 	private String maximumconnection = Configuration.getConfigurationValue("maximumIncommingConnections");
 	private int maxcon = Integer.parseInt(maximumconnection);
-	private	DatagramSocket socket;
-
+	private DatagramSocket socket;
 
 	public udpServerMain() throws NumberFormatException, IOException, NoSuchAlgorithmException {
 		fileSystemManager = new FileSystemManager(Configuration.getConfigurationValue("path"), this);
@@ -42,7 +41,7 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 	}
 
 	public void run() { // wait for change
-	
+
 		while (true) {
 			try {
 				socket = udpPeer.getDatagramSocket();
@@ -52,21 +51,27 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 					String msg = new String(request.getData(), request.getOffset(), request.getLength());
 					Document doc = Document.parse(msg);
 					// handshake
-					if (doc.getString("command").equals("HANDSHAKE_REQUEST") && udpConnectionList.getsize() < maxcon) {
-						log.info("received request from : " + request.getAddress());
-						// send response
-						Document responseDoc = JSONRETURN2.HANDSHAKE_RESPONSE(socket.getInetAddress().toString(),
-								socket.getLocalPort());
-						byte[] responseByte = udpSendSocket.doctoByte(responseDoc);
-						DatagramPacket response = new DatagramPacket(responseByte, responseByte.length,
-								request.getAddress(), request.getPort());
-						// check if the peer already in the list
-						if(udpConnectionList.contain(request.getAddress().toString())) {
-							
-						}else {  // add the Datagramsocket to list, syncronize
-							udpConnectionList.addudp(request.getAddress().toString(), request.getPort());
-							//waiting for syncronize
+					if (doc.getString("command").equals("HANDSHAKE_REQUEST")) {
+						if (udpConnectionList.getsize() < maxcon) { // when haven't reach mximum connection number
+							log.info("received request from : " + request.getAddress());
+							// send response
+							Document responseDoc = JSONRETURN2.HANDSHAKE_RESPONSE(socket.getInetAddress().toString(),
+									socket.getLocalPort());
+							byte[] responseByte = udpSendSocket.doctoByte(responseDoc);
+							DatagramPacket response = new DatagramPacket(responseByte, responseByte.length,
+									request.getAddress(), request.getPort());
+							// check if the peer already in the list
+							if (udpConnectionList.contain(request.getAddress().toString())) {
+
+							} else { // add the Datagramsocket to list, syncronize
+								udpConnectionList.addudp(request.getAddress().toString(), request.getPort());
+								udpSynEvents.synevent(request.getAddress(), request.getPort());
+							}
+						} else { // when maximun connection number reached
+							Document refuseRes = JSONRETURN2.HANDSHAKE_RESPONSE(socket.getInetAddress().toString(),
+									socket.getLocalPort());
 						}
+
 					}
 				}
 
@@ -74,6 +79,9 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchAlgorithmException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
