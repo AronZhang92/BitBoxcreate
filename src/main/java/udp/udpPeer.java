@@ -34,9 +34,9 @@ public class udpPeer {
 		t.start();
 
 		// create thread for secure server
-		secureServer = new SecureServer();
-		Thread h = new Thread(secureServer);
-		h.start();
+		//secureServer = new SecureServer();
+		//Thread h = new Thread(secureServer);
+		//h.start();
 
 		udpSendSocket.sendToAllPeers(udpSendSocket.doctoByte(
 				udpJSONRETURN.HANDSHAKE_REQUEST(socket.getLocalAddress().toString(), socket.getLocalPort())));

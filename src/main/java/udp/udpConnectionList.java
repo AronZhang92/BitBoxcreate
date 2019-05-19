@@ -39,6 +39,9 @@ public class udpConnectionList {
 
     public static ArrayList<String> getall(){
         ArrayList<String> array = new ArrayList<String>();
+        if(map.size() == 0){
+            return null;
+        }
         Set<String> newset = map.keySet();
         for (String ipadress : newset) {
             String newstring = ipadress + ":" + map.get(ipadress).toString();

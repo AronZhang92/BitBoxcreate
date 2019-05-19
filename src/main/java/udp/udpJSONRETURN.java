@@ -21,6 +21,9 @@ public class udpJSONRETURN {
 	        ArrayList<Document> docs = new ArrayList<Document>();
 	        Document doc1 = new Document();
 	        ArrayList<String> peers = udpConnectionList.getall();
+	        if(peers == null){
+	            return null;
+            }
             for (String peer:peers
                  ) {
                 String[] middlepeers = peer.split(":");

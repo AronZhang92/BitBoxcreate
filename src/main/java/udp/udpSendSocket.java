@@ -29,15 +29,17 @@ public class udpSendSocket {
 	 //still need to be change to mutiple threads 
 	  public static void sendToAllPeers(byte[] data) throws IOException {
           ArrayList<String> array = udpConnectionList.getall();
-      for(String newstring : array ){
-          String[] middlepeers = newstring.split(":");
-          String address = middlepeers[0];
-          int portnumber = Integer.parseInt(middlepeers[1]);
+          if (array != null) {
+              for (String newstring : array) {
+                  String[] middlepeers = newstring.split(":");
+                  String address = middlepeers[0];
+                  int portnumber = Integer.parseInt(middlepeers[1]);
 
-          DatagramSocket bSocket = udpPeer.getDatagramSocket();
-          DatagramPacket msg = new DatagramPacket(data, data.length, InetAddress.getByName(address),portnumber);
-          bSocket.send(msg);
-      }
+                  DatagramSocket bSocket = udpPeer.getDatagramSocket();
+                  DatagramPacket msg = new DatagramPacket(data, data.length, InetAddress.getByName(address), portnumber);
+                  bSocket.send(msg);
+              }
+          }
   }
 	
 	  //send to one peer
