@@ -285,6 +285,8 @@ public class udpFunction {
 						address, port);
 			}
 			break;
+		case "HANDSHAKE_RESPONSE":
+			udpConnectionList.addudp(address.toString(), port);
 			
 		case "LIST_PEERS_REQUEST":
 			// send connected peer list, wait to be implemented

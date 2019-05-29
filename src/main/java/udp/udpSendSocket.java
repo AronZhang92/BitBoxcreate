@@ -6,6 +6,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.ArrayList;
 
+import unimelb.bitbox.util.Configuration;
 import unimelb.bitbox.util.Document;
 import unimelb.bitbox.util.FileSystemManager;
 
@@ -42,6 +43,28 @@ public class udpSendSocket {
           }
   }
 	
+	  public static void sendToConfigPeers(byte[] data) throws IOException {
+		  ArrayList<String> array = new ArrayList<String>();
+		  String peerList = Configuration.getConfigurationValue("peers");
+		  String[] peers = peerList.split(",");
+		  for(String peer: peers) {
+			  array.add(peer);
+		  }
+		  
+          if (array != null) {
+              for (String newstring : array) {
+                  String[] middlepeers = newstring.split(":");
+                  String address = middlepeers[0];
+                  int portnumber = Integer.parseInt(middlepeers[1]);
+
+                  DatagramSocket bSocket = udpPeer.getDatagramSocket();
+                  DatagramPacket msg = new DatagramPacket(data, data.length, InetAddress.getByName(address), portnumber);
+                  bSocket.send(msg);
+              }
+          }
+	  }
+	  
+	  
 	  //send to one peer
 	  public static void sendtosocket(byte[] data, InetAddress address, int port) throws IOException {
 	        DatagramSocket bSocket = udpPeer.getDatagramSocket();

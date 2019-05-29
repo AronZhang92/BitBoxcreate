@@ -17,10 +17,11 @@ import unimelb.bitbox.util.Document;
 
 public class SecureServer implements Runnable {
 	private static Logger log = Logger.getLogger(ServerMain.class.getName());
-	static final int clientport = Integer.parseInt(Configuration.getConfigurationValue("clientport"));
+	static final int clientport = Integer.parseInt(Configuration.getConfigurationValue("clientPort"));
 
 	@Override
 	public void run() {
+		System.out.println("secure server running");
 		ServerSocket listeningSocket = null;
 		Socket clientSocket = null;
 		try {

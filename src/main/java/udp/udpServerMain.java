@@ -19,8 +19,8 @@ import unimelb.bitbox.util.FileSystemManager.FileSystemEvent;
 public class udpServerMain implements FileSystemObserver, Runnable {
 	private static Logger log = Logger.getLogger(udpServerMain.class.getName());
 
-	static String portstring = Configuration.getConfigurationValue("port");
-	static final int port = Integer.parseInt(portstring);
+//	static String portstring = Configuration.getConfigurationValue("udpPort");
+//	static final int port = Integer.parseInt(portstring);
 	protected static FileSystemManager fileSystemManager;
 	private String maximumconnection = Configuration.getConfigurationValue("maximumIncommingConnections");
 	private int maxcon = Integer.parseInt(maximumconnection);
@@ -38,7 +38,9 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 	public void processFileSystemEvent(FileSystemEvent fileSystemEvent) {
 		byte[] msg = udpSendSocket.doctoByte(udpSendSocket.eventToDoc(fileSystemEvent)); // changing
 		try {
+			System.out.println(udpConnectionList.getall());
 			udpSendSocket.sendToAllPeers(msg);
+			System.out.println("send event to peers");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,6 +51,7 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 
 		while (true) {
 			try {
+				System.out.println("udpServer start");
 				socket = udpPeer.getDatagramSocket();
 				while (true) {
 					DatagramPacket request = new DatagramPacket(new byte[8192], 8192);
@@ -57,6 +60,7 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 					Document doc = Document.parse(msg);
 					// handshake
 					if (doc.getString("command").equals("HANDSHAKE_REQUEST")) {
+						System.out.println("Handshkae_request received");//test print
 						if (udpConnectionList.getsize() < maxcon) { // when haven't reach mximum connection number
 							log.info("received request from : " + request.getAddress());
 							// send response
