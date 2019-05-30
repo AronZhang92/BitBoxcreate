@@ -3,6 +3,7 @@ package udp;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.SocketException;
 import java.security.NoSuchAlgorithmException;
@@ -64,16 +65,18 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 						if (udpConnectionList.getsize() < maxcon) { // when haven't reach mximum connection number
 							log.info("received request from : " + request.getAddress());
 							// send response
-							Document responseDoc = JSONRETURN2.HANDSHAKE_RESPONSE(socket.getInetAddress().toString(),
+							Document responseDoc = JSONRETURN2.HANDSHAKE_RESPONSE(InetAddress.getLocalHost().getHostAddress(),
 									socket.getLocalPort());
 							byte[] responseByte = udpSendSocket.doctoByte(responseDoc);
 							DatagramPacket response = new DatagramPacket(responseByte, responseByte.length,
 									request.getAddress(), request.getPort());
+							socket.send(response);
 							// check if the peer already in the list
 							if (udpConnectionList.contain(request.getAddress().toString())) {
 
 							} else { // add the Datagramsocket to list, syncronize
-								udpConnectionList.addudp(request.getAddress().toString(), request.getPort());
+								System.out.println(request.getAddress().toString().replace("/", "") + " hhhh " + request.getPort());
+								udpConnectionList.addudp(request.getAddress().toString().replace("/", ""), request.getPort());
 								udpSynEvents.synevent(request.getAddress(), request.getPort());
 							}
 						} else { // when maximun connection number reached

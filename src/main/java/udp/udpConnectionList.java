@@ -4,11 +4,12 @@ import java.net.DatagramSocket;
 import java.net.Socket;
 import java.security.Key;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 public class udpConnectionList {
-	private static Map<String, Integer> map;
+	private static Map<String, Integer> map = new HashMap<String,Integer>();
 
     public static void addudp(String ipadress, int port) {
         map.put(ipadress, port);
@@ -23,7 +24,11 @@ public class udpConnectionList {
     }
 
     public static boolean contain(String ipadress) {
-        return map.containsKey(ipadress);
+    	if(map == null) {
+    		return false;
+    	}else {
+    		return map.containsKey(ipadress);
+    	}
     }
 
     public static void remove(String ipadress) {
