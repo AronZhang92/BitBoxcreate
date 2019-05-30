@@ -33,7 +33,7 @@ public class udpSendSocket {
           if (array != null) {
               for (String newstring : array) {
                   String[] middlepeers = newstring.split(":");
-                  String address = middlepeers[0];
+                  String address = middlepeers[0].replace("/", "");
                   int portnumber = Integer.parseInt(middlepeers[1]);
 
                   DatagramSocket bSocket = udpPeer.getDatagramSocket();
