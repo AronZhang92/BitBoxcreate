@@ -63,6 +63,8 @@ public class udpFunction {
 
 			break;
 		case "FILE_BYTES_REQUEST":
+			
+			System.out.println("received File Bytes request");
 
 			Long blocklength = doc.getLong("length");
 			Long start = doc.getLong("position");
@@ -74,16 +76,20 @@ public class udpFunction {
 			if (start == filesize) {
 				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_RESPONSE(fileDescriper, doc.getString("pathName"), bite,
 						"read successful", true, start, filesize)), address, port);
+				System.out.println("send 1");
 			} else if (start + blocklength >= filesize) {
 				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_RESPONSE(fileDescriper, doc.getString("pathName"), bite,
 						"read successful", true, start, filesize - start)), address, port);
+				System.out.println("send 2");
 			} else {
 				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_RESPONSE(fileDescriper, doc.getString("pathName"), bite,
 						"read successful", true, start, blocklength)), address, port);
+				System.out.println("send 3");
 			}
 
 			break;
 		case "FILE_BYTES_RESPONSE":
+			System.out.println("received File Bytes response");
 
 			Long blocklength1 = doc.getLong("length");
 			Long start1 = doc.getLong("position");
@@ -107,12 +113,12 @@ public class udpFunction {
 				}
 
 			} else if (start1 + blocklength1 + blocklength1 <= filesize1) {
-				TimeUnit.SECONDS.sleep(1);
+//				TimeUnit.SECONDS.sleep(1);
 				// remian still bigger or equal than the blocksize
 				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"),
 						start1 + blocklength1, blocklength1)), address, port);
 			} else if (start1 + blocklength1 + blocklength1 > filesize1) {
-				TimeUnit.SECONDS.sleep(1);
+//				TimeUnit.SECONDS.sleep(1);
 				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"),
 						start1 + blocklength1, filesize1 - start1 - blocklength1)), address, port);
 			}
