@@ -75,7 +75,6 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 							if (udpConnectionList.contain(request.getAddress().toString())) {
 
 							} else { // add the Datagramsocket to list, syncronize
-								System.out.println(request.getAddress().toString().replace("/", "") + " hhhh " + request.getPort());
 								udpConnectionList.addudp(request.getAddress().toString().replace("/", ""), request.getPort());
 								udpSynEvents.synevent(request.getAddress(), request.getPort());
 							}
@@ -84,7 +83,6 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 						}
 
 					}else { // when the command is not handshake_request
-						System.out.println("request's address is" + request.getAddress());
 						String ipAdress= request.getAddress().toString().replace("/", "");
 						udpFunction.funtional(doc, InetAddress.getByName(ipAdress), request.getPort());
 					}
