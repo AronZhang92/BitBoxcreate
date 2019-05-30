@@ -85,6 +85,7 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 					}else { // when the command is not handshake_request
 						String ipAdress= request.getAddress().toString().replace("/", "");
 						udpFunction.funtional(doc, InetAddress.getByName(ipAdress), request.getPort());
+						System.out.println(doc.getString("command"));
 					}
 				}
 
