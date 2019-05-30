@@ -33,7 +33,11 @@ public class udpConnectionList {
     }
     
     public static int getsize() {
-    	return map.size();
+    	if(map == null) {
+    		return 0;
+    	}else {
+    		return map.size();
+    	}
     }
 
 

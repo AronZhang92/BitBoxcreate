@@ -1,7 +1,9 @@
 package udp;
 
 import java.io.IOException;
+import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Logger;
 
@@ -19,7 +21,7 @@ public class udpPeer {
 	private static DatagramSocket socket;
 
 	public static void udpMode() throws NumberFormatException, NoSuchAlgorithmException, IOException {
-		socket = new DatagramSocket(Integer.parseInt(Configuration.getConfigurationValue("udpProt")));
+		socket = new DatagramSocket(Integer.parseInt(Configuration.getConfigurationValue("udpPort")));
 
 		System.out.println("udp mode started");
 		System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$tc] %2$s %4$s: %5$s%n");
@@ -38,9 +40,16 @@ public class udpPeer {
 		Thread h = new Thread(secureServer);
 		h.start();
         
+		// sending test
+//		String[] peer= Configuration.getConfigurationValue("peers").split(":");
+//		System.out.println(peer[0] + "hhhh " + peer[1]); //coding in here
+//		byte[] msg = udpSendSocket.doctoByte(udpJSONRETURN.HANDSHAKE_REQUEST(InetAddress.getLocalHost().getHostAddress(), socket.getLocalPort()));
+//		DatagramPacket handShake = new DatagramPacket(msg, msg.length, InetAddress.getLocalHost(), socket.getLocalPort());
+//		System.out.println("getlocal Houst " + InetAddress.getLocalHost().getAllByName("MichaelSurface")[0]);
+		
 		//send to all peers handshake at beginning 
 		udpSendSocket.sendToConfigPeers(udpSendSocket.doctoByte(
-				udpJSONRETURN.HANDSHAKE_REQUEST(socket.getLocalAddress().toString(), socket.getLocalPort())));
+				udpJSONRETURN.HANDSHAKE_REQUEST(InetAddress.getLocalHost().getHostAddress(), socket.getLocalPort())));
 		System.out.println("send to all peers");
 	}
 
