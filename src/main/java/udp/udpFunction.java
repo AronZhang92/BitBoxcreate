@@ -63,8 +63,6 @@ public class udpFunction {
 
 			break;
 		case "FILE_BYTES_REQUEST":
-			
-			System.out.println("received File Bytes request");
 
 			Long blocklength = doc.getLong("length");
 			Long start = doc.getLong("position");
@@ -76,20 +74,16 @@ public class udpFunction {
 			if (start == filesize) {
 				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_RESPONSE(fileDescriper, doc.getString("pathName"), bite,
 						"read successful", true, start, filesize)), address, port);
-				System.out.println("send 1");
 			} else if (start + blocklength >= filesize) {
 				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_RESPONSE(fileDescriper, doc.getString("pathName"), bite,
 						"read successful", true, start, filesize - start)), address, port);
-				System.out.println("send 2");
 			} else {
 				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_RESPONSE(fileDescriper, doc.getString("pathName"), bite,
 						"read successful", true, start, blocklength)), address, port);
-				System.out.println("send 3");
 			}
 
 			break;
 		case "FILE_BYTES_RESPONSE":
-			System.out.println("received File Bytes response");
 
 			Long blocklength1 = doc.getLong("length");
 			Long start1 = doc.getLong("position");
@@ -98,7 +92,6 @@ public class udpFunction {
 
 			if (content != null) {
 				byte[] bites = Base64.getDecoder().decode(content);
-				System.out.println(" the text reveived is :" + ByteBuffer.wrap(bites));
 				fsm.writeFile(doc.getString("pathName"), ByteBuffer.wrap(bites), start1);
 			
 			} else {
