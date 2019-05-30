@@ -12,6 +12,7 @@ import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import javax.crypto.KeyGenerator;
@@ -23,7 +24,7 @@ public class udpFunction {
 	private static Logger log = Logger.getLogger(udpFunction.class.getName());
     private static SecretKey commenKey = null;
 	
-	public static void funtional(Document doc, InetAddress address, int port) throws IOException, NoSuchAlgorithmException {
+	public static void funtional(Document doc, InetAddress address, int port) throws IOException, NoSuchAlgorithmException, InterruptedException {
 
 		FileSystemManager fsm = udpServerMain.returnfilesm(); // should be replaced when generating
 		Document fileDescriper = (Document) doc.get("fileDescriptor");
@@ -93,6 +94,7 @@ public class udpFunction {
 				byte[] bites = Base64.getDecoder().decode(content);
 				System.out.println(" the text reveived is :" + ByteBuffer.wrap(bites));
 				fsm.writeFile(doc.getString("pathName"), ByteBuffer.wrap(bites), start1);
+			
 			} else {
 				log.info("System read nothing form the response");
 			}
@@ -105,10 +107,12 @@ public class udpFunction {
 				}
 
 			} else if (start1 + blocklength1 + blocklength1 <= filesize1) {
+				TimeUnit.SECONDS.sleep(1);
 				// remian still bigger or equal than the blocksize
 				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"),
 						start1 + blocklength1, blocklength1)), address, port);
 			} else if (start1 + blocklength1 + blocklength1 > filesize1) {
+				TimeUnit.SECONDS.sleep(1);
 				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"),
 						start1 + blocklength1, filesize1 - start1 - blocklength1)), address, port);
 			}
