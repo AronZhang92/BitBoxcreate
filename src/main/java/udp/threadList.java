@@ -18,7 +18,30 @@ public class threadList {
         address = m.getAddress();
         //Document pathname = (Document) doc.get("pathname");
         infoDoc.append("address", address.toString());
-        infoDoc.append("command", doc.getString("command"));
+        switch (doc.getString("command")){
+            case "FILE_CREATE_REQUEST" :
+                infoDoc.append("command", "FILE_CREATE_RESPONSE");
+                break;
+            case "FILE_BYTES_REQUEST" :
+                infoDoc.append("command", "FILE_BYTES_RESPONSE");
+                break;
+            case "FILE_DELETE_REQUEST" :
+                infoDoc.append("command", "FILE_DELETE_RESPONSE");
+                break;
+            case "FILE_MODIFY_REQUEST" :
+                infoDoc.append("command", "FILE_MODIFY_RESPONSE");
+                break;
+            case "DIRECTORY_CREATE_REQUEST" :
+                infoDoc.append("command", "DIRECTORY_CREATE_RESPONSE");
+                break;
+            case "DIRECTORY_DELETE_REQUEST" :
+                infoDoc.append("command", "DIRECTORY_DELETE_RESPONSE");
+                break;
+            case "HANDSHAKE_REQUEST" :
+                infoDoc.append("command", "HANDSHAKE_RESPONSE");
+                break;
+        }
+
         infoDoc.append("pathname", doc.getString("pathname"));
        // Document newdoc = new Document();
         //newdoc.append("first",infoDoc);
@@ -36,8 +59,13 @@ public class threadList {
         return answer;
     }*/
 
-    public static ArrayList<Document> removePacket(DatagramPacket request){
-        if ()
+    public static ArrayList<Document> removePacket(DatagramPacket request, Document doc){
+        Document infoReceive = new Document();
+        infoReceive.append("address", request.getAddress().toString());
+        infoReceive.append("command", doc.getString("command"));
+        infoReceive.append("pathname", doc.getString("pathname"));
+        info.remove(infoReceive);
+        return info;
     }
 
 }

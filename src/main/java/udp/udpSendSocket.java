@@ -40,14 +40,7 @@ public class udpSendSocket {
                   DatagramSocket bSocket = udpPeer.getDatagramSocket();
                   DatagramPacket msg = new DatagramPacket(data, data.length, InetAddress.getByName(address), portnumber);
 
-                  String a = Base64.getEncoder().encodeToString(data);
-                  Document doc = Document.parse(a);
-                  retryWoker re = new retryWoker(msg, bSocket, doc);
-                  threadList.addPacket(msg, doc);
-                  System.out.println("udpSendSocket 43: use method addpacket 1");
-                  bSocket.send(msg);
-                  Thread t = new Thread(re);
-                  t.start();
+
               }
           }
   }
@@ -69,6 +62,15 @@ public class udpSendSocket {
                   DatagramSocket bSocket = udpPeer.getDatagramSocket();
                   DatagramPacket msg = new DatagramPacket(data, data.length, InetAddress.getByName(address), portnumber);
                   bSocket.send(msg);
+
+                  String a = Base64.getEncoder().encodeToString(data);
+                  Document doc = Document.parse(a);
+                  retryWoker re = new retryWoker(msg, bSocket, doc);
+                  threadList.addPacket(msg, doc);
+                  System.out.println("udpSendSocket 43: use method addpacket 1");
+                  bSocket.send(msg);
+                  Thread t = new Thread(re);
+                  t.start();
               }
           }
 	  }
