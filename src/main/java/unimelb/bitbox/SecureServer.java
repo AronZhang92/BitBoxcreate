@@ -21,7 +21,7 @@ public class SecureServer implements Runnable {
 
 	@Override
 	public void run() {
-		System.out.println("secure server running");
+		System.out.println("secure server running ");
 		ServerSocket listeningSocket = null;
 		Socket clientSocket = null;
 		try {

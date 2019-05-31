@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 public class ClientMain {
     private static Logger log = Logger.getLogger(ClientMain.class.getName());
     public static void ClientMain() {
-        //what we wrote, multithreading client
         Socket socket;
         String peer = Configuration.getConfigurationValue("peers");
         String addr = null;

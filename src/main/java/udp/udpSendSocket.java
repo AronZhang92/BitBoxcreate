@@ -5,6 +5,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.ArrayList;
+import java.util.Base64;
 
 import unimelb.bitbox.util.Configuration;
 import unimelb.bitbox.util.Document;
@@ -78,7 +79,7 @@ public class udpSendSocket {
 	    }
 	 
 	 public static byte[] doctoByte(Document doc){
-	        byte[] m = doc.toJson().getBytes();
+	        byte[] m = Base64.getDecoder().decode(doc.toJson());
 	        return m;
 	    }
 	 
