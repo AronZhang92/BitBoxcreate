@@ -56,7 +56,7 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 				while (true) {
 					DatagramPacket request = new DatagramPacket(new byte[13000], 13000);
 					socket.receive(request);
-					System.out.println("udpServer Main 60: before remove" + threadList.addresses);
+					System.out.println("udpServer Main 60: before remove" + threadList.info);
 					threadList.addresses.remove(request.getAddress());
 					System.out.println("udpServer Main 62: after remove" + threadList.addresses);
 					String msg = new String(request.getData(), request.getOffset(), request.getLength());
