@@ -82,7 +82,7 @@ public class udpSendSocket {
 	    }
 	 
 	 public static byte[] doctoByte(Document doc){
-	        byte[] m = doc.toJson().getBytes();
+	        byte[] m = Base64.getDecoder().decode(doc.toJson());
 	        return m;
 	    }
 	 
