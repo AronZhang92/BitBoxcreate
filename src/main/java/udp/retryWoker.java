@@ -10,7 +10,6 @@ public class retryWoker implements Runnable{
     static DatagramPacket datagramPacket = null;
     static DatagramSocket datagramSocket = null;
     static InetAddress address = null;
-    static int port = 0;
 
     public retryWoker(DatagramPacket m, DatagramSocket socket) {
         datagramPacket = m;

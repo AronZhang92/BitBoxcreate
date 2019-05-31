@@ -38,7 +38,7 @@ public class udpSendSocket {
 
                   DatagramSocket bSocket = udpPeer.getDatagramSocket();
                   DatagramPacket msg = new DatagramPacket(data, data.length, InetAddress.getByName(address), portnumber);
-                  retryWoker re = new retryWoker(msg);
+                  retryWoker re = new retryWoker(msg, bSocket);
                   bSocket.send(msg);
                   Thread t = new Thread(re);
                   t.start();

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public class threadList {
     static DatagramPacket datagramPacket = null;
     static InetAddress address = null;
-    static int port = 0;
     static ArrayList<InetAddress> addresses = new ArrayList<>();
 
     public static void add(DatagramPacket m){
