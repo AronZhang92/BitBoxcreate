@@ -57,7 +57,7 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 				while (true) {
 					DatagramPacket request = new DatagramPacket(new byte[13000], 13000);
 					socket.receive(request);
-					threadList.add(request);
+					threadList.addresses.remove(request.getAddress());
 					String msg = new String(request.getData(), request.getOffset(), request.getLength());
 					Document doc = Document.parse(msg);
 					// handshake

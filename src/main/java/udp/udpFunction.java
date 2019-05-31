@@ -78,7 +78,7 @@ public class udpFunction {
 				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_RESPONSE(fileDescriper, doc.getString("pathName"), bite,
 						"read successful", true, start, filesize - start)), address, port);
 			} else {
-				TimeUnit.MILLISECONDS.sleep(500); //sleep for writing 
+			//	TimeUnit.MILLISECONDS.sleep(500); //sleep for writing
 				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_RESPONSE(fileDescriper, doc.getString("pathName"), bite,
 						"read successful", true, start, blocklength)), address, port);
 			}

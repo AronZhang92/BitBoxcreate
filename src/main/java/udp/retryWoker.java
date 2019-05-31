@@ -27,11 +27,12 @@ public class retryWoker implements Runnable{
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if(threadList.contain(address)){
+                if(threadList.addresses.contains(address)){
                     check = false;
                 } else{
                     try {
                         datagramSocket.send(datagramPacket);
+                        System.out.println("\n \n resend once !!!!!!!!!!!!!! \n \n");
                     } catch (IOException e) {
                     }
                 }

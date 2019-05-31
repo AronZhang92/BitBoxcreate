@@ -13,14 +13,15 @@ public class threadList {
         datagramPacket = m;
         address = m.getAddress();
         addresses.add(address);
+        System.out.println("thread list" + addresses);
     }
-    public static boolean contain(InetAddress address){
+ /*   public static boolean contain(InetAddress address){
         boolean answer = false;
         if (addresses.contains(address)){
             answer = true;
             addresses.remove(address);
         }
         return answer;
-    }
+    }*/
 
 }
