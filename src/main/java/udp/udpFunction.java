@@ -4,6 +4,7 @@ import unimelb.bitbox.RSAcrypt;
 import unimelb.bitbox.util.*;
 
 import java.io.IOException;
+import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.nio.ByteBuffer;
@@ -111,10 +112,21 @@ public class udpFunction {
 				// remian still bigger or equal than the blocksize
 				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"),
 						start1 + blocklength1, blocklength1)), address, port);
+				//add packet to thread list
+				byte[] data = udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"),
+						start1 + blocklength1, blocklength1));
+				DatagramPacket msg = new DatagramPacket(data, data.length, address,port);
+				threadList.addPacket(msg);
 			} else if (start1 + blocklength1 + blocklength1 > filesize1) {
 //				TimeUnit.SECONDS.sleep(1);
 				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"),
 						start1 + blocklength1, filesize1 - start1 - blocklength1)), address, port);
+				//add packet to thread list
+				byte[] data =udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"),
+						start1 + blocklength1, filesize1 - start1 - blocklength1));
+				DatagramPacket msg = new DatagramPacket(data, data.length, address,port);
+				threadList.addPacket(msg);
+
 			}
 
 			break;

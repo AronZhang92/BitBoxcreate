@@ -9,7 +9,7 @@ public class threadList {
     static InetAddress address = null;
     static ArrayList<InetAddress> addresses = new ArrayList<>();
 
-    public static void add(DatagramPacket m){
+    public static void addPacket(DatagramPacket m){
         datagramPacket = m;
         address = m.getAddress();
         addresses.add(address);
