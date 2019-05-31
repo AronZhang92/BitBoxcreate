@@ -33,13 +33,15 @@ public class SecureServer implements Runnable {
 						new OutputStreamWriter(clientSocket.getOutputStream(), "UTF-8"));
 				String clientMsg = null;
 				while((clientMsg = in.readLine()) != null) {
+					System.out.println( "received msg " + clientMsg);
 					Document clientMsgtoDoc = Document.parse(clientMsg);
 					if(clientMsgtoDoc.containsKey("payload")) { // when payload exist
 						String payload = clientMsgtoDoc.getString("payload");
 						// decode payload
 						try {
-							AEScrypt.decrypt(payload, function2.getSecreteKey());
-							function2.funtional(Document.parse(payload), clientSocket); // analyse command
+							String plainText = AEScrypt.decrypt(payload, function2.getSecreteKey());
+							System.out.println("plianText is " + plainText);
+							function2.funtional(Document.parse(plainText), clientSocket); // analyse command
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -47,7 +49,7 @@ public class SecureServer implements Runnable {
 					}else {
 						try {
 						function2.funtional(Document.parse(clientMsg),clientSocket);
-					} catch (NoSuchAlgorithmException e) {
+					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}

@@ -51,7 +51,7 @@ public class ServerWorker implements Runnable {
 					while ((clientMsg = in.readLine()) != null && Connectionlist.containsocket(clientSocket)) {
                         try {
                             function2.funtional(Document.parse(clientMsg),clientSocket); //send jason object to class funtional
-                        } catch (NoSuchAlgorithmException e) {
+                        } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
