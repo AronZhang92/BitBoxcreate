@@ -50,7 +50,7 @@ public class udpPeer {
 		//send to all peers handshake at beginning 
 		udpSendSocket.sendToConfigPeers(udpSendSocket.doctoByte(
 				udpJSONRETURN.HANDSHAKE_REQUEST(InetAddress.getLocalHost().getHostAddress(), socket.getLocalPort())));
-		System.out.println("send to all peers");
+		System.out.println("udpPeer53: send to all peers");
 	}
 
 	public static udpServerMain getServerMain() {

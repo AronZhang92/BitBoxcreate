@@ -39,9 +39,8 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 	public void processFileSystemEvent(FileSystemEvent fileSystemEvent) {
 		byte[] msg = udpSendSocket.doctoByte(udpSendSocket.eventToDoc(fileSystemEvent)); // changing
 		try {
-			System.out.println(udpConnectionList.getall());
+			System.out.println("udpSevermain 42: send mssage to all peers " + udpSendSocket.eventToDoc(fileSystemEvent).toJson());
 			udpSendSocket.sendToAllPeers(msg);
-			System.out.println("send event to peers");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -57,7 +56,9 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 				while (true) {
 					DatagramPacket request = new DatagramPacket(new byte[13000], 13000);
 					socket.receive(request);
+					System.out.println("udpServer Main 60: before remove" + threadList.addresses);
 					threadList.addresses.remove(request.getAddress());
+					System.out.println("udpServer Main 62: after remove" + threadList.addresses);
 					String msg = new String(request.getData(), request.getOffset(), request.getLength());
 					Document doc = Document.parse(msg);
 					// handshake
@@ -86,7 +87,7 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 					}else { // when the command is not handshake_request
 						String ipAdress= request.getAddress().toString().replace("/", "");
 						udpFunction.funtional(doc, InetAddress.getByName(ipAdress), request.getPort());
-						System.out.println(doc.getString("command"));
+						System.out.println("udpServerMian 91:  the comman received is" + doc.getString("command"));
 					}
 				}
 

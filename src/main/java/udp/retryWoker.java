@@ -30,7 +30,8 @@ public class retryWoker implements Runnable{
                 if(threadList.addresses.contains(address)){
                     try {
                         datagramSocket.send(datagramPacket);
-                        System.out.println("\n \n resend once !!!!!!!!!!!!!! \n \n");
+                        String msg = new String(datagramPacket.getData(), datagramPacket.getOffset(), datagramPacket.getLength());
+                        System.out.println("resend once !!!!!!!!!!!!!!" + msg);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

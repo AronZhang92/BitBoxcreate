@@ -40,6 +40,7 @@ public class udpSendSocket {
                   DatagramPacket msg = new DatagramPacket(data, data.length, InetAddress.getByName(address), portnumber);
                   retryWoker re = new retryWoker(msg, bSocket);
                   threadList.addPacket(msg);
+                  System.out.println("udpSendSocket 43: use method addpacket 1");
                   bSocket.send(msg);
                   Thread t = new Thread(re);
                   t.start();

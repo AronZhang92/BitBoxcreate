@@ -54,12 +54,12 @@ public class udpFunction {
 
 					}
 				} else { // when file already exist
-					udpSendSocket.sendToAllPeers(udpSendSocket.doctoByte(JSONRETURN2.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"),
-							"file name already exist ", false, 0L)));
+					udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"),
+							"file name already exist ", false, 0L)),address,port);
 				}
 			} else {
-				udpSendSocket.sendToAllPeers(udpSendSocket.doctoByte(JSONRETURN2.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"),
-						"pathName not safe ", false, 0L)));
+				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_CREATE_RESPONSE(fileDescriper, doc.getString("pathName"),
+						"pathName not safe ", false, 0L)),address,port);
 			}
 
 			break;
@@ -117,6 +117,7 @@ public class udpFunction {
 						start1 + blocklength1, blocklength1));
 				DatagramPacket msg = new DatagramPacket(data, data.length, address,port);
 				threadList.addPacket(msg);
+				System.out.println("udpFucntion129: use addPacket2");
 			} else if (start1 + blocklength1 + blocklength1 > filesize1) {
 //				TimeUnit.SECONDS.sleep(1);
 				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"),
@@ -126,6 +127,7 @@ public class udpFunction {
 						start1 + blocklength1, filesize1 - start1 - blocklength1));
 				DatagramPacket msg = new DatagramPacket(data, data.length, address,port);
 				threadList.addPacket(msg);
+				System.out.println("udpFucntion129: use addPacket3");
 
 			}
 
@@ -190,16 +192,16 @@ public class udpFunction {
 
 						}
 					} else { // when file already exist
-						udpSendSocket.sendToAllPeers(udpSendSocket.doctoByte(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper, doc.getString("pathName"),
-								"the content of the file are same ", false)));
+						udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper, doc.getString("pathName"),
+								"the content of the file are same ", false)),address,port);
 					}
 				} else {
-					udpSendSocket.sendToAllPeers(udpSendSocket.doctoByte(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper, doc.getString("pathName"),
-							"the fileName doesn't exist ", false)));
+					udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper, doc.getString("pathName"),
+							"the fileName doesn't exist ", false)),address,port);
 				}
 			} else {
-				udpSendSocket.sendToAllPeers(udpSendSocket.doctoByte(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper, doc.getString("pathName"),
-						"pathName not safe ", false)));
+				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_MODIFY_RESPONSE(fileDescriper, doc.getString("pathName"),
+						"pathName not safe ", false)),address,port);
 			}
 
 			break;
@@ -213,15 +215,15 @@ public class udpFunction {
 			if (fsm.isSafePathName(doc.getString("pathName"))) { // check if the pathname is safe
 				if (!fsm.dirNameExists(doc.getString("pathName"))) { // when the directory name doesn't exist
 					fsm.makeDirectory(doc.getString("pathName"));
-					udpSendSocket.sendToAllPeers(udpSendSocket.doctoByte(JSONRETURN2.DIRECTORY_CREATE_RESPONSE(doc.getString("pathName"),
-							"Directory create successfully", true)));
+					udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.DIRECTORY_CREATE_RESPONSE(doc.getString("pathName"),
+							"Directory create successfully", true)),address,port);
 				} else {
-					udpSendSocket.sendToAllPeers(udpSendSocket.doctoByte(JSONRETURN2.DIRECTORY_CREATE_RESPONSE(doc.getString("pathName"),
-							"pathName already exist", false))); // when the directory name exist
+					udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.DIRECTORY_CREATE_RESPONSE(doc.getString("pathName"),
+							"pathName already exist", false)),address,port); // when the directory name exist
 				}
 			} else {
-				udpSendSocket.sendToAllPeers(
-						udpSendSocket.doctoByte(JSONRETURN2.DIRECTORY_CREATE_RESPONSE(doc.getString("pathName"), "pathName not Safe", false)));
+				udpSendSocket.sendtosocket(
+						udpSendSocket.doctoByte(JSONRETURN2.DIRECTORY_CREATE_RESPONSE(doc.getString("pathName"), "pathName not Safe", false)),address,port);
 			}
 			break;
 
@@ -242,8 +244,8 @@ public class udpFunction {
 							udpSendSocket.doctoByte(JSONRETURN2.DIRECTORY_DELETE_RESPONSE(pathName1, "pathname does not exist", false)), address, port);
 				}
 			} else {
-				udpSendSocket.sendToAllPeers(
-						udpSendSocket.doctoByte(JSONRETURN2.DIRECTORY_DELETE_RESPONSE(doc.getString("pathName"), "pathName not Safe", false)));
+				udpSendSocket.sendtosocket(
+						udpSendSocket.doctoByte(JSONRETURN2.DIRECTORY_DELETE_RESPONSE(doc.getString("pathName"), "pathName not Safe", false)),address,port);
 			}
 
 			break;
