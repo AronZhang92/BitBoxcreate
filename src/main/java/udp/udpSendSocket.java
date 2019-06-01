@@ -81,6 +81,28 @@ public class udpSendSocket {
           }
 	  }
 	  
+	  public static void sendToPeers(byte[] data, ArrayList<String> array) throws IOException {
+		  
+          if (array != null) {
+              for (String newstring : array) {
+                  String[] middlepeers = newstring.split(":");
+                  String address = middlepeers[0];
+                  int portnumber = Integer.parseInt(middlepeers[1]);
+
+                  DatagramSocket bSocket = udpPeer.getDatagramSocket();
+                  DatagramPacket msg = new DatagramPacket(data, data.length, InetAddress.getByName(address), portnumber);
+
+                  String a = new String(data);
+                  Document doc = Document.parse(a);
+                  retryWoker re = new retryWoker(msg, bSocket, doc);
+                  threadList.addPacket(msg, doc);
+                  bSocket.send(msg);
+                  Thread t = new Thread(re);
+                  t.start();
+              }
+          }
+	  }
+	  
 	  public static void connectToPeer(String address, int port) throws IOException {
 		          byte[] handShake = udpSendSocket.doctoByte(udpJSONRETURN.HANDSHAKE_REQUEST(address, port));
 		          DatagramPacket msg = new DatagramPacket(handShake, handShake.length, InetAddress.getByName(address),port);

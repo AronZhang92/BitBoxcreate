@@ -312,16 +312,9 @@ public class udpFunction {
 		case "HANDSHAKE_RESPONSE":
 			udpConnectionList.addudp(address.toString(), port);
 			
-		case "LIST_PEERS_REQUEST":
-			// send connected peer list, wait to be implemented
+		case "CONNECTION_REFUSED":
+			log.info("CONNECTION_REFUSED " + "mssage is: " + doc.getString("message"));
 			
-		case "CONNECT_PEER_REQUEST":
-			// connect a peer, wait to be implemented
-			break;
-			
-		case "DISCONNECT_PEER_REQUEST":
-		   // disconnect a peer, wait to be implemented
-		   break;
 		
 		default:
 			udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.INVALID_PROTOCOL()), address, port);

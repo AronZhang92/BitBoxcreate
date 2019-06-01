@@ -40,7 +40,8 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 	public void processFileSystemEvent(FileSystemEvent fileSystemEvent) {
 		byte[] msg = udpSendSocket.doctoByte(udpSendSocket.eventToDoc(fileSystemEvent)); // changing
 		try {
-			System.out.println("udpSevermain 42: send mssage to all peers " + udpSendSocket.eventToDoc(fileSystemEvent).toJson());
+			System.out.println(
+					"udpSevermain 42: send mssage to all peers " + udpSendSocket.eventToDoc(fileSystemEvent).toJson());
 			udpSendSocket.sendToAllPeers(msg);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -61,24 +62,24 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 					Document doc = Document.parse(msg);
 
 					int n = threadList.info.size();
-					for(int j=0; j<n; j++){
+					for (int j = 0; j < n; j++) {
 						System.out.println("udpServerMain 65 : before remove: " + threadList.info.get(j));
 					}
 
 					threadList.removePacket(request, doc);
 					int m = threadList.info.size();
-					for(int j=0; j<m; j++){
+					for (int j = 0; j < m; j++) {
 						System.out.println("udpServerMain 71 : after remove: " + threadList.info.get(j));
 					}
 
 					// handshake
 					if (doc.getString("command").equals("HANDSHAKE_REQUEST")) {
-						System.out.println("Handshkae_request received");//test print
+						System.out.println("Handshkae_request received");// test print
 						if (udpConnectionList.getsize() < maxcon) { // when haven't reach mximum connection number
 							log.info("received request from : " + request.getAddress());
 							// send response
-							Document responseDoc = JSONRETURN2.HANDSHAKE_RESPONSE(InetAddress.getLocalHost().getHostAddress(),
-									socket.getLocalPort());
+							Document responseDoc = JSONRETURN2.HANDSHAKE_RESPONSE(
+									InetAddress.getLocalHost().getHostAddress(), socket.getLocalPort());
 							byte[] responseByte = udpSendSocket.doctoByte(responseDoc);
 							DatagramPacket response = new DatagramPacket(responseByte, responseByte.length,
 									request.getAddress(), request.getPort());
@@ -87,15 +88,20 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 							if (udpConnectionList.contain(request.getAddress().toString())) {
 
 							} else { // add the Datagramsocket to list, syncronize
-								udpConnectionList.addudp(request.getAddress().toString().replace("/", ""), request.getPort());
+								udpConnectionList.addudp(request.getAddress().toString().replace("/", ""),
+										request.getPort());
 								udpSynEvents.synevent(request.getAddress(), request.getPort());
 							}
 						} else { // when maximun connection number reached
 							Document refuseRes = JSONRETURN2.CONNCECTION_REFUSED();
+							byte[] refuseByte = udpSendSocket.doctoByte(refuseRes);
+							DatagramPacket data = new DatagramPacket(refuseByte, refuseByte.length,
+									request.getAddress(), request.getPort());
+							socket.send(data);
 						}
 
-					}else { // when the command is not handshake_request
-						String ipAdress= request.getAddress().toString().replace("/", "");
+					} else { // when the command is not handshake_request
+						String ipAdress = request.getAddress().toString().replace("/", "");
 						udpFunction.funtional(doc, InetAddress.getByName(ipAdress), request.getPort());
 						System.out.println("udpServerMian 91:  the comman received is" + doc.getString("command"));
 					}
