@@ -58,7 +58,7 @@ public class retryWoker implements Runnable {
 		boolean check = true;
 		int i = 0;
 		while (check) {
-			if (i < 3) {
+			if (i < 2) {
 				try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
@@ -69,8 +69,7 @@ public class retryWoker implements Runnable {
 //				for (int j = 0; j < n; j++) {
 //					System.out.println("retryWoker 70: info in List are: " + threadList.info.get(j).toJson());
 //				}
-				System.out
-						.println("retryWoker 72: the status of containing: " + threadList.contain(trandfer(infoSend)));
+				System.out.println("retryWoker 72: the status of containing: " + threadList.contain(trandfer(infoSend)));
 				if (threadList.contain(trandfer(infoSend))) {
 					try {
 						datagramSocket.send(datagramPacket);
@@ -84,12 +83,14 @@ public class retryWoker implements Runnable {
 				} else {
 					check = false;
 				}
-			} else {
+			} else if(threadList.contain(trandfer(infoSend))) {
 				System.out.println("retryWoker88 the size of list before removing: "+ threadList.info.size());
 				threadList.info.remove(trandfer(infoSend).toJson());
 				System.out.println("retryWoker88 the size of list after removing: "+ threadList.info.size());
 				System.out.println("retryWoker89 the info be removed: "+ trandfer(infoSend).toJson());
 				udpConnectionList.remove(address.toString());
+				check = false;
+			}else {
 				check = false;
 			}
 		}
