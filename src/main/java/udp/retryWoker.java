@@ -83,6 +83,7 @@ public class retryWoker implements Runnable{
                     check = false;
                 }
             }else {
+                threadList.info.remove(trandfer(infoSend));
                 check = false;
             }
             System.out.println("retryworker44 : one thread closed");
