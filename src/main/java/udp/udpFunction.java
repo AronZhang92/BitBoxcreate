@@ -309,10 +309,11 @@ public class udpFunction {
 			break;
 		case "HANDSHAKE_RESPONSE":
 			udpConnectionList.addudp(address.toString(), port);
+			break;
 			
 		case "CONNECTION_REFUSED":
 			log.info("CONNECTION_REFUSED " + "mssage is: " + doc.getString("message"));
-			
+			break;
 		
 		default:
 			udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.INVALID_PROTOCOL()), address, port);
