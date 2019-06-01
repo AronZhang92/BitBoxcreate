@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class threadList {
     static DatagramPacket datagramPacket = null;
     static InetAddress address = null;
-    public static ArrayList<Document> info = new ArrayList<>();
+    public static ArrayList<String> info = new ArrayList<>();
     public static Document infoDoc = new Document();
 
 
@@ -46,7 +46,7 @@ public class threadList {
        // Document newdoc = new Document();
         //newdoc.append("first",infoDoc);
         //newdoc.append("second",doc);
-        info.add(infoDoc);
+        info.add(infoDoc.toJson());
 
         System.out.println("threadList 16: thread list is " + infoDoc);
     }
@@ -54,10 +54,10 @@ public class threadList {
         boolean answer = false;
         int n = threadList.info.size();
         for(int j=0; j<n; j++){
-            if(threadList.info.get(j).getString("address").equals(doc.getString("address")) &&
-            threadList.info.get(j).getString("command").equals(doc.getString("command")) ){
-                if (threadList.info.get(j).getString("pathname") != null ){
-                    if(threadList.info.get(j).getString("pathname").equals(doc.getString("pathname"))){
+            if(Document.parse(threadList.info.get(j)).getString("address").equals(doc.getString("address")) &&
+            		Document.parse(threadList.info.get(j)).getString("command").equals(doc.getString("command")) ){
+                if (Document.parse(threadList.info.get(j)).getString("pathname") != null ){
+                    if(Document.parse(threadList.info.get(j)).getString("pathname").equals(doc.getString("pathname"))){
                         answer = true;
                         break;
                     }
@@ -67,17 +67,17 @@ public class threadList {
                 }
 
             }
-            System.out.println("info" + threadList.info.get(j).toJson());
+            System.out.println("info" + threadList.info.get(j));
         }
         return answer;
     }
 
-    public static ArrayList<Document> removePacket(DatagramPacket request, Document doc){
+    public static ArrayList<String> removePacket(DatagramPacket request, Document doc){
         Document infoReceive = new Document();
         infoReceive.append("address", request.getAddress().toString());
         infoReceive.append("command", doc.getString("command"));
         infoReceive.append("pathname", doc.getString("pathname"));
-        info.remove(infoReceive);
+        info.remove(infoReceive.toJson());
         return info;
     }
 

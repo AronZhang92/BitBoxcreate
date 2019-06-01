@@ -60,9 +60,16 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 					String msg = new String(request.getData(), request.getOffset(), request.getLength());
 					Document doc = Document.parse(msg);
 
-					System.out.println("udpServer Main 60: before remove" + threadList.info);
+					int n = threadList.info.size();
+					for(int j=0; j<n; j++){
+						System.out.println("udpServerMain 65 : before remove: " + threadList.info.get(j));
+					}
+
 					threadList.removePacket(request, doc);
-					System.out.println("udpServer Main 62: after remove" + threadList.info);
+					int m = threadList.info.size();
+					for(int j=0; j<m; j++){
+						System.out.println("udpServerMain 71 : after remove: " + threadList.info.get(j));
+					}
 
 					// handshake
 					if (doc.getString("command").equals("HANDSHAKE_REQUEST")) {
