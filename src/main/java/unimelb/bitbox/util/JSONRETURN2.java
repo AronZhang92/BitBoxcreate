@@ -189,4 +189,34 @@ public class JSONRETURN2 {
         	doc.append("message", message);
         	return doc;
     }
+    	
+        public static Document AUTH_REQUEST() {
+            Document doc = new Document();
+            doc.append("command", "AUTH_REQUEST");
+            doc.append("identity", "liuyumo@liuyumodeMacBook-Pro.local");//Would be changed are acquired from document
+            return doc;
+        }
+        
+        public static Document LIST_PEERS_REQUEST() {
+            Document doc = new Document();
+            doc.append("command", "LIST_PEERS_REQUEST");
+            return doc;
+        }
+        
+        public static Document CONNECT_PEER_REQUEST(String host, int port) {
+            Document doc = new Document();
+            doc.append("command", "CONNECT_PEER_REQUEST");
+            doc.append("host", host);
+            doc.append("port", port);
+            return doc;
+        }
+        
+        public static Document DISCONNECT_PEER_REQUEST(String host, int port) {
+            Document doc = new Document();
+            doc.append("command", "DISCONNECT_PEER_REQUEST");
+            doc.append("host", host);
+            doc.append("port", port);
+            return doc;
+        }    
+
 }
