@@ -10,13 +10,16 @@ import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
+import udp.threadList;
 import udp.udpConnectionList;
 import udp.udpJSONRETURN;
+import udp.udpSendSocket;
 import unimelb.bitbox.Connectionlist;
 import unimelb.bitbox.Sendsocket;
 import unimelb.bitbox.util.Document;
@@ -326,8 +329,8 @@ public class function2 {
 					Sendsocket.sendtosocket(responseDoc, socket);
 				} else { // when peer haven't connected
 					try {
-						socket = new Socket(address, Integer.parseInt(port));
-						peerworker w = new peerworker(socket);
+						Socket newSocket = new Socket(address, Integer.parseInt(port));
+						peerworker w = new peerworker(newSocket);
 						Thread t = new Thread(w);
 						t.start();
 						responseDoc.append("payload",
@@ -359,21 +362,27 @@ public class function2 {
 					Sendsocket.sendtosocket(responseDoc, socket);
 				} else { // when peer haven't connected
 					try {
-						socket = new Socket(address, Integer.parseInt(port));
-						udpConnectionList.addudp(address, Integer.parseInt(port));
+						udpSendSocket.connectToPeer(address, Integer.parseInt(port));
+						System.out.println("function2 364, the address is" + address);
+						TimeUnit.SECONDS.sleep(5);
+						if(threadList.info != null) { // when the threadlist not null
+							Document res = new Document();
+						res.append("payload",
+								AEScrypt.encrypt(JSONRETURN2
+										.CONNECT_PEER_RESPONSE(address, port, false, "peer refused connect").toJson(),
+										commenKey));
+						Sendsocket.sendtosocket(res, socket);
+						}else { // when the threadlist null
+							
 						responseDoc.append("payload",
 								AEScrypt.encrypt(JSONRETURN2
 										.CONNECT_PEER_RESPONSE(address, port, true, "peer connect successfully")
 										.toJson(), commenKey));
 						Sendsocket.sendtosocket(responseDoc, socket);
 						System.out.println("function2 361: send to lient: " + responseDoc.toJson());
+						}
 					} catch (Exception e) {
-						Document res = new Document();
-						res.append("payload",
-								AEScrypt.encrypt(JSONRETURN2
-										.CONNECT_PEER_RESPONSE(address, port, false, "peer refused connect").toJson(),
-										commenKey));
-						Sendsocket.sendtosocket(res, socket);
+						e.printStackTrace();
 					}
 				}
 

@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class threadList {
     static DatagramPacket datagramPacket = null;
     static InetAddress address = null;
-    static ArrayList<Document> info = new ArrayList<>();
-    static Document infoDoc = new Document();
+    public static ArrayList<Document> info = new ArrayList<>();
+    public static Document infoDoc = new Document();
 
 
     public static void addPacket(DatagramPacket m, Document doc){

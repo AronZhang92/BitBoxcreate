@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Base64;
 
@@ -41,7 +42,6 @@ public class udpSendSocket {
                   DatagramPacket msg = new DatagramPacket(data, data.length, InetAddress.getByName(address), portnumber);
 
                   String a = new String(data);
-                  System.out.println("a is" + a);
                   Document doc = Document.parse(a);
                   retryWoker re = new retryWoker(msg, bSocket, doc);
                   threadList.addPacket(msg, doc);
@@ -69,14 +69,11 @@ public class udpSendSocket {
 
                   DatagramSocket bSocket = udpPeer.getDatagramSocket();
                   DatagramPacket msg = new DatagramPacket(data, data.length, InetAddress.getByName(address), portnumber);
-                  bSocket.send(msg);
 
                   String a = new String(data);
-                  System.out.println("a is" + a);
                   Document doc = Document.parse(a);
                   retryWoker re = new retryWoker(msg, bSocket, doc);
                   threadList.addPacket(msg, doc);
-                  System.out.println("udpSendSocket 43: use method addpacket 1");
                   bSocket.send(msg);
                   Thread t = new Thread(re);
                   t.start();
@@ -84,6 +81,18 @@ public class udpSendSocket {
           }
 	  }
 	  
+	  public static void connectToPeer(String address, int port) throws IOException {
+		          byte[] handShake = udpSendSocket.doctoByte(udpJSONRETURN.HANDSHAKE_REQUEST(address, port));
+		          DatagramPacket msg = new DatagramPacket(handShake, handShake.length, InetAddress.getByName(address),port);
+		          udpPeer.getDatagramSocket().send(msg);
+		          
+		          String a = new String(handShake);
+                  Document doc = Document.parse(a);
+                  retryWoker re = new retryWoker(msg, udpPeer.getDatagramSocket(), doc);
+                  threadList.addPacket(msg, doc);
+                  Thread t = new Thread(re);
+                  t.start();
+	  }
 	  
 	  //send to one peer
 	  public static void sendtosocket(byte[] data, InetAddress address, int port) throws IOException {
