@@ -116,7 +116,9 @@ public class udpFunction {
 				byte[] data = udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"),
 						start1 + blocklength1, blocklength1));
 				DatagramPacket msg = new DatagramPacket(data, data.length, address,port);
-				threadList.addPacket(msg);
+				String a = new String(data);
+				Document document = Document.parse(a);
+				threadList.addPacket(msg, document);
 				System.out.println("udpFucntion129: use addPacket2");
 			} else if (start1 + blocklength1 + blocklength1 > filesize1) {
 //				TimeUnit.SECONDS.sleep(1);
@@ -126,7 +128,9 @@ public class udpFunction {
 				byte[] data =udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"),
 						start1 + blocklength1, filesize1 - start1 - blocklength1));
 				DatagramPacket msg = new DatagramPacket(data, data.length, address,port);
-				threadList.addPacket(msg);
+				String a = new String(data);
+				Document document = Document.parse(a);
+				threadList.addPacket(msg, document);
 				System.out.println("udpFucntion129: use addPacket3");
 
 			}

@@ -140,7 +140,7 @@ public class JSONRETURN2 {
     
     public static Document AUTH_RESPONSE(String key, boolean status, String message) {
     	Document doc = new Document();
-    	doc.append("command", "DIRECTORY_CREATE_RESPONSE");
+    	doc.append("command", "AUTH_RESPONSE");
     	doc.append("AES128", key);
     	doc.append("status", status);
     	doc.append("message", message);
@@ -177,5 +177,4 @@ public class JSONRETURN2 {
     	doc.append("message", message);
     	return doc;
     }
-
 }

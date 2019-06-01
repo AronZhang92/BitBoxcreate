@@ -5,6 +5,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.ArrayList;
+import java.util.Base64;
 
 import unimelb.bitbox.util.Configuration;
 import unimelb.bitbox.util.Document;
@@ -12,20 +13,20 @@ import unimelb.bitbox.util.FileSystemManager;
 
 public class udpSendSocket {
 	
-	 public static Document eventToDoc(FileSystemManager.FileSystemEvent fileSystemEvent){
+	 public static Document eventToDoc(FileSystemManager.FileSystemEvent fileSystemEvent) {
          FileSystemManager.FileDescriptor fd = fileSystemEvent.fileDescriptor;
          Document doc = new Document();
          Document do1 = new Document();
 
          if (fd != null) {
              do1 = fd.toDoc();
-             doc.append("fileDescriptor",do1);
+             doc.append("fileDescriptor", do1);
          }
 
-         doc.append("pathName",fileSystemEvent.pathName);
-         doc.append("command",fileSystemEvent.event.toString()+"_REQUEST");
+         doc.append("pathName", fileSystemEvent.pathName);
+         doc.append("command", fileSystemEvent.event.toString() + "_REQUEST");
          return doc;
-}
+     }
 	 
 	 //still need to be change to mutiple threads 
 	  public static void sendToAllPeers(byte[] data) throws IOException {
@@ -38,8 +39,12 @@ public class udpSendSocket {
 
                   DatagramSocket bSocket = udpPeer.getDatagramSocket();
                   DatagramPacket msg = new DatagramPacket(data, data.length, InetAddress.getByName(address), portnumber);
-                  retryWoker re = new retryWoker(msg, bSocket);
-                  threadList.addPacket(msg);
+
+                  String a = new String(data);
+                  System.out.println("a is" + a);
+                  Document doc = Document.parse(a);
+                  retryWoker re = new retryWoker(msg, bSocket, doc);
+                  threadList.addPacket(msg, doc);
                   System.out.println("udpSendSocket 43: use method addpacket 1");
                   bSocket.send(msg);
                   Thread t = new Thread(re);
@@ -65,6 +70,16 @@ public class udpSendSocket {
                   DatagramSocket bSocket = udpPeer.getDatagramSocket();
                   DatagramPacket msg = new DatagramPacket(data, data.length, InetAddress.getByName(address), portnumber);
                   bSocket.send(msg);
+
+                  String a = new String(data);
+                  System.out.println("a is" + a);
+                  Document doc = Document.parse(a);
+                  retryWoker re = new retryWoker(msg, bSocket, doc);
+                  threadList.addPacket(msg, doc);
+                  System.out.println("udpSendSocket 43: use method addpacket 1");
+                  bSocket.send(msg);
+                  Thread t = new Thread(re);
+                  t.start();
               }
           }
 	  }

@@ -1,5 +1,7 @@
 package udp;
 
+import unimelb.bitbox.util.Document;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -10,14 +12,20 @@ public class retryWoker implements Runnable{
     static DatagramPacket datagramPacket = null;
     static DatagramSocket datagramSocket = null;
     static InetAddress address = null;
+    Document infoSend = new Document();
 
-    public retryWoker(DatagramPacket m, DatagramSocket socket) {
+    public retryWoker(DatagramPacket m, DatagramSocket socket, Document doc) {
         datagramPacket = m;
         address = m.getAddress();
         datagramSocket = socket;
+
+        infoSend.append("address", address.toString());
+        infoSend.append("command", doc.getString("command"));
+        infoSend.append("pathname", doc.getString("command"));
     }
 
     public void run() {
+        System.out.println("retryworker21 : new thread start");
         boolean check = true;
         int i = 0;
         while (check){
@@ -27,7 +35,7 @@ public class retryWoker implements Runnable{
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if(threadList.addresses.contains(address)){
+                if(threadList.info.contains(infoSend)){
                     try {
                         datagramSocket.send(datagramPacket);
                         String msg = new String(datagramPacket.getData(), datagramPacket.getOffset(), datagramPacket.getLength());
@@ -40,7 +48,7 @@ public class retryWoker implements Runnable{
                 }
                 i ++;
             }
-
+            System.out.println("retryworker44 : one thread closed");
             //wait 2 s
             // if contain (address)
                 // check = false

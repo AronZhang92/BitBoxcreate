@@ -14,13 +14,18 @@ import java.util.logging.Logger;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import unimelb.bitbox.Connectionlist;
+import unimelb.bitbox.Sendsocket;
+import unimelb.bitbox.util.Document;
+import unimelb.bitbox.util.JSONRETURN2;
 
 public class function2 {
 	private static FileSystemManager.FileDescriptor fd;
 	private static final Long blocksize = Long.parseLong(Configuration.getConfigurationValue("blockSize"));
 	private static Logger log = Logger.getLogger(function2.class.getName());
-    private static SecretKey commenKey = null;
-	
+
+	private static SecretKey commenKey = null;
+
 	public static void funtional(Document doc, Socket socket) throws Exception {
 
 		FileSystemManager fsm = ServerMain.returnfilesm(); // should be replaced when generating
@@ -260,7 +265,7 @@ public class function2 {
 					e.printStackTrace();
 				}
 				keyGen.init(128);
-			    commenKey = keyGen.generateKey();
+				commenKey = keyGen.generateKey();
 				// commen key to String
 				String commenKeyToStr = Base64.getEncoder().encodeToString(commenKey.getEncoded());
 				byte[] commenKeyToByte = commenKey.getEncoded();
@@ -269,7 +274,8 @@ public class function2 {
 					PublicKey publicKey = RSAcrypt.getPublicKey(publicKeys.get(index)); // change String to public key
 					byte[] enCommenKey = RSAcrypt.encrypt(publicKey, commenKeyToByte);
 					String enCommenKeyToStr = Base64.getEncoder().encodeToString(enCommenKey);
-					//send response to client
+					System.out.println(commenKeyToStr);
+					// send response to client
 					Sendsocket.sendtosocket(JSONRETURN2.AUTH_RESPONSE(enCommenKeyToStr, true, "public key found"),
 							socket);
 
@@ -279,18 +285,17 @@ public class function2 {
 				}
 
 			} else {
-				Sendsocket.sendtosocket(JSONRETURN2.AUTH_RESPONSE( false, "public key not found"),
-						socket);
+				Sendsocket.sendtosocket(JSONRETURN2.AUTH_RESPONSE(false, "public key not found"), socket);
 			}
 			break;
-			
+
 		case "LIST_PEERS_REQUEST":
 			Document peerListDoc = new Document();
 			String cipherText = AEScrypt.encrypt(JSONRETURN2.LIST_PEERS_RESPONSE().toJson(), commenKey);
 			peerListDoc.append("payload", cipherText);
 			Sendsocket.sendtosocket(peerListDoc, socket);
 			break;
-			
+
 		case "CONNECT_PEER_REQUEST":
 			Document responseDoc = new Document();
 			String address = doc.getString("host");
@@ -323,18 +328,19 @@ public class function2 {
 			}
 
 			break;
-			
+
 		case "DISCONNECT_PEER_REQUEST":
-		   // disconnect a peer, wait to be implemented
-		   break;
-		
+			
+
+			break;
+
 		default:
 			Sendsocket.sendtosocket(JSONRETURN2.INVALID_PROTOCOL(), socket);
 			break;
 		}
 
 	}
-    
+
 	public static SecretKey getSecreteKey() {
 		return commenKey;
 	}

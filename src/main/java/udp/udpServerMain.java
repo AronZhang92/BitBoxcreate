@@ -7,6 +7,7 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.SocketException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.logging.Logger;
 
 import unimelb.bitbox.Connectionlist;
@@ -56,11 +57,13 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 				while (true) {
 					DatagramPacket request = new DatagramPacket(new byte[13000], 13000);
 					socket.receive(request);
-					System.out.println("udpServer Main 60: before remove" + threadList.addresses);
-					threadList.addresses.remove(request.getAddress());
-					System.out.println("udpServer Main 62: after remove" + threadList.addresses);
 					String msg = new String(request.getData(), request.getOffset(), request.getLength());
 					Document doc = Document.parse(msg);
+
+					System.out.println("udpServer Main 60: before remove" + threadList.info);
+					threadList.removePacket(request, doc);
+					System.out.println("udpServer Main 62: after remove" + threadList.info);
+
 					// handshake
 					if (doc.getString("command").equals("HANDSHAKE_REQUEST")) {
 						System.out.println("Handshkae_request received");//test print
