@@ -157,24 +157,36 @@ public class JSONRETURN2 {
     
     public static Document LIST_PEERS_RESPONSE() {
     	Document doc = new Document();
-    	Document peerList = new Document();
+    	Document docPeer = new Document();
+    	ArrayList<Document> DocPeers = new ArrayList<Document>();
     	ArrayList<Socket> peers = Connectionlist.returnsocketlist();
     	doc.append("command","LIST_PEERS_RESPONSE");
     	for(Socket peer:peers) {
-    		peerList.append("host", peer.getInetAddress().toString());
-    		peerList.append("prot", peer.getPort());
+    		docPeer.append("host", peer.getInetAddress().toString());
+    		docPeer.append("port", peer.getPort());
+    		DocPeers.add(docPeer);
     	}
-    	doc.append("peers", peerList.toJson());
+    	doc.append("peers", DocPeers);
     	return doc;
     }
     
     public static Document CONNECT_PEER_RESPONSE(String address, String port, boolean status, String message) {
     	Document doc = new Document();
     	doc.append("command", "CONNECT_PEER_RESPONSE");
-    	doc.append("host", "address");
+    	doc.append("host", address);
     	doc.append("port", port);
     	doc.append("status", status);
     	doc.append("message", message);
     	return doc;
+    }
+    	
+    	public static Document DISCONNECT_PEER_RESPONSE(String address, String port, boolean status, String message) {
+        	Document doc = new Document();
+        	doc.append("command", "DISCONNECT_PEER_RESPONSE");
+        	doc.append("host", address);
+        	doc.append("port", port);
+        	doc.append("status", status);
+        	doc.append("message", message);
+        	return doc;
     }
 }

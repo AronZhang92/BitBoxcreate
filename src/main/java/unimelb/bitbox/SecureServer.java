@@ -44,7 +44,7 @@ public class SecureServer implements Runnable {
 							function2.funtional(Document.parse(plainText), clientSocket); // analyse command
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
-							e.printStackTrace();
+	//						e.printStackTrace();
 						}
 					}else {
 						try {

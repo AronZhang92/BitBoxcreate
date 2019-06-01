@@ -14,6 +14,9 @@ import java.util.logging.Logger;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+
+import udp.udpConnectionList;
+import udp.udpJSONRETURN;
 import unimelb.bitbox.Connectionlist;
 import unimelb.bitbox.Sendsocket;
 import unimelb.bitbox.util.Document;
@@ -290,49 +293,153 @@ public class function2 {
 			break;
 
 		case "LIST_PEERS_REQUEST":
-			Document peerListDoc = new Document();
-			String cipherText = AEScrypt.encrypt(JSONRETURN2.LIST_PEERS_RESPONSE().toJson(), commenKey);
-			peerListDoc.append("payload", cipherText);
-			Sendsocket.sendtosocket(peerListDoc, socket);
-			break;
-
-		case "CONNECT_PEER_REQUEST":
-			Document responseDoc = new Document();
-			String address = doc.getString("host");
-			String port = doc.getString("port");
-			if (Connectionlist.contain(address)) { // when peer already connected
-				String CipherPeerResponse = AEScrypt.encrypt(
-						JSONRETURN2.CONNECT_PEER_RESPONSE(address, port, false, "peer already connected").toJson(),
+			if (Configuration.getConfigurationValue("mode").equals("tcp")) { // when tcp mode
+				Document peerListDoc = new Document();
+				String cipherText = AEScrypt.encrypt(JSONRETURN2.LIST_PEERS_RESPONSE().toJson().replace("\\", ""),
 						commenKey);
-				responseDoc.append("payload", CipherPeerResponse);
-				Sendsocket.sendtosocket(responseDoc, socket);
-			} else { // when peer haven't connected
-				try {
-					socket = new Socket(address, Integer.parseInt(port));
-					peerworker w = new peerworker(socket);
-					Thread t = new Thread(w);
-					t.start();
-					responseDoc.append("payload",
-							AEScrypt.encrypt(JSONRETURN2
-									.CONNECT_PEER_RESPONSE(address, port, true, "peer connect successfully").toJson(),
-									commenKey));
-					Sendsocket.sendtosocket(responseDoc, socket);
-				} catch (Exception e) {
-					Document res = new Document();
-					res.append("payload",
-							AEScrypt.encrypt(JSONRETURN2
-									.CONNECT_PEER_RESPONSE(address, port, false, "peer refused connect").toJson(),
-									commenKey));
-					Sendsocket.sendtosocket(res, socket);
-				}
+				peerListDoc.append("payload", cipherText);
+				Sendsocket.sendtosocket(peerListDoc, socket);
+				System.out.println("function2 297: the send command is:"
+						+ JSONRETURN2.LIST_PEERS_RESPONSE().toJson().replace("\\", "")); // test
+				break;
+			} else {// when udp mode
+				Document peerListDoc = new Document();
+				String cipherText = AEScrypt.encrypt(udpJSONRETURN.LIST_PEERS_RESPONSE().toJson().replace("\\", ""),
+						commenKey);
+				peerListDoc.append("payload", cipherText);
+				Sendsocket.sendtosocket(peerListDoc, socket);
+				System.out.println("function2 311: the send command is:"
+						+ JSONRETURN2.LIST_PEERS_RESPONSE().toJson().replace("\\", "")); // test
+				break;
 			}
 
-			break;
+		case "CONNECT_PEER_REQUEST":
+			if (Configuration.getConfigurationValue("mode").equals("tcp")) { // when tcp mode
+				Document responseDoc = new Document();
+				String address = doc.getString("host");
+				String port = Long.toString(doc.getLong("port"));
+				if (Connectionlist.contain(address)) { // when peer already connected
+					String CipherPeerResponse = AEScrypt.encrypt(
+							JSONRETURN2.CONNECT_PEER_RESPONSE(address, port, false, "peer already connected").toJson(),
+							commenKey);
+					responseDoc.append("payload", CipherPeerResponse);
+					Sendsocket.sendtosocket(responseDoc, socket);
+				} else { // when peer haven't connected
+					try {
+						socket = new Socket(address, Integer.parseInt(port));
+						peerworker w = new peerworker(socket);
+						Thread t = new Thread(w);
+						t.start();
+						responseDoc.append("payload",
+								AEScrypt.encrypt(JSONRETURN2
+										.CONNECT_PEER_RESPONSE(address, port, true, "peer connect successfully")
+										.toJson(), commenKey));
+						Sendsocket.sendtosocket(responseDoc, socket);
+						System.out.println("function2 320: send to lient: " + responseDoc.toJson());
+					} catch (Exception e) {
+						Document res = new Document();
+						res.append("payload",
+								AEScrypt.encrypt(JSONRETURN2
+										.CONNECT_PEER_RESPONSE(address, port, false, "peer refused connect").toJson(),
+										commenKey));
+						Sendsocket.sendtosocket(res, socket);
+					}
+				}
+
+				break;
+			} else { // when udp mode
+				Document responseDoc = new Document();
+				String address = doc.getString("host");
+				String port = Long.toString(doc.getLong("port"));
+				if (udpConnectionList.contain(address)) { // when peer already connected
+					String CipherPeerResponse = AEScrypt.encrypt(
+							JSONRETURN2.CONNECT_PEER_RESPONSE(address, port, false, "peer already connected").toJson(),
+							commenKey);
+					responseDoc.append("payload", CipherPeerResponse);
+					Sendsocket.sendtosocket(responseDoc, socket);
+				} else { // when peer haven't connected
+					try {
+						socket = new Socket(address, Integer.parseInt(port));
+						udpConnectionList.addudp(address, Integer.parseInt(port));
+						responseDoc.append("payload",
+								AEScrypt.encrypt(JSONRETURN2
+										.CONNECT_PEER_RESPONSE(address, port, true, "peer connect successfully")
+										.toJson(), commenKey));
+						Sendsocket.sendtosocket(responseDoc, socket);
+						System.out.println("function2 361: send to lient: " + responseDoc.toJson());
+					} catch (Exception e) {
+						Document res = new Document();
+						res.append("payload",
+								AEScrypt.encrypt(JSONRETURN2
+										.CONNECT_PEER_RESPONSE(address, port, false, "peer refused connect").toJson(),
+										commenKey));
+						Sendsocket.sendtosocket(res, socket);
+					}
+				}
+
+				break;
+			}
 
 		case "DISCONNECT_PEER_REQUEST":
-			
-
-			break;
+			if (Configuration.getConfigurationValue("mode").equals("tcp")) { // when tcp mode
+				if (Connectionlist.contain(("/" + doc.getString("host")))) { // while peers exist
+					System.out.println("function2 349 check if peer exit: "
+							+ Connectionlist.contain(("/" + doc.getString("host"))));
+					for (Socket peer : Connectionlist.returnsocketlist()) {
+						if (peer.getInetAddress().toString().equals("/" + doc.getString("host"))) {
+							Connectionlist.remove(peer);
+							peer.close(); // close the socket
+							Document disRes = new Document();
+							disRes.append("payload",
+									AEScrypt.encrypt(JSONRETURN2.DISCONNECT_PEER_RESPONSE(doc.getString("host"),
+											Long.toString(doc.getLong("port")), true, "disconnected peer successfully")
+											.toJson(), commenKey));
+							Sendsocket.sendtosocket(disRes, socket);
+							System.out.println("function2 358 send to client " + JSONRETURN2
+									.DISCONNECT_PEER_RESPONSE(doc.getString("host"), Long.toString(doc.getLong("port")),
+											true, "disconnected peer successfully")
+									.toJson());
+						}
+					}
+				} else { // when the peer doesn't exist
+					Document disRes = new Document();
+					disRes.append("payload", AEScrypt.encrypt(
+							JSONRETURN2.DISCONNECT_PEER_RESPONSE(doc.getString("host"),
+									Long.toString(doc.getLong("port")), false, "the peer doesn't exist").toJson(),
+							commenKey));
+					Sendsocket.sendtosocket(disRes, socket);
+				}
+				break;
+			} else { // when udp mode
+				if (udpConnectionList.contain(("/" + doc.getString("host")))) { // while peers exist
+					System.out.println("function2 349 check if peer exit: "
+							+ Connectionlist.contain(("/" + doc.getString("host"))));
+					for (String peer : udpConnectionList.getall()) {
+						if (peer.equals("/" + doc.getString("host"))) {
+							udpConnectionList.remove("/" + doc.getString("host"));
+							;
+							Document disRes = new Document();
+							disRes.append("payload",
+									AEScrypt.encrypt(JSONRETURN2.DISCONNECT_PEER_RESPONSE(doc.getString("host"),
+											Long.toString(doc.getLong("port")), true, "disconnected peer successfully")
+											.toJson(), commenKey));
+							Sendsocket.sendtosocket(disRes, socket);
+							System.out.println("function2 358 send to client " + JSONRETURN2
+									.DISCONNECT_PEER_RESPONSE(doc.getString("host"), Long.toString(doc.getLong("port")),
+											true, "disconnected peer successfully")
+									.toJson());
+						}
+					}
+				} else { // when the peer doesn't exist
+					Document disRes = new Document();
+					disRes.append("payload", AEScrypt.encrypt(
+							JSONRETURN2.DISCONNECT_PEER_RESPONSE(doc.getString("host"),
+									Long.toString(doc.getLong("port")), false, "the peer doesn't exist").toJson(),
+							commenKey));
+					Sendsocket.sendtosocket(disRes, socket);
+				}
+				break;
+			}
 
 		default:
 			Sendsocket.sendtosocket(JSONRETURN2.INVALID_PROTOCOL(), socket);

@@ -24,12 +24,9 @@ public class udpJSONRETURN {
 	        if(peers == null){
 	            return null;
             }
-            for (String peer:peers
+            for (String address:peers
                  ) {
-                String[] middlepeers = peer.split(":");
-                String address = middlepeers[0];
-                int portnumber = Integer.parseInt(middlepeers[1]);
-
+                int portnumber = udpConnectionList.getport(address);
 	            doc1.append("host",address);
 	            doc1.append("port",portnumber);
 	            docs.add(doc1);
@@ -162,5 +159,19 @@ public class udpJSONRETURN {
 	    	return doc;
 	    }
 	    
+	    public static Document LIST_PEERS_RESPONSE() {
+	    	Document doc = new Document();
+	    	Document docPeer = new Document();
+	    	ArrayList<Document> DocPeers = new ArrayList<Document>();
+	    	ArrayList<String> peers = udpConnectionList.getall();
+	    	doc.append("command","LIST_PEERS_RESPONSE");
+	    	for(String peer:peers) {
+	    		docPeer.append("host", peer);
+	    		docPeer.append("port", udpConnectionList.getport(peer));
+	    		DocPeers.add(docPeer);
+	    	}
+	    	doc.append("peers", DocPeers);
+	    	return doc;
+	    }
 
 }

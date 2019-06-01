@@ -1,6 +1,8 @@
 package udp;
 
+import unimelb.bitbox.AEScrypt;
 import unimelb.bitbox.RSAcrypt;
+import unimelb.bitbox.Sendsocket;
 import unimelb.bitbox.util.*;
 
 import java.io.IOException;
@@ -312,7 +314,6 @@ public class udpFunction {
 			
 		case "LIST_PEERS_REQUEST":
 			// send connected peer list, wait to be implemented
-			break;
 			
 		case "CONNECT_PEER_REQUEST":
 			// connect a peer, wait to be implemented
