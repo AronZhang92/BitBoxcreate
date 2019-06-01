@@ -54,7 +54,6 @@ public class retryWoker implements Runnable {
 	}
 
 	public void run() {
-		System.out.println("retryworker21 : new thread start");
 		boolean check = true;
 		int i = 0;
 		while (check) {

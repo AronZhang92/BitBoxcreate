@@ -40,8 +40,6 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 	public void processFileSystemEvent(FileSystemEvent fileSystemEvent) {
 		byte[] msg = udpSendSocket.doctoByte(udpSendSocket.eventToDoc(fileSystemEvent)); // changing
 		try {
-			System.out.println(
-					"udpSevermain 42: send mssage to all peers " + udpSendSocket.eventToDoc(fileSystemEvent).toJson());
 			udpSendSocket.sendToAllPeers(msg);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
