@@ -21,7 +21,7 @@ public class function2 {
 	private static Logger log = Logger.getLogger(function2.class.getName());
     private static SecretKey commenKey = null;
 	
-	public static void funtional(Document doc, Socket socket) throws IOException, NoSuchAlgorithmException {
+	public static void funtional(Document doc, Socket socket) throws Exception {
 
 		FileSystemManager fsm = ServerMain.returnfilesm(); // should be replaced when generating
 		Document fileDescriper = (Document) doc.get("fileDescriptor");
@@ -285,11 +285,43 @@ public class function2 {
 			break;
 			
 		case "LIST_PEERS_REQUEST":
-			// send connected peer list, wait to be implemented
+			Document peerListDoc = new Document();
+			String cipherText = AEScrypt.encrypt(JSONRETURN2.LIST_PEERS_RESPONSE().toJson(), commenKey);
+			peerListDoc.append("payload", cipherText);
+			Sendsocket.sendtosocket(peerListDoc, socket);
 			break;
 			
 		case "CONNECT_PEER_REQUEST":
-			// connect a peer, wait to be implemented
+			Document responseDoc = new Document();
+			String address = doc.getString("host");
+			String port = doc.getString("port");
+			if (Connectionlist.contain(address)) { // when peer already connected
+				String CipherPeerResponse = AEScrypt.encrypt(
+						JSONRETURN2.CONNECT_PEER_RESPONSE(address, port, false, "peer already connected").toJson(),
+						commenKey);
+				responseDoc.append("payload", CipherPeerResponse);
+				Sendsocket.sendtosocket(responseDoc, socket);
+			} else { // when peer haven't connected
+				try {
+					socket = new Socket(address, Integer.parseInt(port));
+					peerworker w = new peerworker(socket);
+					Thread t = new Thread(w);
+					t.start();
+					responseDoc.append("payload",
+							AEScrypt.encrypt(JSONRETURN2
+									.CONNECT_PEER_RESPONSE(address, port, true, "peer connect successfully").toJson(),
+									commenKey));
+					Sendsocket.sendtosocket(responseDoc, socket);
+				} catch (Exception e) {
+					Document res = new Document();
+					res.append("payload",
+							AEScrypt.encrypt(JSONRETURN2
+									.CONNECT_PEER_RESPONSE(address, port, false, "peer refused connect").toJson(),
+									commenKey));
+					Sendsocket.sendtosocket(res, socket);
+				}
+			}
+
 			break;
 			
 		case "DISCONNECT_PEER_REQUEST":
