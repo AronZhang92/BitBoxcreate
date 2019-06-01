@@ -50,14 +50,27 @@ public class threadList {
 
         System.out.println("threadList 16: thread list is " + infoDoc);
     }
- /*   public static boolean contain(InetAddress address){
+    public static boolean contain(Document doc){
         boolean answer = false;
-        if (addresses.contains(address)){
-            answer = true;
-            addresses.remove(address);
+        int n = threadList.info.size();
+        for(int j=0; j<n; j++){
+            if(threadList.info.get(j).getString("address").equals(doc.getString("address")) &&
+            threadList.info.get(j).getString("command").equals(doc.getString("command")) ){
+                if (threadList.info.get(j).getString("pathname") != null ){
+                    if(threadList.info.get(j).getString("pathname").equals(doc.getString("pathname"))){
+                        answer = true;
+                        break;
+                    }
+                } else if(doc.getString("pathname") == null){
+                    answer = true;
+                    break;
+                }
+
+            }
+            System.out.println("info" + threadList.info.get(j).toJson());
         }
         return answer;
-    }*/
+    }
 
     public static ArrayList<Document> removePacket(DatagramPacket request, Document doc){
         Document infoReceive = new Document();

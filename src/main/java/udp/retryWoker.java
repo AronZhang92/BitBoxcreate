@@ -21,7 +21,36 @@ public class retryWoker implements Runnable{
 
         infoSend.append("address", address.toString());
         infoSend.append("command", doc.getString("command"));
-        infoSend.append("pathname", doc.getString("command"));
+        infoSend.append("pathname", doc.getString("pathname"));
+    }
+
+    public Document trandfer(Document doc) {
+        doc = infoSend;
+        switch (doc.getString("command")) {
+            case "FILE_CREATE_REQUEST":
+                doc.append("command", "FILE_CREATE_RESPONSE");
+                break;
+            case "FILE_BYTES_REQUEST":
+                doc.append("command", "FILE_BYTES_RESPONSE");
+                break;
+            case "FILE_DELETE_REQUEST":
+                doc.append("command", "FILE_DELETE_RESPONSE");
+                break;
+            case "FILE_MODIFY_REQUEST":
+                doc.append("command", "FILE_MODIFY_RESPONSE");
+                break;
+            case "DIRECTORY_CREATE_REQUEST":
+                doc.append("command", "DIRECTORY_CREATE_RESPONSE");
+                break;
+            case "DIRECTORY_DELETE_REQUEST":
+                doc.append("command", "DIRECTORY_DELETE_RESPONSE");
+                break;
+            case "HANDSHAKE_REQUEST":
+                doc.append("command", "HANDSHAKE_RESPONSE");
+                break;
+        }
+        System.out.println("doc" + doc.toJson());
+        return doc;
     }
 
     public void run() {
@@ -35,30 +64,28 @@ public class retryWoker implements Runnable{
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if(threadList.info.contains(infoSend)){
+                System.out.println("infosend" + trandfer(infoSend).toJson());
+                int n = threadList.info.size();
+                for(int j=0; j<n; j++){
+                    System.out.println("info" + threadList.info.get(j).toJson());
+                }
+                System.out.println("contain" + threadList.contain(trandfer(infoSend)));
+                if(threadList.contain(trandfer(infoSend))){
                     try {
                         datagramSocket.send(datagramPacket);
                         String msg = new String(datagramPacket.getData(), datagramPacket.getOffset(), datagramPacket.getLength());
                         System.out.println("resend once !!!!!!!!!!!!!!" + msg);
+                        i ++;
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 } else{
-                   break;
+                    check = false;
                 }
-                i ++;
+            }else {
+                check = false;
             }
             System.out.println("retryworker44 : one thread closed");
-            //wait 2 s
-            // if contain (address)
-                // check = false
         }
-//        ip port,
-//                receive pacet
-//                        check
-//                                list cun thread
-//                duiying nage thread
-//                command response
-//                        close thread
     }
 }
