@@ -84,6 +84,7 @@ public class retryWoker implements Runnable{
                 }
             }else {
                 threadList.info.remove(trandfer(infoSend));
+                udpConnectionList.remove(address.toString());
                 check = false;
             }
             System.out.println("retryworker44 : one thread closed");
