@@ -39,13 +39,6 @@ public class udpPeer {
 		secureServer = new SecureServer();
 		Thread h = new Thread(secureServer);
 		h.start();
-        
-		// sending test
-//		String[] peer= Configuration.getConfigurationValue("peers").split(":");
-//		System.out.println(peer[0] + "hhhh " + peer[1]); //coding in here
-//		byte[] msg = udpSendSocket.doctoByte(udpJSONRETURN.HANDSHAKE_REQUEST(InetAddress.getLocalHost().getHostAddress(), socket.getLocalPort()));
-//		DatagramPacket handShake = new DatagramPacket(msg, msg.length, InetAddress.getLocalHost(), socket.getLocalPort());
-//		System.out.println("getlocal Houst " + InetAddress.getLocalHost().getAllByName("MichaelSurface")[0]);
 		
 		//send to all peers handshake at beginning 
 		udpSendSocket.sendToConfigPeers(udpSendSocket.doctoByte(
