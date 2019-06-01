@@ -190,10 +190,10 @@ public class JSONRETURN2 {
         	return doc;
     }
     	
-        public static Document AUTH_REQUEST() {
+        public static Document AUTH_REQUEST(String cmd) {
             Document doc = new Document();
             doc.append("command", "AUTH_REQUEST");
-            doc.append("identity", "liuyumo@liuyumodeMacBook-Pro.local");//Would be changed are acquired from document
+            doc.append("identity", cmd);
             return doc;
         }
         

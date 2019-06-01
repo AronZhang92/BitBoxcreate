@@ -49,10 +49,6 @@ public class Client {
     	String ipAddress1 = middleserver[0];
     	int port1 = Integer.parseInt(middleserver[1]);
 
-		String[] middlepeer = peer.split(":");
-		String ipAddress2 = middlepeer[0];
-		int port2 = Integer.parseInt(middlepeer[1]);
-
     	try {
     		socket = new Socket(ipAddress1, port1);
     		System.out.println("connection sucsseed");
@@ -62,7 +58,7 @@ public class Client {
     		BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
     		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
 
-    		out.write(JSONRETURN2.AUTH_REQUEST().toJson() + "\n");
+    		out.write(JSONRETURN2.AUTH_REQUEST(cmd.getidentify()).toJson() + "\n");
     		out.flush();
 
     		String frombuffer = in.readLine();
@@ -73,7 +69,7 @@ public class Client {
     		SecretKey key_common = null;
     		PrivateKey keyPrivate = null;
     		try {
-    			keyPrivate = RSAcrypt.getPrivateKey("src/ bitboxclient_rsa");
+    			keyPrivate = RSAcrypt.getPrivateKey("src/bitboxclient_rsa");
     		} catch (Exception e) {
     			// TODO Auto-generated catch block
 				  e.printStackTrace();
@@ -110,6 +106,7 @@ public class Client {
 						System.out.println(document.toJson());
 
 						String buffer1 = in.readLine();
+						System.out.println(buffer1);
 						buffer1 = Document.parse(buffer1).getString("payload");
 						System.out.println("2 : " + buffer1);
 
@@ -143,6 +140,10 @@ public class Client {
 
     			case "connect_peer":
     				try {
+						String[] middlepeer = peer.split(":");
+						String ipAddress2 = middlepeer[0];
+						int port2 = Integer.parseInt(middlepeer[1]);
+
 						System.out.println(JSONRETURN2.CONNECT_PEER_REQUEST(ipAddress2, port2).toJson());
 						String connect_peer = AEScrypt.encrypt(JSONRETURN2.
 													CONNECT_PEER_REQUEST(ipAddress2, port2).toJson(), key_common);
@@ -170,6 +171,10 @@ public class Client {
 
 	    		case "disconnect_peer":
 	    			try {
+						String[] middlepeer = peer.split(":");
+						String ipAddress2 = middlepeer[0];
+						int port2 = Integer.parseInt(middlepeer[1]);
+
 						System.out.println(JSONRETURN2.DISCONNECT_PEER_REQUEST(ipAddress2, port2).toJson());
 						String disconnect_peer = AEScrypt.encrypt(JSONRETURN2.
 													DISCONNECT_PEER_REQUEST(ipAddress2, port2).toJson(), key_common);

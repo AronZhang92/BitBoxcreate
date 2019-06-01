@@ -9,10 +9,10 @@ public class CmdLineArgs {
     @Option(required = true,name = "-s",aliases = "server")
     private static String server;
 
-    @Option(required = false,name = "-i",aliases = "abc")
-    private static String name;
+    @Option(required = false,name = "-i",aliases = "identify")
+    private static String identify;
 
-    @Option(required = true,name = "-p",aliases = "peer")
+    @Option(required = false,name = "-p",aliases = "peer")
     private static String peer;
 
     public  String getserver() {
@@ -21,8 +21,8 @@ public class CmdLineArgs {
     public  String getcommand() {
     	return command;
     }
-    public  String getname() {
-        return name;
+    public  String getidentify() {
+        return identify;
     }
     public  String getpeer() {
         return peer;
