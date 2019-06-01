@@ -53,7 +53,6 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 
 		while (true) {
 			try {
-				System.out.println("udpServer start");
 				socket = udpPeer.getDatagramSocket();
 				while (true) {
 					DatagramPacket request = new DatagramPacket(new byte[13000], 13000);
@@ -63,18 +62,15 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 
 					int n = threadList.info.size();
 					for (int j = 0; j < n; j++) {
-						System.out.println("udpServerMain 65 : before remove: " + threadList.info.get(j));
 					}
 
 					threadList.removePacket(request, doc);
 					int m = threadList.info.size();
 					for (int j = 0; j < m; j++) {
-						System.out.println("udpServerMain 71 : after remove: " + threadList.info.get(j));
 					}
 
 					// handshake
 					if (doc.getString("command").equals("HANDSHAKE_REQUEST")) {
-						System.out.println("Handshkae_request received");// test print
 						if (udpConnectionList.getsize() < maxcon) { // when haven't reach mximum connection number
 							log.info("received request from : " + request.getAddress());
 							// send response
@@ -103,7 +99,6 @@ public class udpServerMain implements FileSystemObserver, Runnable {
 					} else { // when the command is not handshake_request
 						String ipAdress = request.getAddress().toString().replace("/", "");
 						udpFunction.funtional(doc, InetAddress.getByName(ipAdress), request.getPort());
-						System.out.println("udpServerMian 91:  the comman received is" + doc.getString("command"));
 					}
 				}
 

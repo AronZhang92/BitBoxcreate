@@ -26,7 +26,6 @@ public class Peer
 	
     public static void tcp() throws IOException, NumberFormatException, NoSuchAlgorithmException
     {
-    	System.out.println("tcp mode started");
     	System.setProperty("java.util.logging.SimpleFormatter.format",
                 "[%1$tc] %2$s %4$s: %5$s%n");
         log.info("BitBox Peer starting...");

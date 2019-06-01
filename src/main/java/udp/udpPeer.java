@@ -23,7 +23,6 @@ public class udpPeer {
 	public static void udpMode() throws NumberFormatException, NoSuchAlgorithmException, IOException {
 		socket = new DatagramSocket(Integer.parseInt(Configuration.getConfigurationValue("udpPort")));
 
-		System.out.println("udp mode started");
 		System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$tc] %2$s %4$s: %5$s%n");
 		log.info("BitBox Peer starting...");
 		Configuration.getConfiguration();
@@ -43,7 +42,6 @@ public class udpPeer {
 		//send to all peers handshake at beginning 
 		udpSendSocket.sendToConfigPeers(udpSendSocket.doctoByte(
 				udpJSONRETURN.HANDSHAKE_REQUEST(InetAddress.getLocalHost().getHostAddress(), socket.getLocalPort())));
-		System.out.println("udpPeer53: send to all peers");
 	}
 
 	public static udpServerMain getServerMain() {

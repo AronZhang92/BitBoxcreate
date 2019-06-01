@@ -64,18 +64,15 @@ public class retryWoker implements Runnable {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				System.out.println("retryWoker 67 :  the info send: " + trandfer(infoSend).toJson());
 //				int n = threadList.info.size();
 //				for (int j = 0; j < n; j++) {
 //					System.out.println("retryWoker 70: info in List are: " + threadList.info.get(j).toJson());
 //				}
-				System.out.println("retryWoker 72: the status of containing: " + threadList.contain(trandfer(infoSend)));
 				if (threadList.contain(trandfer(infoSend))) {
 					try {
 						datagramSocket.send(datagramPacket);
 						String msg = new String(datagramPacket.getData(), datagramPacket.getOffset(),
 								datagramPacket.getLength());
-						System.out.println("resend once !!!!!!!!!!!!!!" + msg);
 						i++;
 					} catch (IOException e) {
 						e.printStackTrace();
@@ -84,16 +81,12 @@ public class retryWoker implements Runnable {
 					check = false;
 				}
 			} else if(threadList.contain(trandfer(infoSend))) {
-				System.out.println("retryWoker88 the size of list before removing: "+ threadList.info.size());
 				threadList.info.remove(trandfer(infoSend).toJson());
-				System.out.println("retryWoker88 the size of list after removing: "+ threadList.info.size());
-				System.out.println("retryWoker89 the info be removed: "+ trandfer(infoSend).toJson());
 				udpConnectionList.remove(address.toString());
 				check = false;
 			}else {
 				check = false;
 			}
 		}
-		System.out.println("retryworker44 : one thread closed");
 	}
 }

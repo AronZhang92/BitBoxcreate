@@ -100,7 +100,6 @@ public class function2 {
 
 			if (content != null) {
 				byte[] bites = Base64.getDecoder().decode(content);
-				System.out.println(" the text reveived is :" + ByteBuffer.wrap(bites));
 				fsm.writeFile(doc.getString("pathName"), ByteBuffer.wrap(bites), start1);
 			} else {
 				log.info("System read nothing form the response");
@@ -280,7 +279,6 @@ public class function2 {
 					PublicKey publicKey = RSAcrypt.getPublicKey(publicKeys.get(index)); // change String to public key
 					byte[] enCommenKey = RSAcrypt.encrypt(publicKey, commenKeyToByte);
 					String enCommenKeyToStr = Base64.getEncoder().encodeToString(enCommenKey);
-					System.out.println(commenKeyToStr);
 					// send response to client
 					Sendsocket.sendtosocket(JSONRETURN2.AUTH_RESPONSE(enCommenKeyToStr, true, "public key found"),
 							socket);
@@ -302,8 +300,7 @@ public class function2 {
 						commenKey);
 				peerListDoc.append("payload", cipherText);
 				Sendsocket.sendtosocket(peerListDoc, socket);
-				System.out.println("function2 297: the send command is:"
-						+ JSONRETURN2.LIST_PEERS_RESPONSE().toJson().replace("\\", "")); // test
+			
 				break;
 			} else {// when udp mode
 				Document peerListDoc = new Document();
@@ -311,8 +308,7 @@ public class function2 {
 						commenKey);
 				peerListDoc.append("payload", cipherText);
 				Sendsocket.sendtosocket(peerListDoc, socket);
-				System.out.println("function2 311: the send command is:"
-						+ JSONRETURN2.LIST_PEERS_RESPONSE().toJson().replace("\\", "")); // test
+				
 				break;
 			}
 
@@ -338,7 +334,6 @@ public class function2 {
 										.CONNECT_PEER_RESPONSE(address, port, true, "peer connect successfully")
 										.toJson(), commenKey));
 						Sendsocket.sendtosocket(responseDoc, socket);
-						System.out.println("function2 320: send to lient: " + responseDoc.toJson());
 					} catch (Exception e) {
 						Document res = new Document();
 						res.append("payload",
@@ -363,23 +358,21 @@ public class function2 {
 				} else { // when peer haven't connected
 					try {
 						udpSendSocket.connectToPeer(address, Integer.parseInt(port));
-						System.out.println("function2 364, the address is" + address);
 						TimeUnit.SECONDS.sleep(5);
 						if(threadList.info != null) { // when the threadlist not null
 							Document res = new Document();
 						res.append("payload",
 								AEScrypt.encrypt(JSONRETURN2
-										.CONNECT_PEER_RESPONSE(address, port, false, "peer refused connect").toJson(),
+										.CONNECT_PEER_RESPONSE(address, port, true, "peer connect successfully").toJson(),
 										commenKey));
 						Sendsocket.sendtosocket(res, socket);
 						}else { // when the threadlist null
 							
 						responseDoc.append("payload",
 								AEScrypt.encrypt(JSONRETURN2
-										.CONNECT_PEER_RESPONSE(address, port, true, "peer connect successfully")
+										.CONNECT_PEER_RESPONSE(address, port, false, "peer connection refused")
 										.toJson(), commenKey));
 						Sendsocket.sendtosocket(responseDoc, socket);
-						System.out.println("function2 361: send to lient: " + responseDoc.toJson());
 						}
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -392,8 +385,6 @@ public class function2 {
 		case "DISCONNECT_PEER_REQUEST":
 			if (Configuration.getConfigurationValue("mode").equals("tcp")) { // when tcp mode
 				if (Connectionlist.contain(("/" + doc.getString("host")))) { // while peers exist
-					System.out.println("function2 349 check if peer exit: "
-							+ Connectionlist.contain(("/" + doc.getString("host"))));
 					for (Socket peer : Connectionlist.returnsocketlist()) {
 						if (peer.getInetAddress().toString().equals("/" + doc.getString("host"))) {
 							Connectionlist.remove(peer);
@@ -404,10 +395,7 @@ public class function2 {
 											Long.toString(doc.getLong("port")), true, "disconnected peer successfully")
 											.toJson(), commenKey));
 							Sendsocket.sendtosocket(disRes, socket);
-							System.out.println("function2 358 send to client " + JSONRETURN2
-									.DISCONNECT_PEER_RESPONSE(doc.getString("host"), Long.toString(doc.getLong("port")),
-											true, "disconnected peer successfully")
-									.toJson());
+							
 						}
 					}
 				} else { // when the peer doesn't exist
@@ -421,8 +409,7 @@ public class function2 {
 				break;
 			} else { // when udp mode
 				if (udpConnectionList.contain(("/" + doc.getString("host")))) { // while peers exist
-					System.out.println("function2 349 check if peer exit: "
-							+ Connectionlist.contain(("/" + doc.getString("host"))));
+					
 					for (String peer : udpConnectionList.getall()) {
 						if (peer.equals("/" + doc.getString("host"))) {
 							udpConnectionList.remove("/" + doc.getString("host"));
@@ -433,10 +420,7 @@ public class function2 {
 											Long.toString(doc.getLong("port")), true, "disconnected peer successfully")
 											.toJson(), commenKey));
 							Sendsocket.sendtosocket(disRes, socket);
-							System.out.println("function2 358 send to client " + JSONRETURN2
-									.DISCONNECT_PEER_RESPONSE(doc.getString("host"), Long.toString(doc.getLong("port")),
-											true, "disconnected peer successfully")
-									.toJson());
+							
 						}
 					}
 				} else { // when the peer doesn't exist

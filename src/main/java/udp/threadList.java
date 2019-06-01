@@ -48,7 +48,6 @@ public class threadList {
         //newdoc.append("second",doc);
         info.add(infoDoc.toJson());
 
-        System.out.println("threadList 16: thread list is " + infoDoc);
     }
     public static boolean contain(Document doc){
         boolean answer = false;
@@ -67,7 +66,6 @@ public class threadList {
                 }
 
             }
-            System.out.println("info" + threadList.info.get(j));
         }
         return answer;
     }

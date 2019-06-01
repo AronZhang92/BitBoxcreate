@@ -51,9 +51,6 @@ public class Client {
 
     	try {
     		socket = new Socket(ipAddress1, port1);
-    		System.out.println("connection sucsseed");
-    		System.out.println(socket.getInetAddress());
-    		System.out.println(socket.getPort());
 
     		BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
     		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
@@ -63,7 +60,6 @@ public class Client {
 
     		String frombuffer = in.readLine();
     		Document doc = Document.parse(frombuffer);
-    		System.out.println(frombuffer);
 
     		byte[] keyCommon = null;
     		SecretKey key_common = null;
@@ -82,7 +78,6 @@ public class Client {
     					keyCommon = RSAcrypt.decrypt(keyPrivate, Base64.getDecoder().decode(AES128));
     					key_common = new SecretKeySpec(keyCommon, 0, keyCommon.length, "AES");
     					String commonkey = Base64.getEncoder().encodeToString(keyCommon);
-    					System.out.println("1 : " + commonkey);
     				} catch (Exception e) {
     					// TODO Auto-generated catch block
 						  e.printStackTrace();
@@ -97,23 +92,17 @@ public class Client {
     		switch(command) {
     			case "list_peers":
     				try {
-    					System.out.println(JSONRETURN2.LIST_PEERS_REQUEST().toJson());
     					String list_peers = AEScrypt.encrypt
 												(JSONRETURN2.LIST_PEERS_REQUEST().toJson(), key_common);
     					document.append("payload", list_peers);
     					out.write(document.toJson() + "\n");
 						out.flush();
-						System.out.println(document.toJson());
 
 						String buffer1 = in.readLine();
-						System.out.println(buffer1);
 						buffer1 = Document.parse(buffer1).getString("payload");
-						System.out.println("2 : " + buffer1);
 
 						String buffers = AEScrypt.decrypt(buffer1, key_common);
 						Document doc1 = Document.parse(buffers);
-						System.out.println(doc1.getString("command"));
-						System.out.println("the message send are " + buffers);
 						if(doc1.getString("command").equals("LIST_PEERS_RESPONSE")) {
 							ArrayList<Document> a = (ArrayList<Document>) doc1.get("peers");
 							ArrayList<Document> address = null;
@@ -144,20 +133,16 @@ public class Client {
 						String ipAddress2 = middlepeer[0];
 						int port2 = Integer.parseInt(middlepeer[1]);
 
-						System.out.println(JSONRETURN2.CONNECT_PEER_REQUEST(ipAddress2, port2).toJson());
 						String connect_peer = AEScrypt.encrypt(JSONRETURN2.
 													CONNECT_PEER_REQUEST(ipAddress2, port2).toJson(), key_common);
     					document.append("payload", connect_peer);
     					out.write(document.toJson() + "\n");
     					out.flush();
-						System.out.println("1 : " + document.toJson());
 
 						String buffer2 = in.readLine();
-						System.out.println("2 : " + buffer2);
 						buffer2 = Document.parse(buffer2).getString("payload");
 						String buffers = AEScrypt.decrypt(buffer2, key_common);
 						Document doc2 = Document.parse(buffers);
-						System.out.println("3 : " + buffers);
 			    		if (doc2.getString("command").equals("CONNECT_PEER_RESPONSE")) {
 							boolean status2 = doc2.getBoolean("status");
 							String message2 = doc2.getString("message");
@@ -175,20 +160,16 @@ public class Client {
 						String ipAddress2 = middlepeer[0];
 						int port2 = Integer.parseInt(middlepeer[1]);
 
-						System.out.println(JSONRETURN2.DISCONNECT_PEER_REQUEST(ipAddress2, port2).toJson());
 						String disconnect_peer = AEScrypt.encrypt(JSONRETURN2.
 													DISCONNECT_PEER_REQUEST(ipAddress2, port2).toJson(), key_common);
 	    				document.append("payload", disconnect_peer);
 	    				out.write(document.toJson() + "\n");
 						out.flush();
-						System.out.println("1 : " + document.toJson());
 				
 						String buffer3 = in.readLine();
 						buffer3 = Document.parse(buffer3).getString("payload");
-						System.out.println("2 : " + buffer3);
 						String buffers = AEScrypt.decrypt(buffer3, key_common);
 						Document doc3 = Document.parse(buffers);
-						System.out.println("3 : " + buffers);
 						if (doc3.getString("command").equals("DISCONNECT_PEER_RESPONSE")) {
 							boolean status3 = doc3.getBoolean("status");
 							String message3 = doc3.getString("message");

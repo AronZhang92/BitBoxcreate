@@ -121,7 +121,6 @@ public class udpFunction {
 				String a = new String(data);
 				Document document = Document.parse(a);
 				threadList.addPacket(msg, document);
-				System.out.println("udpFucntion129: use addPacket2");
 			} else if (start1 + blocklength1 + blocklength1 > filesize1) {
 //				TimeUnit.SECONDS.sleep(1);
 				udpSendSocket.sendtosocket(udpSendSocket.doctoByte(JSONRETURN2.FILE_BYTES_REQUEST(fileDescriper, doc.getString("pathName"),
@@ -133,7 +132,6 @@ public class udpFunction {
 				String a = new String(data);
 				Document document = Document.parse(a);
 				threadList.addPacket(msg, document);
-				System.out.println("udpFucntion129: use addPacket3");
 
 			}
 
